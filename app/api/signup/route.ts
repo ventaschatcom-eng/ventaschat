@@ -2,6 +2,7 @@ import bcrypt from "bcryptjs";
 import { NextResponse } from "next/server";
 
 import { createUser, getUserByEmail } from "@/lib/db";
+import { sendWelcomeEmail } from "@/lib/email";
 import { signupSchema } from "@/lib/validations";
 
 export async function POST(request: Request) {
@@ -30,6 +31,8 @@ export async function POST(request: Request) {
     const passwordHash = await bcrypt.hash(parsed.data.password, 12);
 
     const user = await createUser({ email, passwordHash });
+
+    void sendWelcomeEmail(email).catch(() => {});
 
     return NextResponse.json({
       id: user?.id,

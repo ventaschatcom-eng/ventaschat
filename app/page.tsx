@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 
 import { MarketingHeader } from "@/components/marketing-header";
+import { StructuredData } from "@/components/structured-data";
 import { GradientText } from "@/components/ui/gradient-text";
 
 const proofItems = [
@@ -325,6 +326,7 @@ const positioningPoints = [
 export default function HomePage() {
   return (
     <>
+      <StructuredData />
       <MarketingHeader />
       <main className="page-shell">
         <section className="hero hero-shell hero-whatsapp">
@@ -793,7 +795,17 @@ export default function HomePage() {
           </div>
         </section>
       </main>
-      <footer className="footer">Convierte conversaciones de mensajería en ventas.</footer>
+      <footer className="footer">
+        <div className="footer-content">
+          <span>© {new Date().getFullYear()} VentasChat — IA para vender mejor por WhatsApp.</span>
+          <div className="footer-links">
+            <Link href="/pricing">Precios</Link>
+            <Link href="/privacy">Privacidad</Link>
+            <Link href="/terms">Términos</Link>
+            <a href="mailto:ventaschat.com@gmail.com">Contacto</a>
+          </div>
+        </div>
+      </footer>
     </>
   );
 }

@@ -1,6 +1,17 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 
 import { MarketingHeader } from "@/components/marketing-header";
+
+export const metadata: Metadata = {
+  title: "Precios y planes — Desde $20.000 COP",
+  description: "Paquetes de análisis desde $20.000 COP por 20 chats o plan Pro Ilimitado mensual a $89.000 COP. Pagos en COP con Wompi y MercadoPago. 10 análisis gratis al registrarte.",
+  alternates: { canonical: "/pricing" },
+  openGraph: {
+    title: "Precios — VentasChat",
+    description: "Análisis desde $20.000 COP o ilimitados a $89.000/mes.",
+  },
+};
 
 const plans = [
   {
