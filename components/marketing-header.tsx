@@ -9,6 +9,7 @@ export function MarketingHeader() {
       <Logo />
       <nav>
         <ThemeToggle />
+        <Link href="/blog">Blog</Link>
         <Link href="/pricing">Precios</Link>
         <Link href="/login">Iniciar sesion</Link>
         <Link href="/signup" className="button button-primary">
