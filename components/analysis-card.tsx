@@ -156,7 +156,88 @@ export function AnalysisDetails({
             </div>
           </div>
         </AnalysisCard>
+
+        {(result.recommended_words?.length || result.words_to_avoid?.length) ? (
+          <AnalysisCard title="Vocabulario sugerido" className="analysis-card-span">
+            <div className="vocab-grid">
+              {result.recommended_words?.length ? (
+                <div className="vocab-block vocab-block-good">
+                  <span className="vocab-label">✅ Palabras o frases para usar</span>
+                  <ul className="vocab-chip-list">
+                    {result.recommended_words.map((word) => (
+                      <li key={word} className="vocab-chip vocab-chip-good">{word}</li>
+                    ))}
+                  </ul>
+                </div>
+              ) : null}
+              {result.words_to_avoid?.length ? (
+                <div className="vocab-block vocab-block-bad">
+                  <span className="vocab-label">⚠️ Palabras o frases para evitar</span>
+                  <ul className="vocab-chip-list">
+                    {result.words_to_avoid.map((word) => (
+                      <li key={word} className="vocab-chip vocab-chip-bad">{word}</li>
+                    ))}
+                  </ul>
+                </div>
+              ) : null}
+            </div>
+          </AnalysisCard>
+        ) : null}
+
+        {result.key_metrics ? (
+          <AnalysisCard title="Métricas clave" className="analysis-card-span">
+            <div className="metrics-grid">
+              <MetricBar
+                label="Engagement del cliente"
+                value={result.key_metrics.customer_engagement}
+                hint="Qué tan involucrado está en la conversación"
+                color="var(--primary)"
+              />
+              <MetricBar
+                label="Urgencia del momento"
+                value={result.key_metrics.urgency_level}
+                hint="Qué tan rápido conviene responder"
+                color="#f59e0b"
+              />
+              <MetricBar
+                label="Sensibilidad al precio"
+                value={result.key_metrics.price_sensitivity}
+                hint="Qué tan sensible es al costo (0 = no es factor)"
+                color="#ef4444"
+              />
+            </div>
+          </AnalysisCard>
+        ) : null}
       </div>
+    </div>
+  );
+}
+
+function MetricBar({
+  label,
+  value,
+  hint,
+  color,
+}: {
+  label: string;
+  value: number;
+  hint: string;
+  color: string;
+}) {
+  const safe = Math.max(0, Math.min(100, value));
+  return (
+    <div className="metric-row">
+      <div className="metric-row-head">
+        <strong>{label}</strong>
+        <span className="metric-value">{safe}%</span>
+      </div>
+      <div className="metric-track">
+        <div
+          className="metric-fill"
+          style={{ width: `${safe}%`, background: color }}
+        />
+      </div>
+      <small className="metric-hint">{hint}</small>
     </div>
   );
 }

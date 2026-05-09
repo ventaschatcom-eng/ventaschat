@@ -40,6 +40,8 @@ export async function POST(request: Request) {
       conversationText: parsed.data.conversationText,
       conversationContext: parsed.data.conversationContext,
       conversationType: parsed.data.conversationType,
+      extraContext: parsed.data.extraContext,
+      desiredTone: parsed.data.desiredTone,
     });
 
     const analysis = await createAnalysis({

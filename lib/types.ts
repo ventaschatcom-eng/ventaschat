@@ -35,6 +35,15 @@ export const allConversationTypes = Object.values(conversationTypeOptions).flat(
 
 export type ConversationType = (typeof allConversationTypes)[number];
 
+export const desiredTones = [
+  "Profesional",
+  "Cercano",
+  "Urgente",
+  "Consultivo",
+] as const;
+
+export type DesiredTone = (typeof desiredTones)[number];
+
 export type AnalysisResult = {
   intent: string;
   tone: string;
@@ -50,6 +59,13 @@ export type AnalysisResult = {
   };
   strategy_tip: string;
   main_positioning: string;
+  recommended_words?: string[];
+  words_to_avoid?: string[];
+  key_metrics?: {
+    customer_engagement: number;
+    urgency_level: number;
+    price_sensitivity: number;
+  };
 };
 
 export function getConversationTypesForContext(context: ConversationContext) {

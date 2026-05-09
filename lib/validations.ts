@@ -13,6 +13,8 @@ export const signupSchema = z.object({
 
 export const loginSchema = signupSchema;
 
+import { desiredTones } from "@/lib/types";
+
 export const analyzeSchema = z
   .object({
     conversationText: z
@@ -21,6 +23,8 @@ export const analyzeSchema = z
       .max(12000, "La conversacion es demasiado larga para el limite actual del MVP."),
     conversationContext: z.enum(conversationContexts),
     conversationType: z.enum(allConversationTypes as [string, ...string[]]),
+    extraContext: z.string().max(1000).optional(),
+    desiredTone: z.enum(desiredTones).optional(),
   })
   .superRefine((data, ctx) => {
     const validTypes = conversationTypeOptions[data.conversationContext] as readonly string[];

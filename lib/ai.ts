@@ -1,7 +1,12 @@
 import OpenAI from "openai";
 
-import { getAnalysisPrompt } from "@/lib/prompt";
-import type { AnalysisResult, ConversationContext, ConversationType } from "@/lib/types";
+import { buildExtraContextBlock, getAnalysisPrompt } from "@/lib/prompt";
+import type {
+  AnalysisResult,
+  ConversationContext,
+  ConversationType,
+  DesiredTone,
+} from "@/lib/types";
 
 const openai = process.env.OPENAI_API_KEY
   ? new OpenAI({ apiKey: process.env.OPENAI_API_KEY })
@@ -49,6 +54,9 @@ function fallbackAnalysis(
       strategy_tip: `Trata esta conversacion como ${conversationType.toLowerCase()} y prioriza claridad, tono sereno y proximo paso concreto.`,
       main_positioning:
         "Posiciona tu respuesta como una forma de dar orden, contexto y claridad sin escalar tension innecesaria.",
+      recommended_words: ["te propongo", "para alinearnos", "siguiente paso", "concreto", "claridad"],
+      words_to_avoid: ["urgente", "lo antes posible", "necesito ya", "obviamente"],
+      key_metrics: { customer_engagement: 60, urgency_level: 45, price_sensitivity: 0 },
     };
   }
 
@@ -81,6 +89,9 @@ function fallbackAnalysis(
       strategy_tip: `En ${conversationType.toLowerCase()}, prioriza claridad, respeto y menos presion para que la conversacion se mantenga abierta.`,
       main_positioning:
         "Enfoca tu respuesta en bajar malentendidos, mostrar respeto y facilitar una conversacion mas clara.",
+      recommended_words: ["te entiendo", "con calma", "lo aclaro", "sin presion", "tranquilo"],
+      words_to_avoid: ["siempre", "nunca", "tienes que", "es obvio"],
+      key_metrics: { customer_engagement: 55, urgency_level: 40, price_sensitivity: 0 },
     };
   }
 
@@ -112,6 +123,16 @@ function fallbackAnalysis(
     strategy_tip: `Trata esta conversacion como ${conversationType.toLowerCase()}. Enfocate en claridad, confianza y una llamada a la accion concreta.`,
     main_positioning:
       "Posiciona la oferta como una solucion practica que ahorra tiempo, reduce la incertidumbre y facilita la decision.",
+    recommended_words: [
+      "te conviene",
+      "resultado",
+      "facil",
+      "rapido",
+      "sin compromiso",
+      "siguiente paso",
+    ],
+    words_to_avoid: ["barato", "caro", "lo mas economico", "como te dije"],
+    key_metrics: { customer_engagement: 62, urgency_level: 55, price_sensitivity: 60 },
   };
 }
 
@@ -119,10 +140,14 @@ export async function analyzeConversation(params: {
   conversationText: string;
   conversationContext: ConversationContext;
   conversationType: ConversationType;
+  extraContext?: string;
+  desiredTone?: DesiredTone;
 }): Promise<AnalysisResult> {
   if (!openai) {
     return fallbackAnalysis(params.conversationContext, params.conversationType);
   }
+
+  const extraBlock = buildExtraContextBlock(params.extraContext, params.desiredTone);
 
   const response = await openai.responses.create({
     model: process.env.OPENAI_MODEL ?? "gpt-4.1-mini",
@@ -139,7 +164,8 @@ export async function analyzeConversation(params: {
             text:
               `Context:\n${params.conversationContext}\n\n` +
               `Conversation type:\n${params.conversationType}\n\n` +
-              `Conversation:\n${params.conversationText}`,
+              `Conversation:\n${params.conversationText}` +
+              extraBlock,
           },
         ],
       },
@@ -153,6 +179,11 @@ export async function analyzeConversation(params: {
   }
 
   const parsed = JSON.parse(extractJsonBlock(outputText)) as AnalysisResult;
+  const metrics = parsed.key_metrics ?? {
+    customer_engagement: parsed.conversion_score ?? 50,
+    urgency_level: 50,
+    price_sensitivity: params.conversationContext === "Ventas / clientes" ? 50 : 0,
+  };
 
   return {
     ...parsed,
@@ -162,5 +193,17 @@ export async function analyzeConversation(params: {
     main_positioning:
       parsed.main_positioning ||
       "Responde con claridad, reduce friccion y orienta la conversacion hacia un siguiente paso facil de aceptar.",
+    recommended_words: parsed.recommended_words ?? [],
+    words_to_avoid: parsed.words_to_avoid ?? [],
+    key_metrics: {
+      customer_engagement: clamp(metrics.customer_engagement),
+      urgency_level: clamp(metrics.urgency_level),
+      price_sensitivity: clamp(metrics.price_sensitivity),
+    },
   };
+}
+
+function clamp(value: number) {
+  if (typeof value !== "number" || Number.isNaN(value)) return 0;
+  return Math.max(0, Math.min(100, Math.round(value)));
 }

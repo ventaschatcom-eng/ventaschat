@@ -2489,3 +2489,259 @@ html.dark .wa-compose-field {
     justify-content: flex-end;
   }
 }
+
+/* ========== Analyze form layout ========== */
+.analyze-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 0.85fr);
+  gap: 1.25rem;
+  align-items: start;
+}
+
+@media (max-width: 960px) {
+  .analyze-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.analyze-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+.analyze-templates {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0.75rem;
+  border: 1px dashed var(--card-border);
+  border-radius: 14px;
+  background: var(--primary-soft);
+}
+.analyze-templates-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--primary-dark);
+}
+.analyze-template-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.analyze-template-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.45rem 0.75rem;
+  border-radius: 999px;
+  border: 1px solid var(--card-border);
+  background: var(--surface);
+  color: var(--text);
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: transform 0.15s, border-color 0.15s, background 0.15s;
+}
+.analyze-template-btn:hover {
+  border-color: var(--primary);
+  background: var(--primary-soft);
+  transform: translateY(-1px);
+}
+
+.analyze-dropzone {
+  position: relative;
+  border: 1.5px dashed var(--card-border);
+  border-radius: 14px;
+  padding: 1rem;
+  text-align: center;
+  transition: border-color 0.15s, background 0.15s;
+  background: var(--surface);
+}
+.analyze-dropzone-active {
+  border-color: var(--primary);
+  background: var(--primary-soft);
+}
+.analyze-dropzone-input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+.analyze-dropzone-label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+  pointer-events: none;
+  color: var(--muted);
+}
+.analyze-dropzone-label strong {
+  color: var(--text);
+}
+
+.analyze-extra > summary {
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--secondary);
+  padding: 0.5rem 0;
+  list-style: none;
+}
+.analyze-extra > summary::-webkit-details-marker { display: none; }
+.analyze-extra-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  padding-top: 0.5rem;
+}
+
+.analyze-preview {
+  position: sticky;
+  top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  max-height: calc(100vh - 2rem);
+  overflow: hidden;
+}
+.analyze-preview-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+}
+.analyze-preview-stats > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.55rem;
+  background: var(--primary-soft);
+  border-radius: 10px;
+}
+.analyze-preview-stats strong {
+  font-size: 1.2rem;
+  color: var(--primary-dark);
+}
+.analyze-preview-stats span {
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+.analyze-preview-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  overflow-y: auto;
+  padding-right: 0.25rem;
+  flex: 1;
+  min-height: 220px;
+  max-height: 460px;
+}
+.analyze-preview-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 2rem 1rem;
+  color: var(--muted);
+  text-align: center;
+}
+
+/* ========== Vocabulary chips ========== */
+.vocab-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+}
+.vocab-block {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0.85rem;
+  border-radius: 14px;
+}
+.vocab-block-good {
+  background: rgba(16, 185, 129, 0.08);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+}
+.vocab-block-bad {
+  background: rgba(239, 68, 68, 0.06);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+}
+.vocab-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text);
+}
+.vocab-chip-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+.vocab-chip {
+  display: inline-flex;
+  padding: 0.35rem 0.7rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+.vocab-chip-good {
+  background: rgba(16, 185, 129, 0.15);
+  color: #047857;
+}
+.vocab-chip-bad {
+  background: rgba(239, 68, 68, 0.12);
+  color: #b91c1c;
+  text-decoration: line-through;
+  text-decoration-color: rgba(185, 28, 28, 0.5);
+}
+
+/* ========== Metric bars ========== */
+.metrics-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.metric-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+.metric-row-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+.metric-value {
+  font-weight: 700;
+  color: var(--text);
+}
+.metric-track {
+  width: 100%;
+  height: 10px;
+  background: rgba(20, 86, 51, 0.08);
+  border-radius: 999px;
+  overflow: hidden;
+}
+.metric-fill {
+  height: 100%;
+  border-radius: 999px;
+  transition: width 0.4s ease;
+}
+.metric-hint {
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
+/* dark mode */
+.dark .vocab-block-good { background: rgba(16, 185, 129, 0.12); }
+.dark .vocab-block-bad { background: rgba(239, 68, 68, 0.12); }
+.dark .vocab-chip-good { background: rgba(16, 185, 129, 0.22); color: #6ee7b7; }
+.dark .vocab-chip-bad { background: rgba(239, 68, 68, 0.22); color: #fca5a5; }
+.dark .metric-track { background: rgba(255, 255, 255, 0.08); }
