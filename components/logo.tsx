@@ -6,27 +6,15 @@ type LogoProps = {
 };
 
 export function Logo({ compact = false }: LogoProps) {
-  const wrapClass = compact ? "logo logo-compact" : "logo";
-  const imgWrapClass = compact ? "logo-image-wrap logo-image-wrap-compact" : "logo-image-wrap";
-  const imgClass = compact ? "logo-image logo-image-compact" : "logo-image";
-
   return (
-    <Link href="/" className={wrapClass}>
-      <span className={imgWrapClass}>
+    <Link href="/" className={compact ? "logo logo-compact" : "logo"}>
+      <span className={compact ? "logo-image-wrap logo-image-wrap-compact" : "logo-image-wrap"}>
         <Image
-          src="/brand/logo-black.png"
+          src="/brand/ventaschat-logo-chatmark.png"
           alt="VentasChat"
-          width={437}
-          height={115}
-          className={`${imgClass} logo-light`}
-          priority
-        />
-        <Image
-          src="/brand/logo-white.png"
-          alt="VentasChat"
-          width={437}
-          height={115}
-          className={`${imgClass} logo-dark`}
+          width={997}
+          height={166}
+          className={compact ? "logo-image logo-image-compact" : "logo-image"}
           priority
         />
       </span>

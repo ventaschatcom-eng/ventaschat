@@ -165,6 +165,66 @@ export async function completeCheckoutSession(reference: string) {
   return session;
 }
 
+export type DbAnalysisIteration = {
+  id: string;
+  analysisId: string;
+  userId: string;
+  inputText: string;
+  conversionScore: number;
+  outputJson: string;
+  createdAt: string;
+};
+
+function mapIteration(row: Record<string, unknown>): DbAnalysisIteration {
+  return {
+    id: String(row.id),
+    analysisId: String(row.analysis_id),
+    userId: String(row.user_id),
+    inputText: String(row.input_text),
+    conversionScore: Number(row.conversion_score),
+    outputJson: String(row.output_json),
+    createdAt: String(row.created_at),
+  };
+}
+
+export async function createAnalysisIteration(input: {
+  analysisId: string;
+  userId: string;
+  inputText: string;
+  result: AnalysisResult;
+}) {
+  const id = crypto.randomUUID();
+  const createdAt = new Date().toISOString();
+
+  await sql`
+    INSERT INTO analysis_iterations (id, analysis_id, user_id, input_text, conversion_score, output_json, created_at)
+    VALUES (${id}, ${input.analysisId}, ${input.userId}, ${input.inputText}, ${input.result.conversion_score}, ${JSON.stringify(input.result)}, ${createdAt})
+  `;
+
+  await sql`
+    UPDATE analyses
+    SET input_text = ${input.inputText},
+        intent = ${input.result.intent},
+        tone = ${input.result.tone},
+        positioning = ${input.result.main_positioning ?? null},
+        conversion_score = ${input.result.conversion_score},
+        output_json = ${JSON.stringify(input.result)}
+    WHERE id = ${input.analysisId} AND user_id = ${input.userId}
+  `;
+
+  const rows = await sql`SELECT * FROM analysis_iterations WHERE id = ${id} LIMIT 1`;
+  return rows[0] ? mapIteration(rows[0] as Record<string, unknown>) : null;
+}
+
+export async function listAnalysisIterationsForUser(analysisId: string, userId: string) {
+  const rows = await sql`
+    SELECT * FROM analysis_iterations
+    WHERE analysis_id = ${analysisId} AND user_id = ${userId}
+    ORDER BY created_at ASC
+  `;
+  return rows.map((row) => mapIteration(row as Record<string, unknown>));
+}
+
 export async function getAdminStats() {
   const today = new Date();
   today.setHours(0, 0, 0, 0);

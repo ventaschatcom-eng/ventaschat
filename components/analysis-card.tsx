@@ -3,18 +3,40 @@ import { getLabelsForContext } from "@/lib/types";
 
 type AnalysisCardProps = {
   title: string;
+  className?: string;
   children: React.ReactNode;
 };
 
-function AnalysisCard({ title, children }: AnalysisCardProps) {
+function AnalysisCard({ title, className, children }: AnalysisCardProps) {
   return (
-    <section className="card analysis-card">
+    <section className={`card analysis-card ${className ?? ""}`.trim()}>
       <div className="section-heading compact">
         <h2>{title}</h2>
       </div>
       {children}
     </section>
   );
+}
+
+function getScoreStatus(score: number) {
+  if (score >= 75) {
+    return {
+      label: "Cierre bien encaminado",
+      tone: "El cliente está cerca de avanzar si respondes con claridad y ritmo.",
+    };
+  }
+
+  if (score >= 50) {
+    return {
+      label: "Hay interés, pero falta moverlo",
+      tone: "La oportunidad existe, pero todavía necesita confianza, contexto o menos fricción.",
+    };
+  }
+
+  return {
+    label: "Conversación todavía frágil",
+    tone: "Antes de empujar el cierre, conviene reforzar valor, confianza o necesidad.",
+  };
 }
 
 export function AnalysisDetails({
@@ -25,74 +47,116 @@ export function AnalysisDetails({
   context: ConversationContext;
 }) {
   const labels = getLabelsForContext(context);
+  const score = Math.max(0, Math.min(100, result.conversion_score));
+  const scoreStatus = getScoreStatus(score);
+  const scoreStyle = {
+    background: `conic-gradient(var(--primary) 0 ${score}%, rgba(20, 86, 51, 0.08) ${score}% 100%)`,
+  };
 
   return (
-    <div className="analysis-grid">
-      <AnalysisCard title="Intencion">
-        <p>{result.intent}</p>
-      </AnalysisCard>
-
-      <AnalysisCard title="Tono emocional">
-        <p>{result.tone}</p>
-      </AnalysisCard>
-
-      <AnalysisCard title={labels.scoreTitle}>
-        <p className="score">
-          {result.conversion_score}% {labels.scoreText}
-        </p>
-      </AnalysisCard>
-
-      <AnalysisCard title="Por que este puntaje">
-        <p>
-          {result.conversion_explanation ||
-            "Este puntaje refleja la intencion visible, el nivel de apertura, las fricciones detectadas y que tan cerca esta la otra parte de dar el siguiente paso."}
-        </p>
-      </AnalysisCard>
-
-      <AnalysisCard title={labels.positioningTitle}>
-        <p>{result.main_positioning}</p>
-      </AnalysisCard>
-
-      <AnalysisCard title={labels.signalsTitle}>
-        <ul className="pill-list">
-          {result.buying_signals.map((signal) => (
-            <li key={signal}>{signal}</li>
-          ))}
-        </ul>
-      </AnalysisCard>
-
-      <AnalysisCard title={labels.objectionsTitle}>
-        <ul className="pill-list">
-          {result.objections.map((objection) => (
-            <li key={objection}>{objection}</li>
-          ))}
-        </ul>
-      </AnalysisCard>
-
-      <AnalysisCard title="Respuestas sugeridas">
-        <div className="reply-stack">
-          <div>
-            <strong>{labels.softReplyTitle}</strong>
-            <p>{result.suggested_replies.soft}</p>
-          </div>
-          <div>
-            <strong>{labels.directReplyTitle}</strong>
-            <p>{result.suggested_replies.direct}</p>
-          </div>
-          <div>
-            <strong>{labels.objectionReplyTitle}</strong>
-            <p>{result.suggested_replies.objection_handling}</p>
+    <div className="analysis-layout">
+      <section className="card analysis-hero">
+        <div className="analysis-hero-score">
+          <div className="analysis-gauge" style={scoreStyle} aria-hidden="true">
+            <div className="analysis-gauge-inner">
+              <strong>{score}%</strong>
+              <span>{labels.scoreTitle}</span>
+            </div>
           </div>
         </div>
-      </AnalysisCard>
 
-      <AnalysisCard title="Mejor siguiente accion">
-        <p>{result.best_next_action}</p>
-      </AnalysisCard>
+        <div className="analysis-hero-copy">
+          <div className="section-heading compact">
+            <h2>Que tan cerca estamos de la venta</h2>
+            <p>{scoreStatus.tone}</p>
+          </div>
 
-      <AnalysisCard title="Tip estrategico">
-        <p>{result.strategy_tip}</p>
-      </AnalysisCard>
+          <div className="analysis-summary-grid">
+            <div className="analysis-summary-item">
+              <span>Lectura general</span>
+              <strong>{scoreStatus.label}</strong>
+            </div>
+            <div className="analysis-summary-item">
+              <span>Tono del cliente</span>
+              <strong>{result.tone}</strong>
+            </div>
+            <div className="analysis-summary-item">
+              <span>Siguiente movimiento</span>
+              <strong>{result.best_next_action}</strong>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="card analysis-reading-card">
+        <div className="section-heading compact">
+          <h2>Lectura principal de la conversación</h2>
+          <p>
+            Primero mira qué está pasando. Luego revisa por qué eso importa para
+            la venta.
+          </p>
+        </div>
+
+        <div className="analysis-reading-grid">
+          <div className="analysis-reading-block">
+            <span className="analysis-reading-label">Lo que vemos</span>
+            <h3>Intención</h3>
+            <p>{result.intent}</p>
+          </div>
+
+          <div className="analysis-reading-block analysis-reading-block-accent">
+            <span className="analysis-reading-label">Lo que significa</span>
+            <h3>Por qué este puntaje</h3>
+            <p>
+              {result.conversion_explanation ||
+                "Este puntaje refleja la intención visible, el nivel de apertura, las fricciones detectadas y qué tan cerca está la otra parte de dar el siguiente paso."}
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <div className="analysis-grid">
+        <AnalysisCard title={labels.positioningTitle}>
+          <p>{result.main_positioning}</p>
+        </AnalysisCard>
+
+        <AnalysisCard title={labels.signalsTitle}>
+          <ul className="pill-list">
+            {result.buying_signals.map((signal) => (
+              <li key={signal}>{signal}</li>
+            ))}
+          </ul>
+        </AnalysisCard>
+
+        <AnalysisCard title={labels.objectionsTitle}>
+          <ul className="pill-list">
+            {result.objections.map((objection) => (
+              <li key={objection}>{objection}</li>
+            ))}
+          </ul>
+        </AnalysisCard>
+
+        <AnalysisCard title="Tip estrategico">
+          <p>{result.strategy_tip}</p>
+        </AnalysisCard>
+
+        <AnalysisCard title="Respuestas sugeridas" className="analysis-card-span">
+          <div className="reply-stack">
+            <div>
+              <strong>{labels.softReplyTitle}</strong>
+              <p>{result.suggested_replies.soft}</p>
+            </div>
+            <div>
+              <strong>{labels.directReplyTitle}</strong>
+              <p>{result.suggested_replies.direct}</p>
+            </div>
+            <div>
+              <strong>{labels.objectionReplyTitle}</strong>
+              <p>{result.suggested_replies.objection_handling}</p>
+            </div>
+          </div>
+        </AnalysisCard>
+      </div>
     </div>
   );
 }

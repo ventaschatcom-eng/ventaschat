@@ -45,3 +45,15 @@ CREATE TABLE IF NOT EXISTS checkout_sessions (
   created_at TEXT NOT NULL,
   FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
+
+CREATE TABLE IF NOT EXISTS analysis_iterations (
+  id TEXT PRIMARY KEY,
+  analysis_id TEXT NOT NULL,
+  user_id TEXT NOT NULL,
+  input_text TEXT NOT NULL,
+  conversion_score INTEGER NOT NULL,
+  output_json TEXT NOT NULL,
+  created_at TEXT NOT NULL,
+  FOREIGN KEY (analysis_id) REFERENCES analyses(id) ON DELETE CASCADE,
+  FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);

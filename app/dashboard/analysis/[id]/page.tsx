@@ -1,9 +1,9 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
-import { AnalysisDetails } from "@/components/analysis-card";
+import { AnalysisWorkspace } from "@/components/analysis-workspace";
 import { auth } from "@/lib/auth";
-import { getAnalysisByIdForUser } from "@/lib/db";
+import { getAnalysisByIdForUser, listAnalysisIterationsForUser } from "@/lib/db";
 import type { AnalysisResult } from "@/lib/types";
 import { formatDate } from "@/lib/utils";
 
@@ -22,6 +22,7 @@ export default async function AnalysisPage({
   }
 
   const result = JSON.parse(analysis.outputJson) as AnalysisResult;
+  const iterations = await listAnalysisIterationsForUser(analysis.id, session!.user!.id);
 
   return (
     <div className="stack">
@@ -32,13 +33,28 @@ export default async function AnalysisPage({
             {analysis.conversationContext} · {analysis.conversationType} ·{" "}
             {formatDate(new Date(analysis.createdAt))}
           </p>
+          <p className="muted">
+            Empieza por el medidor de cierre, luego revisa la lectura principal y
+            despues baja al detalle.
+          </p>
         </div>
         <Link href="/dashboard/analyze" className="button button-primary">
           Analizar otro chat
         </Link>
       </section>
 
-      <AnalysisDetails result={result} context={analysis.conversationContext} />
+      <AnalysisWorkspace
+        analysisId={analysis.id}
+        initialConversationText={analysis.inputText}
+        initialResult={result}
+        context={analysis.conversationContext}
+        type={analysis.conversationType}
+        initialIterations={iterations.map((item) => ({
+          id: item.id,
+          conversionScore: item.conversionScore,
+          createdAt: item.createdAt,
+        }))}
+      />
     </div>
   );
 }
