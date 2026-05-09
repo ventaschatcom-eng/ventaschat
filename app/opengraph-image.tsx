@@ -43,17 +43,16 @@ export default async function Image() {
           <div style={{ fontSize: "72px", fontWeight: 800, lineHeight: 1.1, letterSpacing: "-0.02em" }}>
             Sabe qué responder
           </div>
-          <div style={{ fontSize: "72px", fontWeight: 800, lineHeight: 1.1, letterSpacing: "-0.02em", marginTop: "8px" }}>
-            cuando dicen{" "}
+          <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: "16px", fontSize: "72px", fontWeight: 800, lineHeight: 1.1, letterSpacing: "-0.02em", marginTop: "8px" }}>
+            <span>cuando dicen</span>
             <span
               style={{
                 background: "rgba(255,255,255,0.2)",
                 padding: "8px 24px",
                 borderRadius: "16px",
-                display: "inline-block",
               }}
             >
-              "está caro"
+              &ldquo;está caro&rdquo;
             </span>
           </div>
           <div style={{ fontSize: "32px", marginTop: "32px", opacity: 0.9, lineHeight: 1.4 }}>
