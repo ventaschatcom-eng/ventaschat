@@ -6,8 +6,9 @@ CREATE TABLE IF NOT EXISTS users (
   email TEXT NOT NULL UNIQUE,
   password_hash TEXT NOT NULL,
   plan TEXT NOT NULL DEFAULT 'free',
-  credits INTEGER NOT NULL DEFAULT 3,
-  created_at TEXT NOT NULL
+  credits INTEGER NOT NULL DEFAULT 10,
+  created_at TEXT NOT NULL,
+  subscription_active_until TEXT
 );
 
 CREATE TABLE IF NOT EXISTS analyses (

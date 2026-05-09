@@ -3105,3 +3105,103 @@ html.dark .wa-compose-field {
   margin-left: auto;
   margin-right: auto;
 }
+
+/* ========== Pro hero (billing page) ========== */
+.pro-hero {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 1.5rem;
+  background: linear-gradient(135deg, var(--primary-soft), rgba(47, 128, 237, 0.06));
+  border: 2px solid var(--primary);
+  padding: 2rem;
+}
+@media (max-width: 720px) {
+  .pro-hero { grid-template-columns: 1fr; }
+}
+.pro-hero-tag {
+  display: inline-block;
+  background: var(--primary);
+  color: white;
+  padding: 0.3rem 0.7rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.pro-hero h2 {
+  font-size: 1.7rem;
+  margin: 0.6rem 0 0.3rem;
+}
+.pro-hero-price {
+  font-size: 2.4rem;
+  font-weight: 800;
+  color: var(--primary-dark);
+  margin: 0.5rem 0 1rem;
+}
+.pro-hero-price span {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--muted);
+}
+.pro-hero-perks {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.pro-hero-perks li {
+  padding: 0.35rem 0;
+  font-size: 0.95rem;
+}
+.pro-hero-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.6rem;
+}
+
+.pro-badge {
+  display: inline-block;
+  background: var(--primary);
+  color: white;
+  padding: 0.2rem 0.55rem;
+  border-radius: 6px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  margin-right: 0.5rem;
+}
+
+/* ========== Coaching empty state ========== */
+.coaching-empty {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 2rem;
+  text-align: center;
+}
+.coaching-empty .button { align-self: center; }
+
+.coaching-summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 0.75rem;
+  padding: 1.25rem;
+}
+.coaching-stat-big {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+  background: var(--primary-soft);
+  border-radius: 14px;
+}
+.coaching-stat-big .coaching-stat-value {
+  font-size: 2rem;
+}
+
+.coaching-actionable ul {
+  padding-left: 1.2rem;
+  line-height: 1.7;
+}
+.coaching-actionable li { margin-bottom: 0.6rem; }

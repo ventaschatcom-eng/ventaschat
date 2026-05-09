@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 
 import { auth } from "@/lib/auth";
 import { analyzeConversation } from "@/lib/ai";
-import { createAnalysis, createUsageLog, decrementUserCredits, getUserById } from "@/lib/db";
+import { createAnalysis, createUsageLog, decrementUserCredits, getUserById, isProActive } from "@/lib/db";
 import { analyzeSchema } from "@/lib/validations";
 
 export async function POST(request: Request) {
@@ -28,9 +28,11 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Usuario no encontrado." }, { status: 404 });
   }
 
-  if (user.credits < 1) {
+  const proActive = isProActive(user);
+
+  if (!proActive && user.credits < 1) {
     return NextResponse.json(
-      { error: "No tienes créditos disponibles. Compra más análisis en Facturación." },
+      { error: "No tienes créditos disponibles. Compra más análisis o suscríbete al plan Pro Ilimitado en Facturación." },
       { status: 402 },
     );
   }
@@ -61,7 +63,9 @@ export async function POST(request: Request) {
       analysisId: analysis.id,
     });
 
-    await decrementUserCredits(user.id, 1);
+    if (!proActive) {
+      await decrementUserCredits(user.id, 1);
+    }
 
     return NextResponse.json({ id: analysis.id });
   } catch {

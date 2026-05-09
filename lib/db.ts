@@ -11,6 +11,7 @@ export type DbUser = {
   plan: string;
   credits: number;
   createdAt: string;
+  subscriptionActiveUntil: string | null;
 };
 
 export type AnalysisOutcome = "won" | "lost" | "pending";
@@ -38,7 +39,23 @@ function mapUser(row: Record<string, unknown>): DbUser {
     plan: String(row.plan),
     credits: Number(row.credits),
     createdAt: String(row.created_at),
+    subscriptionActiveUntil: row.subscription_active_until ? String(row.subscription_active_until) : null,
   };
+}
+
+export function isProActive(user: DbUser | null) {
+  if (!user?.subscriptionActiveUntil) return false;
+  return new Date(user.subscriptionActiveUntil).getTime() > Date.now();
+}
+
+export async function activateProSubscription(userId: string, days = 30) {
+  const until = new Date();
+  until.setDate(until.getDate() + days);
+  await sql`
+    UPDATE users SET subscription_active_until = ${until.toISOString()}, plan = 'pro'
+    WHERE id = ${userId}
+  `;
+  return until.toISOString();
 }
 
 function mapAnalysis(row: Record<string, unknown>): DbAnalysis {
@@ -68,6 +85,16 @@ export async function setAnalysisOutcome(
     UPDATE analyses SET outcome = ${outcome}
     WHERE id = ${analysisId} AND user_id = ${userId}
   `;
+}
+
+export async function getAnalysesByOutcome(userId: string, outcome: AnalysisOutcome) {
+  const rows = await sql`
+    SELECT * FROM analyses
+    WHERE user_id = ${userId} AND outcome = ${outcome}
+    ORDER BY created_at DESC
+    LIMIT 100
+  `;
+  return rows.map((row) => mapAnalysis(row as Record<string, unknown>));
 }
 
 export async function getOutcomeStatsForUser(userId: string) {
@@ -195,8 +222,16 @@ export async function completeCheckoutSession(reference: string) {
   if (!rows[0]) return null;
 
   const session = rows[0] as Record<string, unknown>;
+  const credits = Number(session.credits);
+  const userId = String(session.user_id);
+
   await sql`UPDATE checkout_sessions SET status = 'completed' WHERE id = ${reference}`;
-  await addUserCredits(String(session.user_id), Number(session.credits));
+
+  if (credits === 0) {
+    await activateProSubscription(userId, 30);
+  } else {
+    await addUserCredits(userId, credits);
+  }
 
   return session;
 }

@@ -5,19 +5,21 @@ import { useState } from "react";
 type Provider = "wompi" | "mercadopago";
 
 type CheckoutButtonProps = {
-  packId: string;
+  packId?: string;
   provider: Provider;
   label: string;
   className?: string;
+  pro?: boolean;
 };
 
-export function CheckoutButton({ packId, provider, label, className }: CheckoutButtonProps) {
+export function CheckoutButton({ packId, provider, label, className, pro }: CheckoutButtonProps) {
   const [loading, setLoading] = useState(false);
 
   async function handleCheckout() {
     setLoading(true);
     try {
-      const res = await fetch(`/api/checkout/${provider}`, {
+      const endpoint = pro ? `/api/checkout/${provider}-pro` : `/api/checkout/${provider}`;
+      const res = await fetch(endpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ packId }),

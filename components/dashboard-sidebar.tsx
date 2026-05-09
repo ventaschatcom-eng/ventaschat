@@ -13,6 +13,7 @@ const links = [
   { href: "/dashboard", label: "Resumen" },
   { href: "/dashboard/analyze", label: "Analizar chat" },
   { href: "/dashboard/history", label: "Historial" },
+  { href: "/dashboard/coaching", label: "Coaching" },
   { href: "/dashboard/billing", label: "Facturación" },
   { href: "/dashboard/settings", label: "Configuración" },
 ];
