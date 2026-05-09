@@ -25,8 +25,7 @@ const themeScript = `
     const saved =
       localStorage.getItem("ventaschat-theme") ??
       localStorage.getItem("ventaflow-theme");
-    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    const theme = saved === "dark" || saved === "light" ? saved : (prefersDark ? "dark" : "light");
+    const theme = saved === "dark" || saved === "light" ? saved : "light";
     document.documentElement.classList.toggle("dark", theme === "dark");
     document.documentElement.dataset.theme = theme;
   } catch {}
