@@ -164,3 +164,38 @@ export async function completeCheckoutSession(reference: string) {
 
   return session;
 }
+
+export async function getAdminStats() {
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  const todayIso = today.toISOString();
+
+  const [totalUsers, totalAnalyses, analysesToday, checkoutsCompleted, creditsConsumed, recentUsers] =
+    await Promise.all([
+      sql`SELECT COUNT(*) AS count FROM users`,
+      sql`SELECT COUNT(*) AS count FROM analyses`,
+      sql`SELECT COUNT(*) AS count FROM analyses WHERE created_at >= ${todayIso}`,
+      sql`SELECT COUNT(*) AS count, COALESCE(SUM(credits), 0) AS credits FROM checkout_sessions WHERE status = 'completed'`,
+      sql`SELECT COALESCE(SUM(credits_used), 0) AS total FROM usage_logs`,
+      sql`SELECT id, email, plan, credits, created_at FROM users ORDER BY created_at DESC LIMIT 20`,
+    ]);
+
+  return {
+    totalUsers: Number((totalUsers[0] as Record<string, unknown>).count),
+    totalAnalyses: Number((totalAnalyses[0] as Record<string, unknown>).count),
+    analysesToday: Number((analysesToday[0] as Record<string, unknown>).count),
+    checkoutsCompleted: Number((checkoutsCompleted[0] as Record<string, unknown>).count),
+    creditsFromPayments: Number((checkoutsCompleted[0] as Record<string, unknown>).credits),
+    creditsConsumed: Number((creditsConsumed[0] as Record<string, unknown>).total),
+    recentUsers: recentUsers.map((r) => {
+      const row = r as Record<string, unknown>;
+      return {
+        id: String(row.id),
+        email: String(row.email),
+        plan: String(row.plan),
+        credits: Number(row.credits),
+        createdAt: String(row.created_at),
+      };
+    }),
+  };
+}

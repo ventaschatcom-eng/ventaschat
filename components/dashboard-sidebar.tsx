@@ -2,9 +2,12 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useSession } from "next-auth/react";
 
 import { Logo } from "@/components/logo";
 import { cn } from "@/lib/utils";
+
+const ADMIN_EMAIL = "ventaschat.com@gmail.com";
 
 const links = [
   { href: "/dashboard", label: "Resumen" },
@@ -16,6 +19,8 @@ const links = [
 
 export function DashboardSidebar() {
   const pathname = usePathname();
+  const { data: session } = useSession();
+  const isAdmin = session?.user?.email === ADMIN_EMAIL;
 
   return (
     <aside className="dashboard-sidebar">
@@ -33,6 +38,17 @@ export function DashboardSidebar() {
             {link.label}
           </Link>
         ))}
+        {isAdmin && (
+          <Link
+            href="/dashboard/admin"
+            className={cn(
+              "sidebar-link",
+              pathname === "/dashboard/admin" && "sidebar-link-active",
+            )}
+          >
+            Admin
+          </Link>
+        )}
       </nav>
     </aside>
   );
