@@ -9,7 +9,7 @@ import { CREDIT_PACKS, PRO_SUBSCRIPTION } from "@/lib/plans";
 export const metadata: Metadata = {
   title: "Precios y planes — Desde $20.000 COP",
   description:
-    "Plan Pro Ilimitado por $89.000 COP/mes o paquetes de créditos desde $20.000 COP. Pagos en COP con Wompi y MercadoPago. 10 análisis gratis al registrarte.",
+    "Plan Pro Ilimitado por $89.000 COP/mes o paquetes de créditos desde $20.000 COP para analizar chats de WhatsApp, Instagram DM, Telegram y más. Pagos en COP con Wompi y MercadoPago. 10 análisis gratis al registrarte.",
   alternates: { canonical: "/pricing" },
   openGraph: {
     title: "Precios — VentasChat",

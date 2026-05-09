@@ -71,7 +71,7 @@ export async function sendWelcomeEmail(to: string) {
   </div>
 
   <div style="margin-top: 32px; padding: 16px; background: #f6faf7; border-radius: 12px; font-size: 14px;">
-    <strong>💡 Tip:</strong> también puedes subir capturas de WhatsApp directamente. Las leemos con OCR y convertimos en texto automáticamente.
+    <strong>💡 Tip:</strong> funciona con WhatsApp, Instagram DM, Telegram y Messenger. Puedes pegar el chat o subir capturas — las leemos con OCR y convertimos en texto automáticamente.
   </div>
 
   <p style="margin-top: 32px; color: #617265; font-size: 13px; text-align: center;">

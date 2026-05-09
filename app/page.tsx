@@ -303,6 +303,10 @@ const faqs = [
     a: "Sirve para ambos. Está pensado para freelancers, agencias, closers, consultores y pequeños equipos comerciales.",
   },
   {
+    q: "¿Funciona solo con WhatsApp o también con otras plataformas?",
+    a: "Funciona con cualquier chat de ventas: WhatsApp, Instagram DM, Telegram, Messenger, LinkedIn, Discord. Solo pegas el texto de la conversación o subes una captura (OCR la procesa automáticamente). El análisis se ajusta al tono de cada plataforma.",
+  },
+  {
     q: "¿Mis chats son privados?",
     a: "Sí. Los chats se almacenan cifrados en tu cuenta y solo tú los ves. No los compartimos, no los usamos para entrenar modelos públicos.",
   },
@@ -331,14 +335,15 @@ export default function HomePage() {
       <main className="page-shell">
         <section className="hero hero-shell hero-whatsapp">
           <div className="hero-copy hero-copy-tight">
-            <div className="hero-kicker">Para vendedores que pelean cada cierre en WhatsApp</div>
+            <div className="hero-kicker">Para vendedores que pelean cada cierre por chat</div>
             <h1>
               Sabe qué responder cuando el cliente dice{" "}
               <GradientText className="hero-title-accent hero-title-accent-strong">&ldquo;está caro&rdquo;</GradientText>
               .
             </h1>
             <p>
-              VentasChat lee tu chat de WhatsApp completo, te da un{" "}
+              VentasChat lee tu conversación de <strong>WhatsApp, Instagram DM, Telegram</strong> o
+              cualquier chat de ventas, te da un{" "}
               <strong>puntaje de cierre 0-100%</strong>, las{" "}
               <strong>palabras exactas a usar y evitar</strong>, y 3 respuestas listas
               para mandar. Sin pegar nada en ChatGPT cada vez.
