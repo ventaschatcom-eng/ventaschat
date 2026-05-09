@@ -1,8 +1,8 @@
 "use client";
 
-import { useMemo, useState, type DragEvent } from "react";
+import { useMemo, useRef, useState, type DragEvent } from "react";
 import { useRouter } from "next/navigation";
-import { Upload, Sparkles, FileText } from "lucide-react";
+import { Upload, Sparkles, FileText, Camera, Loader2 } from "lucide-react";
 
 import {
   type ConversationContext,
@@ -64,6 +64,8 @@ export function AnalyzeForm() {
     useState<ConversationType>(defaultConversationType);
   const [extraContext, setExtraContext] = useState("");
   const [desiredTone, setDesiredTone] = useState<DesiredTone | "">("");
+  const [ocrPending, setOcrPending] = useState(false);
+  const imageInputRef = useRef<HTMLInputElement>(null);
 
   const availableTypes = useMemo(
     () => getConversationTypesForContext(conversationContext),
@@ -179,6 +181,53 @@ export function AnalyzeForm() {
     if (file) handleFileUpload(file);
   }
 
+  async function handleImageOCR(file: File | null) {
+    if (!file) return;
+
+    if (!file.type.startsWith("image/")) {
+      setError("Solo aceptamos imagenes (.png, .jpg, .webp).");
+      return;
+    }
+
+    if (file.size > 4 * 1024 * 1024) {
+      setError("La captura es demasiado grande. Maximo 4 MB.");
+      return;
+    }
+
+    setOcrPending(true);
+    setError("");
+
+    try {
+      const reader = new FileReader();
+      const base64 = await new Promise<string>((resolve, reject) => {
+        reader.onload = () => resolve(typeof reader.result === "string" ? reader.result : "");
+        reader.onerror = () => reject(new Error("read_failed"));
+        reader.readAsDataURL(file);
+      });
+
+      const response = await fetch("/api/ocr", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ imageBase64: base64 }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        setError(typeof data.error === "string" ? data.error : "No pudimos leer la imagen.");
+        return;
+      }
+
+      setConversationText((prev) => (prev ? `${prev}\n${data.text}` : data.text));
+      setUploadedFileName(file.name);
+    } catch {
+      setError("No pudimos procesar la imagen. Intenta otra vez.");
+    } finally {
+      setOcrPending(false);
+      if (imageInputRef.current) imageInputRef.current.value = "";
+    }
+  }
+
   return (
     <div className="analyze-grid">
       <form
@@ -245,28 +294,48 @@ export function AnalyzeForm() {
           </label>
         </div>
 
-        <div
-          className={`analyze-dropzone ${dragActive ? "analyze-dropzone-active" : ""}`}
-          onDragOver={handleDragOver}
-          onDragLeave={handleDragLeave}
-          onDrop={handleDrop}
-        >
+        <div className="analyze-import-row">
+          <div
+            className={`analyze-dropzone ${dragActive ? "analyze-dropzone-active" : ""}`}
+            onDragOver={handleDragOver}
+            onDragLeave={handleDragLeave}
+            onDrop={handleDrop}
+          >
+            <input
+              type="file"
+              accept=".txt,text/plain"
+              id="chat-file"
+              onChange={(event) => handleFileUpload(event.target.files?.[0] ?? null)}
+              className="analyze-dropzone-input"
+            />
+            <label htmlFor="chat-file" className="analyze-dropzone-label">
+              <Upload size={18} />
+              <strong>
+                {uploadedFileName ? uploadedFileName : "Arrastra .txt aquí"}
+              </strong>
+              <span>
+                {uploadedFileName ? "Archivo cargado" : "o click para elegir"}
+              </span>
+            </label>
+          </div>
+
+          <button
+            type="button"
+            className="analyze-ocr-btn"
+            onClick={() => imageInputRef.current?.click()}
+            disabled={ocrPending}
+          >
+            {ocrPending ? <Loader2 size={18} className="spin" /> : <Camera size={18} />}
+            <strong>{ocrPending ? "Leyendo captura..." : "Subir captura WhatsApp"}</strong>
+            <span>{ocrPending ? "Espera unos segundos" : "Convertimos la imagen en texto"}</span>
+          </button>
           <input
+            ref={imageInputRef}
             type="file"
-            accept=".txt,text/plain"
-            id="chat-file"
-            onChange={(event) => handleFileUpload(event.target.files?.[0] ?? null)}
-            className="analyze-dropzone-input"
+            accept="image/*"
+            style={{ display: "none" }}
+            onChange={(event) => handleImageOCR(event.target.files?.[0] ?? null)}
           />
-          <label htmlFor="chat-file" className="analyze-dropzone-label">
-            <Upload size={18} />
-            <strong>
-              {uploadedFileName ? uploadedFileName : "Arrastra tu chat .txt aquí"}
-            </strong>
-            <span>
-              {uploadedFileName ? "Archivo cargado" : "o haz click para elegir un archivo"}
-            </span>
-          </label>
         </div>
 
         <label className="field">

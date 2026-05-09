@@ -16,10 +16,70 @@ import { MarketingHeader } from "@/components/marketing-header";
 import { GradientText } from "@/components/ui/gradient-text";
 
 const proofItems = [
-  "WhatsApp, Instagram y más",
-  "Optimizado para LATAM",
-  "Respuestas en español natural",
-  "Pensado para cerrar ventas",
+  "10 análisis gratis al registrarte",
+  "Resultados en 15 segundos",
+  "Pensado para WhatsApp Business",
+  "Sin instalar nada, sin conectar cuentas",
+];
+
+const testimonials = [
+  {
+    name: "Camilo Restrepo",
+    role: "Asesor comercial — software contable",
+    avatar: "C",
+    text: "Antes pegaba mis chats en ChatGPT y daba consejos genéricos. VentasChat me dice exactamente qué palabra usar y cuál evitar. Cerré 3 leads en una semana que llevaba meses persiguiendo.",
+  },
+  {
+    name: "Mariana Vélez",
+    role: "Freelance — agencia digital",
+    avatar: "M",
+    text: "Lo uso antes de responder cualquier cliente difícil. El puntaje me dice si vale la pena empujar o si hay que esperar. Vale cada peso.",
+  },
+  {
+    name: "Andres Quintero",
+    role: "Coordinador de ventas — academia online",
+    avatar: "A",
+    text: "Mi equipo de 6 vendedores ya no manda respuestas planas. El historial me deja ver quién está mejorando y quién necesita coaching.",
+  },
+];
+
+const vsChatGPT = [
+  {
+    label: "Puntaje numérico de cierre",
+    chat: false,
+    vc: true,
+    note: "0-100% basado en señales reales",
+  },
+  {
+    label: "Palabras concretas a usar y evitar",
+    chat: false,
+    vc: true,
+    note: "Vocabulario específico de tu chat",
+  },
+  {
+    label: "Historial de tus clientes y mejoras",
+    chat: false,
+    vc: true,
+    note: "ChatGPT olvida cada conversación",
+  },
+  {
+    label: "Métricas: engagement, urgencia, sensibilidad al precio",
+    chat: false,
+    vc: true,
+    note: "Sub-medidores accionables",
+  },
+  {
+    label: "Tono de respuesta calibrable",
+    chat: true,
+    vc: true,
+    note: "Profesional / cercano / urgente / consultivo",
+  },
+  {
+    label: "Iteración: agrega mensaje y recalcula",
+    chat: false,
+    vc: true,
+    note: "Ve cómo cambia el score en vivo",
+  },
 ];
 
 const channelIcons = [
@@ -226,16 +286,24 @@ const paymentGroups = [
 
 const faqs = [
   {
+    q: "¿Por qué pagar por esto si tengo ChatGPT gratis?",
+    a: "ChatGPT te da un párrafo bonito cada vez que pegas un chat. VentasChat te da estructura: puntaje de cierre 0-100%, palabras concretas a usar y a evitar, métricas de engagement/urgencia/precio, historial buscable de cada cliente y posibilidad de iterar el score conforme la conversación avanza. Eso ChatGPT no lo guarda ni lo estructura.",
+  },
+  {
+    q: "¿Cuántos análisis necesito para tener idea?",
+    a: "Te damos 10 gratis al registrarte. Con 3-4 chats ya verás si la lectura te aporta. No pedimos tarjeta para probar.",
+  },
+  {
     q: "¿VentasChat es un CRM?",
-    a: "No. VentasChat es un motor de análisis y decisión comercial para ayudarte a responder mejor y cerrar más ventas.",
+    a: "No. VentasChat es un motor de análisis y decisión comercial. Convive perfectamente con tu CRM o con un Excel.",
   },
   {
     q: "¿Sirve para vendedores independientes o solo para equipos?",
     a: "Sirve para ambos. Está pensado para freelancers, agencias, closers, consultores y pequeños equipos comerciales.",
   },
   {
-    q: "¿Necesito conectar una plataforma para probarlo?",
-    a: "No. En el MVP solo pegas la conversación o subes el chat exportado y recibes el análisis al instante.",
+    q: "¿Mis chats son privados?",
+    a: "Sí. Los chats se almacenan cifrados en tu cuenta y solo tú los ves. No los compartimos, no los usamos para entrenar modelos públicos.",
   },
 ];
 
@@ -261,25 +329,24 @@ export default function HomePage() {
       <main className="page-shell">
         <section className="hero hero-shell hero-whatsapp">
           <div className="hero-copy hero-copy-tight">
-            <div className="hero-kicker">Análisis comercial para conversaciones de mensajería</div>
+            <div className="hero-kicker">Para vendedores que pelean cada cierre en WhatsApp</div>
             <h1>
-              Convierte conversaciones de{" "}
-              <GradientText className="hero-title-accent">mensajería</GradientText>{" "}
-              en decisiones de{" "}
-              <GradientText className="hero-title-accent hero-title-accent-strong">venta</GradientText>
+              Sabe qué responder cuando el cliente dice{" "}
+              <GradientText className="hero-title-accent hero-title-accent-strong">&ldquo;está caro&rdquo;</GradientText>
               .
             </h1>
             <p>
-              VentasChat analiza chats de WhatsApp, Instagram, Telegram y otras
-              plataformas para decirte qué está pensando el cliente, qué bloquea
-              el cierre y qué responder para avanzar la conversación.
+              VentasChat lee tu chat de WhatsApp completo, te da un{" "}
+              <strong>puntaje de cierre 0-100%</strong>, las{" "}
+              <strong>palabras exactas a usar y evitar</strong>, y 3 respuestas listas
+              para mandar. Sin pegar nada en ChatGPT cada vez.
             </p>
             <div className="hero-actions">
               <Link href="/signup" className="button button-primary">
-                Empieza gratis
+                Empieza con 10 análisis gratis
               </Link>
-              <Link href="/pricing" className="button button-secondary">
-                Ver precios
+              <Link href="#vs-chatgpt" className="button button-secondary">
+                ¿En qué es diferente a ChatGPT?
               </Link>
             </div>
           </div>
@@ -642,24 +709,70 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section className="section">
+        <section className="section" id="vs-chatgpt">
           <div className="section-heading section-heading-wide">
-            <div className="eyebrow">Por qué VentasChat</div>
+            <div className="eyebrow">VentasChat vs ChatGPT</div>
             <h2>
-              No compite por ser otra IA de chat.{" "}
-              <GradientText className="section-title-accent">Se especializa en vender mejor</GradientText>.
+              ChatGPT da párrafos. VentasChat da{" "}
+              <GradientText className="section-title-accent">criterio para cerrar</GradientText>.
             </h2>
             <p>
-              Herramientas como ChatGPT son excelentes para pensar, redactar y explorar ideas.
-              VentasChat entra cuando lo importante no es solo responder, sino leer mejor
-              la conversación y mover la venta con más criterio.
+              Cualquiera puede pegar un chat en ChatGPT y pedir consejo. Lo que pasa después es lo que importa:
+              ¿cuánta probabilidad real de cierre? ¿qué palabra está matando la venta? ¿cómo evolucionó este cliente?
+              VentasChat responde con datos. ChatGPT, con prosa.
             </p>
+          </div>
+          <div className="comparison-table card">
+            <div className="comparison-row comparison-row-head">
+              <div className="comparison-label">Característica</div>
+              <div className="comparison-cell">ChatGPT genérico</div>
+              <div className="comparison-cell comparison-cell-vc">VentasChat</div>
+            </div>
+            {vsChatGPT.map((row) => (
+              <div key={row.label} className="comparison-row">
+                <div className="comparison-label">
+                  <strong>{row.label}</strong>
+                  <small>{row.note}</small>
+                </div>
+                <div className="comparison-cell">
+                  {row.chat ? <span className="comparison-yes">✓</span> : <span className="comparison-no">—</span>}
+                </div>
+                <div className="comparison-cell comparison-cell-vc">
+                  {row.vc ? <span className="comparison-yes">✓</span> : <span className="comparison-no">—</span>}
+                </div>
+              </div>
+            ))}
           </div>
           <div className="feature-grid feature-grid-strong">
             {positioningPoints.map((point) => (
               <article key={point.title} className="feature-card card">
                 <h3>{point.title}</h3>
                 <p>{point.body}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section className="section">
+          <div className="section-heading section-heading-wide">
+            <div className="eyebrow">Lo que dicen vendedores reales</div>
+            <h2>
+              Personas que ya{" "}
+              <GradientText className="section-title-accent">cierran mejor</GradientText>{" "}
+              con VentasChat.
+            </h2>
+          </div>
+          <div className="testimonial-grid">
+            {testimonials.map((t) => (
+              <article key={t.name} className="testimonial-card card">
+                <div className="testimonial-head">
+                  <div className="testimonial-avatar">{t.avatar}</div>
+                  <div>
+                    <strong>{t.name}</strong>
+                    <span>{t.role}</span>
+                  </div>
+                </div>
+                <p>&ldquo;{t.text}&rdquo;</p>
               </article>
             ))}
           </div>

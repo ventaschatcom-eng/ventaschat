@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { AnalysisWorkspace } from "@/components/analysis-workspace";
+import { OutcomeButtons } from "@/components/outcome-buttons";
 import { auth } from "@/lib/auth";
 import { getAnalysisByIdForUser, listAnalysisIterationsForUser } from "@/lib/db";
 import type { AnalysisResult } from "@/lib/types";
@@ -42,6 +43,8 @@ export default async function AnalysisPage({
           Analizar otro chat
         </Link>
       </section>
+
+      <OutcomeButtons analysisId={analysis.id} initialOutcome={analysis.outcome} />
 
       <AnalysisWorkspace
         analysisId={analysis.id}

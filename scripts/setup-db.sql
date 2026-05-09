@@ -22,6 +22,7 @@ CREATE TABLE IF NOT EXISTS analyses (
   conversion_score INTEGER NOT NULL,
   output_json TEXT NOT NULL,
   created_at TEXT NOT NULL,
+  outcome TEXT NOT NULL DEFAULT 'pending',
   FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
 

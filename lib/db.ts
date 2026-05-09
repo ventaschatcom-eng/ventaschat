@@ -13,6 +13,8 @@ export type DbUser = {
   createdAt: string;
 };
 
+export type AnalysisOutcome = "won" | "lost" | "pending";
+
 export type DbAnalysis = {
   id: string;
   userId: string;
@@ -25,6 +27,7 @@ export type DbAnalysis = {
   conversionScore: number;
   outputJson: string;
   createdAt: string;
+  outcome: AnalysisOutcome;
 };
 
 function mapUser(row: Record<string, unknown>): DbUser {
@@ -39,6 +42,7 @@ function mapUser(row: Record<string, unknown>): DbUser {
 }
 
 function mapAnalysis(row: Record<string, unknown>): DbAnalysis {
+  const outcome = (row.outcome ? String(row.outcome) : "pending") as AnalysisOutcome;
   return {
     id: String(row.id),
     userId: String(row.user_id),
@@ -51,7 +55,39 @@ function mapAnalysis(row: Record<string, unknown>): DbAnalysis {
     conversionScore: Number(row.conversion_score),
     outputJson: String(row.output_json),
     createdAt: String(row.created_at),
+    outcome: ["won", "lost", "pending"].includes(outcome) ? outcome : "pending",
   };
+}
+
+export async function setAnalysisOutcome(
+  analysisId: string,
+  userId: string,
+  outcome: AnalysisOutcome,
+) {
+  await sql`
+    UPDATE analyses SET outcome = ${outcome}
+    WHERE id = ${analysisId} AND user_id = ${userId}
+  `;
+}
+
+export async function getOutcomeStatsForUser(userId: string) {
+  const rows = await sql`
+    SELECT outcome, COUNT(*) AS count
+    FROM analyses
+    WHERE user_id = ${userId}
+    GROUP BY outcome
+  `;
+  const stats = { won: 0, lost: 0, pending: 0, total: 0 };
+  for (const r of rows) {
+    const row = r as Record<string, unknown>;
+    const o = String(row.outcome || "pending") as AnalysisOutcome;
+    const n = Number(row.count);
+    if (o === "won") stats.won = n;
+    else if (o === "lost") stats.lost = n;
+    else stats.pending += n;
+    stats.total += n;
+  }
+  return stats;
 }
 
 export async function createUser(input: { email: string; passwordHash: string }) {
@@ -60,7 +96,7 @@ export async function createUser(input: { email: string; passwordHash: string })
 
   await sql`
     INSERT INTO users (id, email, password_hash, plan, credits, created_at)
-    VALUES (${id}, ${input.email}, ${input.passwordHash}, 'free', 3, ${createdAt})
+    VALUES (${id}, ${input.email}, ${input.passwordHash}, 'free', 10, ${createdAt})
   `;
 
   return getUserById(id);
