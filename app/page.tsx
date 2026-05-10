@@ -810,9 +810,6 @@ export default function HomePage() {
               esperas largas. Hablamos contigo directamente.
             </p>
             <div className="contact-meta">
-              <strong>WhatsApp:</strong> +57 323 703 7471
-            </div>
-            <div className="contact-meta">
               <strong>Email:</strong>{" "}
               <a href="mailto:ventaschat.com@gmail.com">ventaschat.com@gmail.com</a>
             </div>

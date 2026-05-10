@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import { MessageCircle, X } from "lucide-react";
 
 const PHONE = "573237037471";
-const PHONE_DISPLAY = "+57 323 703 7471";
 const DEFAULT_MESSAGE = "Hola! Tengo una pregunta sobre VentasChat.";
 
 // Horario laboral Colombia (UTC-5): 8am - 8pm, lunes a sábado
@@ -63,10 +62,6 @@ export function WhatsAppFab() {
           <p className="wa-fab-msg">
             ¡Hola! ¿Tienes una pregunta sobre VentasChat? Escríbenos por WhatsApp y te respondemos.
           </p>
-          <div className="wa-fab-meta">
-            <span>WhatsApp:</span>
-            <strong>{PHONE_DISPLAY}</strong>
-          </div>
           <span className="wa-fab-sub">{subStatus}</span>
           <a
             href={url}
@@ -74,7 +69,7 @@ export function WhatsAppFab() {
             rel="noopener noreferrer"
             className="wa-fab-cta"
           >
-            Abrir WhatsApp
+            Abrir chat de WhatsApp
           </a>
         </div>
       ) : null}
