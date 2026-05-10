@@ -3,27 +3,24 @@
 import { useSyncExternalStore } from "react";
 import { Moon, Sun } from "lucide-react";
 
-const THEME_KEY = "ventaschat-theme";
-const LEGACY_THEME_KEY = "ventaflow-theme";
+const THEME_KEY = "ventaschat-theme-v2";
 const THEME_EVENT = "ventaschat-theme-change";
-const LEGACY_THEME_EVENT = "ventaflow-theme-change";
 
 function applyTheme(nextTheme: "light" | "dark") {
   const root = document.documentElement;
   root.classList.toggle("dark", nextTheme === "dark");
   root.dataset.theme = nextTheme;
   window.localStorage.setItem(THEME_KEY, nextTheme);
-  window.localStorage.setItem(LEGACY_THEME_KEY, nextTheme);
+  // Limpiar keys legacy que tenían "dark" guardado de sesiones viejas
+  window.localStorage.removeItem("ventaschat-theme");
+  window.localStorage.removeItem("ventaflow-theme");
   window.dispatchEvent(new Event(THEME_EVENT));
-  window.dispatchEvent(new Event(LEGACY_THEME_EVENT));
 }
 
 function subscribeToTheme(onStoreChange: () => void) {
   window.addEventListener(THEME_EVENT, onStoreChange);
-  window.addEventListener(LEGACY_THEME_EVENT, onStoreChange);
   return () => {
     window.removeEventListener(THEME_EVENT, onStoreChange);
-    window.removeEventListener(LEGACY_THEME_EVENT, onStoreChange);
   };
 }
 

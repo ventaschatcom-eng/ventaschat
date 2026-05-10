@@ -86,13 +86,15 @@ export const metadata: Metadata = {
   },
 };
 
+// Light por defecto. Solo aplica dark si el usuario lo activó EXPLÍCITAMENTE en esta versión del tema.
+// El sufijo -v2 invalida preferencias viejas de cuando dark era default.
 const themeScript = `
 (() => {
   try {
-    const saved =
-      localStorage.getItem("ventaschat-theme") ??
-      localStorage.getItem("ventaflow-theme");
-    const theme = saved === "dark" || saved === "light" ? saved : "light";
+    // limpiar keys legacy (donde podía haber 'dark' guardado de sesiones viejas)
+    localStorage.removeItem("ventaflow-theme");
+    const saved = localStorage.getItem("ventaschat-theme-v2");
+    const theme = saved === "dark" ? "dark" : "light";
     document.documentElement.classList.toggle("dark", theme === "dark");
     document.documentElement.dataset.theme = theme;
   } catch {}
@@ -105,9 +107,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es" suppressHydrationWarning>
-      <body className={`${inter.variable} ${spaceGrotesk.variable}`} suppressHydrationWarning>
+    <html lang="es" data-theme="light" suppressHydrationWarning>
+      <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
+      <body className={`${inter.variable} ${spaceGrotesk.variable}`} suppressHydrationWarning>
         <Analytics />
         <SessionProvider>{children}</SessionProvider>
       </body>
