@@ -392,24 +392,22 @@ export function AnalyzeForm() {
       </form>
 
       <aside className="analyze-preview card">
-        <div className="section-heading compact">
-          <h2>Vista previa del chat</h2>
-          <p>Así se está parseando tu conversación.</p>
-        </div>
-
-        <div className="analyze-preview-stats">
+        <div className="analyze-preview-header">
           <div>
-            <strong>{stats.messageCount}</strong>
-            <span>mensajes</span>
+            <h3 className="analyze-preview-title">Vista previa del chat</h3>
+            <p className="analyze-preview-subtitle">
+              {messages.length
+                ? "Así se está parseando tu conversación."
+                : "Aparecerá aquí mientras pegas o subes."}
+            </p>
           </div>
-          <div>
-            <strong>{stats.speakers}</strong>
-            <span>{stats.speakers === 1 ? "persona" : "personas"}</span>
-          </div>
-          <div>
-            <strong>{stats.wordCount}</strong>
-            <span>palabras</span>
-          </div>
+          {messages.length ? (
+            <div className="analyze-preview-stats-inline">
+              <span><strong>{stats.messageCount}</strong> msj</span>
+              <span><strong>{stats.speakers}</strong> {stats.speakers === 1 ? "pers" : "pers"}</span>
+              <span><strong>{stats.wordCount}</strong> pal</span>
+            </div>
+          ) : null}
         </div>
 
         <div className="analyze-preview-body">
@@ -428,8 +426,16 @@ export function AnalyzeForm() {
             })
           ) : (
             <div className="analyze-preview-empty">
-              <FileText size={28} />
-              <p>Pega o sube tu conversación para ver el preview en vivo.</p>
+              <div className="analyze-preview-empty-icon">
+                <FileText size={32} />
+              </div>
+              <strong>Esperando tu conversación</strong>
+              <p>Pega texto, sube un .txt o una captura de WhatsApp.</p>
+              <ul className="analyze-preview-empty-tips">
+                <li>📋 Pegar funciona con cualquier formato</li>
+                <li>📷 OCR convierte imágenes a texto</li>
+                <li>✨ O prueba con un ejemplo (botones a la izquierda)</li>
+              </ul>
             </div>
           )}
         </div>
