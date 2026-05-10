@@ -360,6 +360,25 @@ export default function HomePage() {
                 ¿En qué es diferente a ChatGPT?
               </Link>
             </div>
+
+            <ul className="hero-trust-strip">
+              <li>
+                <span className="hero-trust-icon">✓</span>
+                <span><strong>10 análisis gratis</strong> al registrarte</span>
+              </li>
+              <li>
+                <span className="hero-trust-icon">✓</span>
+                <span><strong>Sin tarjeta</strong> para empezar</span>
+              </li>
+              <li>
+                <span className="hero-trust-icon">✓</span>
+                <span><strong>Resultado en 15 segundos</strong> por chat</span>
+              </li>
+              <li>
+                <span className="hero-trust-icon">✓</span>
+                <span><strong>OCR de capturas</strong> incluido</span>
+              </li>
+            </ul>
           </div>
 
           <aside className="hero-device-area">
