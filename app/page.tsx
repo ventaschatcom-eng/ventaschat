@@ -348,6 +348,10 @@ export default function HomePage() {
               <strong>palabras exactas a usar y evitar</strong>, y 3 respuestas listas
               para mandar. Sin pegar nada en ChatGPT cada vez.
             </p>
+            <p className="hero-tagline-secondary">
+              <strong>Es como Gong, pero para chats escritos y en español.</strong> No
+              respondemos por ti. Te ayudamos a responder mejor.
+            </p>
             <div className="hero-actions">
               <Link href="/signup" className="button button-primary">
                 Empieza con 10 análisis gratis
@@ -507,6 +511,74 @@ export default function HomePage() {
               <span>{item.label}</span>
             </article>
           ))}
+        </section>
+
+        <section className="section">
+          <div className="section-heading section-heading-wide">
+            <div className="eyebrow">Posicionamiento claro</div>
+            <h2>
+              VentasChat es{" "}
+              <GradientText className="section-title-accent">coach</GradientText>,
+              no bot ni inbox.
+            </h2>
+            <p>
+              Hay tres tipos de herramientas para vendedores en chat. Cada una resuelve
+              algo distinto. Es importante saber cuál necesitas.
+            </p>
+          </div>
+
+          <div className="positioning-grid">
+            <article className="positioning-col card">
+              <div className="positioning-tag positioning-tag-other">🤖 Bots / Auto-respuesta</div>
+              <h3>Reemplazan al vendedor</h3>
+              <p className="muted">
+                Manychat, Wati, Heybot, WAI. Configuras flujos y la IA contesta sola
+                24/7. El cliente habla con un robot.
+              </p>
+              <ul className="positioning-list">
+                <li>+ Atención 24/7 sin humano</li>
+                <li>+ Bueno para FAQs y soporte básico</li>
+                <li>− No vende productos complejos bien</li>
+                <li>− Suena impersonal en deals importantes</li>
+              </ul>
+            </article>
+
+            <article className="positioning-col card">
+              <div className="positioning-tag positioning-tag-other">📥 Inbox unificado</div>
+              <h3>Gestionan al equipo</h3>
+              <p className="muted">
+                Respond.io, B2Chat, Sirena, Trengo. Centralizan todos los canales en una
+                bandeja para varios agentes.
+              </p>
+              <ul className="positioning-list">
+                <li>+ Equipos B2C medianos/grandes</li>
+                <li>+ Asignación de tickets entre agentes</li>
+                <li>− Setup complejo y costoso</li>
+                <li>− No te enseña a vender mejor</li>
+              </ul>
+            </article>
+
+            <article className="positioning-col card positioning-col-featured">
+              <div className="positioning-tag positioning-tag-vc">⭐ VentasChat</div>
+              <h3>Te entrena para cerrar más</h3>
+              <p className="muted">
+                Es tu coach personal. Lee tus chats reales y te dice qué decir y por qué.
+                Tú vendes, nosotros te hacemos mejor vendiendo.
+              </p>
+              <ul className="positioning-list">
+                <li>+ Para vendedor individual o pequeño equipo</li>
+                <li>+ Setup en 30 segundos</li>
+                <li>+ Aprende de tus ventas cerradas</li>
+                <li>+ 10 análisis gratis sin tarjeta</li>
+              </ul>
+            </article>
+          </div>
+
+          <div className="positioning-note card">
+            <strong>💡 Analogía:</strong> Si Gong.io es el coach IA para llamadas de
+            ventas en inglés enterprise, VentasChat es el coach IA para chats de
+            WhatsApp en español LATAM. Mismo principio, mercado distinto.
+          </div>
         </section>
 
         <section className="latam-proof">

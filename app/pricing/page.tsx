@@ -58,6 +58,18 @@ const faqs = [
     q: "¿Hay descuentos para equipos?",
     a: "Por ahora no, pero estamos trabajando en planes de equipo con descuento por volumen. Si tienes 5+ vendedores, escríbenos a ventaschat.com@gmail.com.",
   },
+  {
+    q: "¿En qué se diferencia VentasChat de Manychat, Wati o WAI?",
+    a: "Esos son bots: configuras flujos y la IA contesta automáticamente al cliente, reemplazando al vendedor. VentasChat es lo opuesto: tú sigues vendiendo personalmente, y nosotros te entrenamos para hacerlo mejor con cada chat. Si tu producto es complejo o de ticket alto, un bot pierde la venta. VentasChat te ayuda a cerrarla.",
+  },
+  {
+    q: "¿En qué se diferencia VentasChat de Respond.io o B2Chat?",
+    a: "Respond.io y B2Chat son inbox unificados: centralizan canales para que varios agentes contesten desde una sola pantalla. Son para empresas medianas/grandes y arrancan en $40-79+ USD/mes con setup complejo. VentasChat es para vendedor individual o equipo pequeño que ya tiene WhatsApp funcionando. No reemplazamos tu inbox: analizamos las conversaciones que ya tienes ahí.",
+  },
+  {
+    q: "Entonces, ¿cuándo necesito cuál?",
+    a: "Si necesitas atender FAQs 24/7 sin humano: bot. Si tienes equipo de 10+ agentes coordinándose: inbox unificado. Si eres vendedor individual o equipo de 1-5 que vende productos donde la conversación importa: VentasChat.",
+  },
 ];
 
 export default function PricingPage() {

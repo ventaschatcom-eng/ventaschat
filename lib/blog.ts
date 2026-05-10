@@ -12,6 +12,182 @@ export type BlogPost = {
 
 const POSTS: BlogPost[] = [
   {
+    slug: "ventaschat-vs-manychat-vs-b2chat-cual-elegir",
+    title: "VentasChat vs Manychat vs B2Chat: ¿cuál necesitas para vender por WhatsApp?",
+    description:
+      "Comparativa honesta de las 3 herramientas más buscadas para vender por WhatsApp en LATAM. Precios, features, ventajas reales y cuál elegir según tu caso.",
+    publishedAt: "2026-05-12",
+    readMinutes: 11,
+    keywords: [
+      "manychat alternativa",
+      "b2chat opiniones",
+      "alternativa a manychat",
+      "alternativa a respond.io",
+      "ventaschat vs manychat",
+      "comparativa whatsapp ventas",
+      "mejor herramienta whatsapp ventas",
+    ],
+    category: "Comparativas",
+    excerpt:
+      "Las tres más buscadas en LATAM resuelven problemas distintos. Si eliges la que no necesitas, vas a pagar de más o terminar peleando con setup que no usas. Aquí la guía honesta.",
+    content: `
+<p>"¿Cuál es mejor: Manychat o B2Chat?". Es una de las preguntas que más se hacen los vendedores LATAM antes de pagar. Y es una pregunta mal planteada — porque <strong>esas dos herramientas no resuelven lo mismo</strong>.</p>
+
+<p>En este artículo vamos a comparar las tres herramientas más mencionadas en el espacio de "vender por WhatsApp" en LATAM: <strong>Manychat</strong>, <strong>B2Chat</strong> y <strong>VentasChat</strong>. Sin marketing inflado. La idea es que termines sabiendo cuál necesitas tú.</p>
+
+<h2>Resumen rápido (si tienes 30 segundos)</h2>
+
+<table>
+<tr><th>Herramienta</th><th>Categoría</th><th>Para quién</th><th>Precio desde</th></tr>
+<tr><td><strong>Manychat</strong></td><td>Bot / Auto-respuesta</td><td>Marcas con tráfico Instagram/FB que quieren capturar leads 24/7</td><td>$15 USD/mes</td></tr>
+<tr><td><strong>B2Chat</strong></td><td>Inbox multicanal</td><td>Empresas LATAM con 5-50 agentes coordinando</td><td>~$40-100k COP/mes</td></tr>
+<tr><td><strong>VentasChat</strong></td><td>Coach IA para vendedor</td><td>Vendedor individual / equipo 1-5 que vende personalmente</td><td>10 análisis gratis</td></tr>
+</table>
+
+<p><strong>Conclusión rápida:</strong> son herramientas <em>complementarias</em>, no competencia directa. Puedes usar Manychat para capturar leads de Instagram, B2Chat para que tu equipo los atienda, y VentasChat para que cada vendedor cierre mejor.</p>
+
+<h2>Manychat: el bot conversacional</h2>
+
+<p><strong>Qué hace:</strong> Manychat es la herramienta más conocida para construir <em>chatbots conversacionales</em>. La configuras con flujos visuales (drag-and-drop) y la IA o las reglas contestan automáticamente cuando alguien escribe a tu Instagram, Facebook Messenger o WhatsApp.</p>
+
+<h3>Cuándo te conviene Manychat</h3>
+
+<ul>
+  <li>Tienes un negocio con <strong>tráfico alto</strong> en Instagram o Facebook (1k+ DMs al mes)</li>
+  <li>Vendes productos de ticket bajo donde la conversación es repetitiva</li>
+  <li>Necesitas capturar leads 24/7 incluso cuando no estás conectado</li>
+  <li>Tienes una oferta clara que se puede explicar en 4-5 mensajes</li>
+  <li>Tu negocio escala mejor con automatización que con humanos</li>
+</ul>
+
+<h3>Cuándo NO te conviene</h3>
+
+<ul>
+  <li>Vendes productos de ticket alto donde la conversación importa</li>
+  <li>Cada cliente es diferente y necesita atención personalizada</li>
+  <li>El bot suena impersonal y eso te baja conversión</li>
+  <li>Tu producto requiere construir confianza humana antes del cierre</li>
+</ul>
+
+<h3>Limitaciones reales que vemos</h3>
+
+<p>Manychat funciona muy bien para captura de leads. Pero cuando el lead empieza a hacer preguntas específicas que no estaban en el flujo (cosa que pasa el 60% de las veces), el bot se enreda. Y si al cliente le respondes con un humano después, ya pasaste por un bot mediocre primero — eso te resta credibilidad.</p>
+
+<h2>B2Chat: el inbox unificado LATAM</h2>
+
+<p><strong>Qué hace:</strong> B2Chat es una plataforma colombiana que centraliza todas tus conversaciones (WhatsApp Business API, Facebook Messenger, Instagram DM, Telegram, LiveChat) en una sola bandeja de entrada. Varios agentes pueden trabajar coordinados, asignar tickets, automatizar respuestas básicas, hacer marketing campaigns por WhatsApp.</p>
+
+<h3>Cuándo te conviene B2Chat</h3>
+
+<ul>
+  <li>Tienes un equipo de <strong>5+ agentes</strong> que atienden en paralelo</li>
+  <li>Necesitas WhatsApp Business API real (campañas masivas con plantillas aprobadas)</li>
+  <li>Tu negocio es B2C con volumen alto (e-commerce, servicios masivos)</li>
+  <li>Quieres reportes y métricas de equipo (cuántos chats por agente, tiempo de respuesta, etc.)</li>
+  <li>Tienes presupuesto para setup + mes recurrente</li>
+</ul>
+
+<h3>Cuándo NO te conviene</h3>
+
+<ul>
+  <li>Eres vendedor individual o freelancer</li>
+  <li>Tu equipo es pequeño (1-3 personas)</li>
+  <li>No tienes volumen suficiente para justificar el costo</li>
+  <li>Tu WhatsApp normal te basta para gestionar</li>
+</ul>
+
+<h3>Limitaciones reales</h3>
+
+<p>B2Chat es excelente para gestión, pero <strong>no te ayuda a vender mejor</strong>. Te muestra qué chats están abiertos, quién los atiende, cuánto se demoró cada uno. Pero no te dice <em>qué decir</em> en cada conversación, ni te entrena para mejorar tu close rate. Es como tener un buen sistema operativo: necesario, pero no es la diferencia entre cerrar o no cerrar la venta.</p>
+
+<h2>VentasChat: el coach IA</h2>
+
+<p><strong>Qué hace:</strong> VentasChat lee tus conversaciones reales (las pegas o subes captura) y te entrega análisis estructurado: puntaje de probabilidad de cierre 0-100%, vocabulario sugerido a usar y a evitar, métricas de engagement del cliente, y 3 respuestas listas calibradas a esa conversación específica.</p>
+
+<p>No reemplaza tu WhatsApp ni tu equipo. <strong>Te hace mejor en lo que ya estás haciendo</strong>.</p>
+
+<h3>Cuándo te conviene VentasChat</h3>
+
+<ul>
+  <li>Eres vendedor individual o equipo de 1-5 personas</li>
+  <li>Vendes productos donde la conversación importa (ticket medio-alto, B2C complejo o B2B)</li>
+  <li>Quieres mejorar tu close rate sin cambiar tu workflow</li>
+  <li>Tienes pocos chats al día pero quieres ganar todos los que se puedan</li>
+  <li>Quieres aprender qué te funciona basándote en tus propios cierres</li>
+</ul>
+
+<h3>Cuándo NO te conviene</h3>
+
+<ul>
+  <li>Tienes 500+ DMs al día imposibles de atender (necesitas bot)</li>
+  <li>Tu equipo de 20 agentes necesita coordinación (necesitas inbox unificado)</li>
+  <li>Vendes productos donde la conversación es 100% repetitiva</li>
+</ul>
+
+<h3>Diferenciador único</h3>
+
+<p>VentasChat marca cada análisis como "venta cerrada", "perdida" o "en curso". Con datos suficientes, te muestra <strong>qué palabras aparecen en tus chats ganados que no aparecen en los perdidos</strong>. Tu vocabulario que cierra. Tus objeciones que dominas. Tus patrones únicos.</p>
+
+<p>Eso ni Manychat ni B2Chat lo pueden hacer porque ninguno tiene la lógica de "coach". Es un nivel de profundidad distinto.</p>
+
+<h2>Comparativa lado a lado</h2>
+
+<table>
+<tr><th>Feature</th><th>Manychat</th><th>B2Chat</th><th>VentasChat</th></tr>
+<tr><td>Setup</td><td>2-4 horas (configurar flujos)</td><td>1-3 días (integración API)</td><td>30 segundos (registrarte)</td></tr>
+<tr><td>Reemplaza al vendedor</td><td>Sí (parcial)</td><td>No</td><td>No</td></tr>
+<tr><td>Te entrena a vender</td><td>No</td><td>No</td><td><strong>Sí</strong></td></tr>
+<tr><td>Multi-agente</td><td>No</td><td>Sí</td><td>No (pronto)</td></tr>
+<tr><td>WhatsApp Business API</td><td>Vía partner</td><td>Sí (incluido)</td><td>No (no la necesitas)</td></tr>
+<tr><td>Análisis de conversaciones</td><td>No</td><td>No</td><td><strong>Sí (core)</strong></td></tr>
+<tr><td>Score de probabilidad de cierre</td><td>No</td><td>No</td><td><strong>Sí</strong></td></tr>
+<tr><td>Vocabulario sugerido</td><td>No</td><td>No</td><td><strong>Sí</strong></td></tr>
+<tr><td>OCR de capturas</td><td>No</td><td>No</td><td><strong>Sí</strong></td></tr>
+<tr><td>Coaching de patrones personales</td><td>No</td><td>No</td><td><strong>Sí</strong></td></tr>
+<tr><td>Multi-canal</td><td>WhatsApp + IG + FB</td><td>WhatsApp + IG + FB + TG + LiveChat</td><td>Cualquier chat (pegando texto)</td></tr>
+<tr><td>Plan gratis</td><td>Sí (limitado)</td><td>No</td><td><strong>Sí (10 análisis)</strong></td></tr>
+<tr><td>Precio mensual desde</td><td>$15 USD</td><td>~$50-100 USD</td><td>$22 USD ($89k COP)</td></tr>
+</table>
+
+<h2>Combinaciones reales que vemos en el mercado</h2>
+
+<p>En la práctica, los negocios LATAM serios <strong>no eligen una</strong>, eligen combinaciones según su etapa:</p>
+
+<h3>Etapa 1 — Vendedor independiente / freelancer</h3>
+<p><strong>Solo VentasChat.</strong> Tu WhatsApp normal te basta para volumen. No necesitas bot ni inbox unificado. Necesitas un coach que te haga mejor en cada chat. ($22 USD/mes con análisis ilimitados o gratis con 10/mes).</p>
+
+<h3>Etapa 2 — Pequeño equipo comercial (2-5 personas)</h3>
+<p><strong>VentasChat + WhatsApp Business app normal.</strong> Cada vendedor usa VentasChat individualmente. La gestión la hacen con WhatsApp normal. Si crece, se considera el upgrade.</p>
+
+<h3>Etapa 3 — Equipo de 6-15 con tráfico alto</h3>
+<p><strong>B2Chat + VentasChat.</strong> B2Chat para coordinar el equipo y los canales. VentasChat para que cada agente individual mejore. Aquí la combinación es poderosa.</p>
+
+<h3>Etapa 4 — E-commerce con miles de DMs</h3>
+<p><strong>Manychat (frontline) + B2Chat (humanos) + VentasChat (coaching).</strong> Manychat captura el lead y filtra básicos. B2Chat distribuye los cualificados al equipo humano. VentasChat hace el coaching individual. Sistema completo.</p>
+
+<h2>Errores comunes al elegir</h2>
+
+<ol>
+  <li><strong>Comprar inbox unificado siendo freelancer</strong> — sobreingeniería. Pagas $50+/mes por features que no usas.</li>
+  <li><strong>Implementar bot con producto complejo</strong> — el bot pierde el matiz y te baja conversión.</li>
+  <li><strong>Pensar que el coach IA reemplaza al inbox</strong> — son cosas distintas. VentasChat es para mejorar conversaciones, no para gestionarlas masivamente.</li>
+  <li><strong>Combinar bot + coach pero sin inbox cuando el equipo crece</strong> — termina caos sin coordinación.</li>
+</ol>
+
+<h2>Mi recomendación final</h2>
+
+<p>Si llegaste a este artículo buscando "comparar Manychat con B2Chat", probablemente estás en algún punto entre vendedor individual y equipo pequeño. <strong>Mi sugerencia:</strong></p>
+
+<ol>
+  <li><strong>Empezá con VentasChat gratis.</strong> 10 análisis te alcanzan para una semana de chats reales. En 7 días vas a saber si te aporta o no.</li>
+  <li><strong>Decide después si necesitas Manychat o B2Chat.</strong> Solo si tu volumen lo justifica. La mayoría de freelancers y vendedores no necesitan ninguno de los dos.</li>
+  <li><strong>Cuando crezcas, combina:</strong> VentasChat para coaching personal + B2Chat para el equipo + Manychat para captura inicial.</li>
+</ol>
+
+<p>VentasChat tiene 10 análisis gratis al registrarse. Sin tarjeta. <a href="/signup">Prueba con tu próximo cliente difícil</a> y comparas tú mismo.</p>
+`,
+  },
+  {
     slug: "como-vender-por-instagram-dm",
     title: "Cómo vender por Instagram DM en 2026 (guía completa para vendedores)",
     description:
