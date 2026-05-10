@@ -3,6 +3,7 @@ import { Inter, Space_Grotesk } from "next/font/google";
 import { SessionProvider } from "next-auth/react";
 
 import { Analytics } from "@/components/analytics";
+import { WhatsAppFab } from "@/components/whatsapp-fab";
 
 import "./globals.css";
 
@@ -114,6 +115,7 @@ export default function RootLayout({
       <body className={`${inter.variable} ${spaceGrotesk.variable}`} suppressHydrationWarning>
         <Analytics />
         <SessionProvider>{children}</SessionProvider>
+        <WhatsAppFab />
       </body>
     </html>
   );

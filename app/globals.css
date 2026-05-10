@@ -3442,3 +3442,196 @@ html.dark .wa-compose-field {
   margin-top: 0.5rem;
 }
 .pricing-final-meta a { color: var(--primary); }
+
+/* ========== WhatsApp FAB (floating) ========== */
+.wa-fab {
+  position: fixed;
+  bottom: 22px;
+  right: 22px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #25d366;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 26px rgba(37, 211, 102, 0.45);
+  z-index: 9999;
+  transition: transform 0.18s ease;
+}
+.wa-fab:hover { transform: scale(1.08); }
+.wa-fab-pulse {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 14px;
+  height: 14px;
+  background: #34d399;
+  border: 2px solid white;
+  border-radius: 50%;
+  animation: wa-pulse 2s infinite;
+}
+@keyframes wa-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.7); }
+  70% { box-shadow: 0 0 0 12px rgba(52, 211, 153, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(52, 211, 153, 0); }
+}
+
+.wa-fab-card {
+  position: fixed;
+  bottom: 96px;
+  right: 22px;
+  width: 320px;
+  max-width: calc(100vw - 44px);
+  background: var(--surface);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  padding: 18px 18px 16px;
+  box-shadow: 0 24px 56px rgba(15, 44, 26, 0.18);
+  z-index: 9998;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  animation: wa-slideup 0.22s ease-out;
+}
+@keyframes wa-slideup {
+  from { transform: translateY(10px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+.wa-fab-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--muted);
+  display: flex;
+  padding: 4px;
+  border-radius: 6px;
+}
+.wa-fab-close:hover { background: var(--bg-2); color: var(--text); }
+.wa-fab-head {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+.wa-fab-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #25d366;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.wa-fab-head strong { font-size: 1rem; display: block; }
+.wa-fab-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.8rem;
+  margin-top: 2px;
+}
+.wa-fab-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+.wa-fab-status-on { color: #047857; }
+.wa-fab-status-on .wa-fab-dot { background: #10b981; box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.18); }
+.wa-fab-status-off { color: var(--muted); }
+.wa-fab-status-off .wa-fab-dot { background: #cbd5e1; }
+.wa-fab-msg {
+  font-size: 0.92rem;
+  line-height: 1.45;
+  color: var(--text);
+  margin: 0;
+  padding: 10px 12px;
+  background: var(--primary-soft);
+  border-radius: 10px;
+}
+.wa-fab-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+.wa-fab-meta strong { color: var(--text); }
+.wa-fab-sub {
+  font-size: 0.78rem;
+  color: var(--muted);
+  margin-top: -4px;
+}
+.wa-fab-cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #25d366;
+  color: white;
+  font-weight: 600;
+  padding: 11px 18px;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: background 0.15s;
+}
+.wa-fab-cta:hover { background: #20bf5b; color: white; }
+
+@media (max-width: 480px) {
+  .wa-fab { width: 54px; height: 54px; bottom: 18px; right: 18px; }
+}
+
+/* ========== Contact section landing ========== */
+.contact-section { margin-top: 1rem; }
+.contact-card {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 1.5rem;
+  align-items: center;
+  padding: 2.25rem 2rem;
+  background: linear-gradient(135deg, rgba(37, 211, 102, 0.08), var(--primary-soft));
+  border: 1px solid rgba(37, 211, 102, 0.25);
+}
+@media (max-width: 720px) {
+  .contact-card { grid-template-columns: 1fr; }
+}
+.contact-info h2 {
+  margin: 0.5rem 0 0.5rem;
+  font-size: 1.6rem;
+}
+.contact-info p {
+  color: var(--muted);
+  margin: 0 0 1rem;
+}
+.contact-meta {
+  font-size: 1rem;
+  margin: 0.3rem 0;
+}
+.contact-meta a { color: var(--secondary); }
+.contact-wa-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  background: #25d366;
+  color: white;
+  font-weight: 700;
+  padding: 16px 24px;
+  border-radius: 14px;
+  text-decoration: none;
+  font-size: 1.05rem;
+  box-shadow: 0 12px 28px rgba(37, 211, 102, 0.3);
+  transition: transform 0.15s, background 0.15s;
+}
+.contact-wa-btn:hover {
+  background: #20bf5b;
+  transform: translateY(-2px);
+  color: white;
+}
+
+.dark .wa-fab-msg { background: rgba(255, 255, 255, 0.05); }
+.dark .wa-fab-card { background: var(--surface); }

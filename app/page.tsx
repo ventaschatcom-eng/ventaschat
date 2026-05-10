@@ -800,10 +800,42 @@ export default function HomePage() {
           </div>
         </section>
       </main>
+      <section className="section contact-section">
+        <div className="contact-card card">
+          <div className="contact-info">
+            <div className="eyebrow">Contáctanos</div>
+            <h2>¿Tienes dudas antes de empezar?</h2>
+            <p>
+              Escríbenos por WhatsApp y te respondemos rápido. Sin formularios, sin
+              esperas largas. Hablamos contigo directamente.
+            </p>
+            <div className="contact-meta">
+              <strong>WhatsApp:</strong> +57 323 703 7471
+            </div>
+            <div className="contact-meta">
+              <strong>Email:</strong>{" "}
+              <a href="mailto:ventaschat.com@gmail.com">ventaschat.com@gmail.com</a>
+            </div>
+          </div>
+          <a
+            href="https://wa.me/573237037471?text=Hola!%20Tengo%20una%20pregunta%20sobre%20VentasChat."
+            target="_blank"
+            rel="noopener noreferrer"
+            className="contact-wa-btn"
+          >
+            <svg viewBox="0 0 32 32" width="22" height="22" fill="white">
+              <path d="M16 .4C7.4.4.4 7.4.4 16c0 2.8.7 5.4 2 7.7L0 32l8.5-2.4c2.2 1.2 4.8 1.9 7.5 1.9C24.6 31.5 31.6 24.5 31.6 16S24.6.4 16 .4zm0 28.6c-2.3 0-4.6-.6-6.6-1.8l-.5-.3-4.9 1.4 1.4-4.7-.3-.5C3.7 21 3 18.6 3 16.1 3 8.9 8.9 3 16.1 3s13 5.9 13 13.1c-.1 7.1-6 13-13.1 13zm7.1-9.7c-.4-.2-2.3-1.1-2.6-1.3-.4-.1-.6-.2-.9.2-.3.4-1 1.3-1.3 1.5-.2.3-.5.3-.9.1-.4-.2-1.6-.6-3.1-1.9-1.1-1-1.9-2.3-2.2-2.7-.2-.4 0-.6.2-.8.2-.2.4-.5.6-.7.2-.2.3-.4.4-.6.1-.3.1-.5 0-.7-.1-.2-.9-2.2-1.3-3-.3-.8-.7-.7-.9-.7H10c-.3 0-.7.1-1 .5-.3.4-1.3 1.3-1.3 3.1 0 1.8 1.3 3.6 1.5 3.8.2.3 2.6 4 6.4 5.6 1.6.7 2.8 1.1 3.7 1.4 1.6.5 3 .4 4.1.3 1.3-.2 2.9-1.2 3.3-2.4.4-1.2.4-2.2.3-2.4-.1-.3-.4-.4-.8-.6z"/>
+            </svg>
+            <span>Escribir por WhatsApp</span>
+          </a>
+        </div>
+      </section>
+
       <footer className="footer">
         <div className="footer-content">
-          <span>© {new Date().getFullYear()} VentasChat — IA para vender mejor por WhatsApp.</span>
+          <span>© {new Date().getFullYear()} VentasChat — IA para vender mejor por chat.</span>
           <div className="footer-links">
+            <Link href="/blog">Blog</Link>
             <Link href="/pricing">Precios</Link>
             <Link href="/privacy">Privacidad</Link>
             <Link href="/terms">Términos</Link>
