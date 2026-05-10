@@ -7,8 +7,14 @@ import {
 } from "@/lib/types";
 
 export const signupSchema = z.object({
-  email: z.string().email(),
-  password: z.string().min(8, "La contrasena debe tener al menos 8 caracteres."),
+  email: z.string().email("Ingresa un email válido.").max(254),
+  password: z
+    .string()
+    .min(8, "La contraseña debe tener al menos 8 caracteres.")
+    .max(72, "La contraseña no puede tener más de 72 caracteres.")
+    .refine((v) => /[A-Za-z]/.test(v) && /[0-9]/.test(v), {
+      message: "La contraseña debe incluir al menos una letra y un número.",
+    }),
 });
 
 export const loginSchema = signupSchema;

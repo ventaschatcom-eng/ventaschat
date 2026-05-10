@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import OpenAI from "openai";
 
 import { auth } from "@/lib/auth";
+import { checkRateLimit } from "@/lib/rate-limit";
 
 const openai = process.env.OPENAI_API_KEY
   ? new OpenAI({ apiKey: process.env.OPENAI_API_KEY })
@@ -12,6 +13,15 @@ export async function POST(request: Request) {
 
   if (!session?.user?.id) {
     return NextResponse.json({ error: "No autorizado" }, { status: 401 });
+  }
+
+  // OCR cuesta más en API → rate limit más estricto
+  const rl = checkRateLimit({ key: `ocr:${session.user.id}`, windowMs: 60_000, max: 10 });
+  if (!rl.ok) {
+    return NextResponse.json(
+      { error: "Demasiadas imágenes en poco tiempo. Espera un momento." },
+      { status: 429, headers: { "Retry-After": String(rl.retryAfterSec) } },
+    );
   }
 
   if (!openai) {

@@ -3,6 +3,7 @@ import { NextResponse } from "next/server";
 import { auth } from "@/lib/auth";
 import { analyzeConversation } from "@/lib/ai";
 import { createAnalysis, createUsageLog, decrementUserCredits, getUserById, isProActive } from "@/lib/db";
+import { checkRateLimit } from "@/lib/rate-limit";
 import { analyzeSchema } from "@/lib/validations";
 
 export async function POST(request: Request) {
@@ -10,6 +11,15 @@ export async function POST(request: Request) {
 
   if (!session?.user?.id) {
     return NextResponse.json({ error: "No autorizado" }, { status: 401 });
+  }
+
+  // Rate limit por usuario: 30 análisis / minuto. Pro o no, evita abuso de la API OpenAI.
+  const rl = checkRateLimit({ key: `analyze:${session.user.id}`, windowMs: 60_000, max: 30 });
+  if (!rl.ok) {
+    return NextResponse.json(
+      { error: "Estás analizando demasiado rápido. Espera un momento." },
+      { status: 429, headers: { "Retry-After": String(rl.retryAfterSec) } },
+    );
   }
 
   const body = await request.json();

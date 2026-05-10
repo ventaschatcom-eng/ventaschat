@@ -3,9 +3,19 @@ import { NextResponse } from "next/server";
 
 import { createUser, getUserByEmail } from "@/lib/db";
 import { sendWelcomeEmail } from "@/lib/email";
+import { checkRateLimit, getClientIp } from "@/lib/rate-limit";
 import { signupSchema } from "@/lib/validations";
 
 export async function POST(request: Request) {
+  const ip = getClientIp(request);
+  const rl = checkRateLimit({ key: `signup:${ip}`, windowMs: 60_000, max: 5 });
+  if (!rl.ok) {
+    return NextResponse.json(
+      { error: "Demasiados intentos. Intenta más tarde." },
+      { status: 429, headers: { "Retry-After": String(rl.retryAfterSec) } },
+    );
+  }
+
   try {
     const body = await request.json();
     const parsed = signupSchema.safeParse(body);
@@ -22,9 +32,10 @@ export async function POST(request: Request) {
     const existingUser = await getUserByEmail(email);
 
     if (existingUser) {
+      // Anti-enumeration: respuesta genérica que no confirma si el email existe
       return NextResponse.json(
-        { error: "Ya existe una cuenta con este email." },
-        { status: 409 },
+        { error: "No fue posible crear la cuenta. Si ya tienes cuenta, intenta iniciar sesión." },
+        { status: 400 },
       );
     }
 
