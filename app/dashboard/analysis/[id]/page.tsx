@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { AnalysisWorkspace } from "@/components/analysis-workspace";
+import { EditableLabel } from "@/components/editable-label";
 import { OutcomeButtons } from "@/components/outcome-buttons";
 import { auth } from "@/lib/auth";
 import { getAnalysisByIdForUser, listAnalysisIterationsForUser } from "@/lib/db";
@@ -29,14 +30,20 @@ export default async function AnalysisPage({
     <div className="stack">
       <section className="card feature-card">
         <div className="section-heading compact">
-          <h1>Resultado del analisis</h1>
+          <p className="muted" style={{ marginBottom: "0.3rem" }}>Resultado del análisis</p>
+          <EditableLabel
+            analysisId={analysis.id}
+            initialLabel={analysis.label}
+            fallback={analysis.intent}
+            size="page"
+          />
           <p>
             {analysis.conversationContext} · {analysis.conversationType} ·{" "}
             {formatDate(new Date(analysis.createdAt))}
           </p>
           <p className="muted">
             Empieza por el medidor de cierre, luego revisa la lectura principal y
-            despues baja al detalle.
+            después baja al detalle.
           </p>
         </div>
         <Link href="/dashboard/analyze" className="button button-primary">

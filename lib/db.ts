@@ -29,6 +29,7 @@ export type DbAnalysis = {
   outputJson: string;
   createdAt: string;
   outcome: AnalysisOutcome;
+  label: string | null;
 };
 
 function mapUser(row: Record<string, unknown>): DbUser {
@@ -73,7 +74,20 @@ function mapAnalysis(row: Record<string, unknown>): DbAnalysis {
     outputJson: String(row.output_json),
     createdAt: String(row.created_at),
     outcome: ["won", "lost", "pending"].includes(outcome) ? outcome : "pending",
+    label: row.label ? String(row.label) : null,
   };
+}
+
+export async function updateAnalysisLabel(
+  analysisId: string,
+  userId: string,
+  label: string,
+) {
+  const trimmed = label.trim().slice(0, 80);
+  await sql`
+    UPDATE analyses SET label = ${trimmed || null}
+    WHERE id = ${analysisId} AND user_id = ${userId}
+  `;
 }
 
 export async function setAnalysisOutcome(

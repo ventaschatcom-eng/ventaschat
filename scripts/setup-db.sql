@@ -24,6 +24,7 @@ CREATE TABLE IF NOT EXISTS analyses (
   output_json TEXT NOT NULL,
   created_at TEXT NOT NULL,
   outcome TEXT NOT NULL DEFAULT 'pending',
+  label TEXT,
   FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
 
