@@ -144,24 +144,42 @@ const workflow = [
 const salesExamples = [
   {
     situation: "Objeción de precio",
-    before: "Está interesante, pero se me sale del presupuesto.",
+    contact: "Andrea M.",
+    avatar: "A",
+    status: "en línea",
+    score: 62,
+    customerMsg: "Está interesante, pero se me sale del presupuesto.",
+    customerTime: "10:14",
     insight: "El cliente no rechazó el producto; necesita justificar el valor.",
     reply:
       "Te entiendo. Para que no compres a ciegas, te muestro qué incluye y cuál opción te da retorno más rápido según tu volumen actual.",
+    replyTime: "10:15",
   },
   {
     situation: "Comparando opciones",
-    before: "Estoy mirando otras alternativas antes de decidir.",
+    contact: "Daniel R.",
+    avatar: "D",
+    status: "escribiendo...",
+    score: 71,
+    customerMsg: "Estoy mirando otras alternativas antes de decidir.",
+    customerTime: "4:08",
     insight: "Hay intención real, pero falta diferenciar la oferta.",
     reply:
       "Perfecto. Si estás comparando, te resumo en dos puntos dónde somos más fuertes y cuándo te conviene elegir otra opción.",
+    replyTime: "4:09",
   },
   {
     situation: "Cliente frío",
-    before: "Déjame pensarlo y te aviso.",
+    contact: "Sofia P.",
+    avatar: "S",
+    status: "hace 5 min",
+    score: 38,
+    customerMsg: "Déjame pensarlo y te aviso.",
+    customerTime: "6:22",
     insight: "Necesita un siguiente paso pequeño, no más presión.",
     reply:
       "Claro. Te dejo una recomendación rápida según lo que me contaste y mañana te escribo con una opción concreta para que decidas fácil.",
+    replyTime: "6:23",
   },
 ];
 
@@ -669,17 +687,41 @@ export default function HomePage() {
           <div className="conversion-grid">
             {salesExamples.map((example) => (
               <article key={example.situation} className="conversion-card card">
-                <div className="conversion-card-top">
-                  <span>{example.situation}</span>
-                  <BadgeCheck size={18} />
-                </div>
-                <div className="mini-chat">
-                  <div className="mini-message mini-message-in">{example.before}</div>
-                  <div className="mini-insight">
-                    <strong>VentasChat detecta</strong>
-                    <span>{example.insight}</span>
+                <div className="mini-wa">
+                  <div className="mini-wa-header">
+                    <div className="mini-wa-avatar">{example.avatar}</div>
+                    <div className="mini-wa-contact">
+                      <strong>{example.contact}</strong>
+                      <span>{example.status}</span>
+                    </div>
+                    <span className="mini-wa-situation">{example.situation}</span>
                   </div>
-                  <div className="mini-message mini-message-out">{example.reply}</div>
+
+                  <div className="mini-wa-body">
+                    <div className="mini-wa-day">Hoy</div>
+
+                    <div className="mini-wa-bubble mini-wa-bubble-in">
+                      <p>{example.customerMsg}</p>
+                      <span className="mini-wa-time">{example.customerTime}</span>
+                    </div>
+
+                    <div className="mini-wa-insight">
+                      <div className="mini-wa-insight-head">
+                        <BadgeCheck size={14} />
+                        <strong>VentasChat detecta</strong>
+                        <span className="mini-wa-score">{example.score}%</span>
+                      </div>
+                      <p>{example.insight}</p>
+                    </div>
+
+                    <div className="mini-wa-bubble mini-wa-bubble-out">
+                      <span className="mini-wa-sugg-badge">✨ Sugerido</span>
+                      <p>{example.reply}</p>
+                      <span className="mini-wa-time">
+                        {example.replyTime} <i className="mini-wa-ticks">✓✓</i>
+                      </span>
+                    </div>
+                  </div>
                 </div>
               </article>
             ))}

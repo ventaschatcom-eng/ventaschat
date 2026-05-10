@@ -3867,3 +3867,207 @@ html.dark .wa-compose-field {
 @media (max-width: 600px) {
   .hero-trust-strip { grid-template-columns: 1fr; }
 }
+
+/* ========== Mini WhatsApp mocks (Ejemplos de cierre) ========== */
+.mini-wa {
+  display: flex;
+  flex-direction: column;
+  border-radius: 18px;
+  overflow: hidden;
+  background: #e7ddd2;
+  background-image:
+    radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.4) 0%, transparent 30%),
+    radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.3) 0%, transparent 35%);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.mini-wa-header {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.7rem 0.85rem;
+  background: linear-gradient(180deg, #005c4b 0%, #00755e 100%);
+  color: white;
+  position: relative;
+}
+
+.mini-wa-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #25d366, #128c7e);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.9rem;
+  flex-shrink: 0;
+}
+
+.mini-wa-contact {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+}
+.mini-wa-contact strong {
+  font-size: 0.9rem;
+  color: white;
+  font-weight: 600;
+}
+.mini-wa-contact span {
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.mini-wa-situation {
+  background: rgba(255, 255, 255, 0.18);
+  color: white;
+  font-size: 0.68rem;
+  padding: 0.25rem 0.55rem;
+  border-radius: 999px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.mini-wa-body {
+  padding: 0.85rem 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  min-height: 320px;
+}
+
+.mini-wa-day {
+  align-self: center;
+  background: rgba(255, 255, 255, 0.85);
+  color: #555;
+  font-size: 0.68rem;
+  padding: 0.22rem 0.65rem;
+  border-radius: 8px;
+  font-weight: 500;
+  margin-bottom: 0.1rem;
+  box-shadow: 0 1px 0.5px rgba(0, 0, 0, 0.08);
+}
+
+.mini-wa-bubble {
+  max-width: 88%;
+  padding: 0.55rem 0.65rem 0.4rem;
+  border-radius: 8px;
+  position: relative;
+  box-shadow: 0 1px 0.5px rgba(0, 0, 0, 0.13);
+  font-size: 0.86rem;
+  line-height: 1.4;
+}
+
+.mini-wa-bubble p {
+  margin: 0;
+  color: #111b21;
+}
+
+.mini-wa-bubble-in {
+  align-self: flex-start;
+  background: white;
+  border-top-left-radius: 0;
+}
+
+.mini-wa-bubble-out {
+  align-self: flex-end;
+  background: #d9fdd3;
+  border-top-right-radius: 0;
+  border: 2px solid #00c72c;
+  box-shadow: 0 4px 12px rgba(0, 199, 44, 0.18);
+}
+
+.mini-wa-sugg-badge {
+  display: inline-block;
+  background: var(--primary);
+  color: white;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  padding: 0.15rem 0.45rem;
+  border-radius: 999px;
+  margin-bottom: 0.3rem;
+}
+
+.mini-wa-time {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 0.15rem;
+  font-size: 0.65rem;
+  color: #667781;
+  margin-top: 0.2rem;
+}
+
+.mini-wa-ticks {
+  color: #53bdeb;
+  font-style: normal;
+  font-size: 0.85rem;
+  margin-left: 2px;
+}
+
+.mini-wa-insight {
+  align-self: center;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(47, 128, 237, 0.25);
+  border-left: 3px solid var(--secondary);
+  border-radius: 10px;
+  padding: 0.55rem 0.7rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.mini-wa-insight-head {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.72rem;
+}
+
+.mini-wa-insight-head strong {
+  color: var(--secondary-dark);
+  font-weight: 700;
+  font-size: 0.72rem;
+  flex: 1;
+}
+
+.mini-wa-insight-head svg {
+  color: var(--secondary);
+  flex-shrink: 0;
+}
+
+.mini-wa-score {
+  background: var(--primary);
+  color: white;
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 0.1rem 0.4rem;
+  border-radius: 999px;
+}
+
+.mini-wa-insight p {
+  margin: 0;
+  color: #3a4a3f;
+  font-size: 0.78rem;
+  line-height: 1.4;
+}
+
+/* el card padre necesita ajustes para que se vea limpio con el mock dentro */
+.conversion-card {
+  padding: 0.65rem !important;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+/* Dark mode: mantenemos el chat con look WhatsApp (siempre con bg claro) — solo ajustamos el container */
+html.dark .mini-wa {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
