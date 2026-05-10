@@ -583,7 +583,8 @@ export default function HomePage() {
 
         <section className="latam-proof">
           <p className="latam-proof-label">
-            Pensado para equipos que venden en Colombia, México, Chile, Perú y Argentina
+            Pensado para equipos que venden en{" "}
+            <strong>Colombia, México, Chile, Perú y Argentina</strong>
           </p>
           <div className="latam-proof-marquee" aria-label="Referencias visuales de marcas conocidas en Latinoamérica">
             <div className="latam-proof-track">
