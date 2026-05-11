@@ -1,4 +1,8 @@
-import { MessageCircle } from "lucide-react";
+"use client";
+
+import { useRef, useState } from "react";
+import { Download, MessageCircle } from "lucide-react";
+import { toPng } from "html-to-image";
 
 const phrases = [
   {
@@ -41,24 +45,6 @@ const phrases = [
 
 const SIZE = 1080;
 
-function Slide({ children, bg }: { children: React.ReactNode; bg?: string }) {
-  return (
-    <div
-      className="slide"
-      style={{
-        width: `${SIZE}px`,
-        height: `${SIZE}px`,
-        background: bg ?? "white",
-        position: "relative",
-        overflow: "hidden",
-        fontFamily: "var(--font-display), 'Inter', sans-serif",
-      }}
-    >
-      {children}
-    </div>
-  );
-}
-
 function BrandMark({ light }: { light?: boolean }) {
   return (
     <div
@@ -79,7 +65,7 @@ function BrandMark({ light }: { light?: boolean }) {
           height: 44,
           borderRadius: 12,
           background: light ? "rgba(255,255,255,0.18)" : "#00c72c",
-          color: light ? "white" : "white",
+          color: "white",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
@@ -99,27 +85,152 @@ function BrandMark({ light }: { light?: boolean }) {
   );
 }
 
-export default function Carousel1Page() {
-  return (
-    <div className="studio-carousel">
-      <div className="studio-carousel-meta">
-        <h1>Carrusel #1 · 7 frases que matan tu venta</h1>
-        <p>8 slides · 1080×1080 px · Captura cada uno y publícalo como carrusel</p>
+function SlideWrapper({
+  index,
+  total,
+  children,
+  bg,
+}: {
+  index: number;
+  total: number;
+  children: React.ReactNode;
+  bg?: string;
+}) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [downloading, setDownloading] = useState(false);
 
-        <div className="studio-caption-box">
-          <strong>Caption para la publicación:</strong>
-          <pre>{`La frase #1 la decimos todos sin pensarlo. Y nos cuesta el 30% de los leads que ya estaban listos para cerrar 💸
+  async function downloadSlide() {
+    if (!ref.current) return;
+    setDownloading(true);
+    try {
+      const dataUrl = await toPng(ref.current, {
+        pixelRatio: 1,
+        width: SIZE,
+        height: SIZE,
+        cacheBust: true,
+      });
+      const link = document.createElement("a");
+      link.download = `ventaschat-carousel-1-slide-${String(index).padStart(2, "0")}.png`;
+      link.href = dataUrl;
+      link.click();
+    } catch (err) {
+      console.error(err);
+      alert("No se pudo descargar el slide. Intenta otra vez.");
+    } finally {
+      setDownloading(false);
+    }
+  }
+
+  return (
+    <div className="slide-wrapper">
+      <div className="slide-toolbar">
+        <span className="slide-counter">
+          Slide {index} de {total}
+        </span>
+        <button
+          type="button"
+          className="slide-download-btn"
+          onClick={downloadSlide}
+          disabled={downloading}
+        >
+          <Download size={16} />
+          {downloading ? "Generando..." : "Descargar PNG"}
+        </button>
+      </div>
+      <div
+        ref={ref}
+        className="slide"
+        style={{
+          width: `${SIZE}px`,
+          height: `${SIZE}px`,
+          background: bg ?? "white",
+          position: "relative",
+          overflow: "hidden",
+          fontFamily: "'Inter', 'Segoe UI', Arial, sans-serif",
+        }}
+      >
+        {children}
+      </div>
+    </div>
+  );
+}
+
+async function downloadAll() {
+  const slides = document.querySelectorAll<HTMLElement>(".slide");
+  for (let i = 0; i < slides.length; i++) {
+    try {
+      const dataUrl = await toPng(slides[i], {
+        pixelRatio: 1,
+        width: SIZE,
+        height: SIZE,
+        cacheBust: true,
+      });
+      const link = document.createElement("a");
+      link.download = `ventaschat-carousel-1-slide-${String(i + 1).padStart(2, "0")}.png`;
+      link.href = dataUrl;
+      link.click();
+      await new Promise((r) => setTimeout(r, 400));
+    } catch (err) {
+      console.error("Slide", i + 1, "failed:", err);
+    }
+  }
+}
+
+export default function Carousel1Page() {
+  const [bulkDownloading, setBulkDownloading] = useState(false);
+  const total = 8;
+
+  async function handleBulk() {
+    setBulkDownloading(true);
+    try {
+      await downloadAll();
+    } finally {
+      setBulkDownloading(false);
+    }
+  }
+
+  const captionText = `La frase #1 la decimos todos sin pensarlo. Y nos cuesta el 30% de los leads que ya estaban listos para cerrar 💸
 
 ¿Cuál de las 7 usas tú? Cuéntame en comentarios y te digo cuál duele más para tu producto.
 
 👇 Si quieres saber qué frases trampa estás usando en tus chats reales: link en bio. Te damos 10 análisis gratis y te decimos exactamente qué cambiar.
 
-#VentasPorWhatsApp #VentasLATAM #Emprendimiento #CierreDeVentas #VentaConsultiva #VendedorPro #ManejoDeObjeciones #WhatsAppBusiness #Closer #EmprendedorLATAM`}</pre>
+#VentasPorWhatsApp #VentasLATAM #Emprendimiento #CierreDeVentas #VentaConsultiva #VendedorPro #ManejoDeObjeciones #WhatsAppBusiness #Closer #EmprendedorLATAM`;
+
+  async function copyCaption() {
+    await navigator.clipboard.writeText(captionText);
+    alert("✅ Caption copiada al portapapeles");
+  }
+
+  return (
+    <div className="studio-carousel">
+      <div className="studio-carousel-meta">
+        <h1>Carrusel #1 · 7 frases que matan tu venta</h1>
+        <p>8 slides · 1080×1080 px · Click en &ldquo;Descargar PNG&rdquo; en cada slide</p>
+
+        <div className="studio-actions">
+          <button
+            type="button"
+            className="studio-bulk-btn"
+            onClick={handleBulk}
+            disabled={bulkDownloading}
+          >
+            <Download size={18} />
+            {bulkDownloading ? "Descargando los 8..." : "Descargar TODOS los slides"}
+          </button>
+          <button type="button" className="studio-copy-btn" onClick={copyCaption}>
+            📋 Copiar caption + hashtags
+          </button>
+        </div>
+
+        <div className="studio-caption-box">
+          <strong>Caption para la publicación:</strong>
+          <pre>{captionText}</pre>
         </div>
       </div>
 
       {/* SLIDE 1 — COVER */}
-      <Slide bg="linear-gradient(135deg, #122018 0%, #1a3024 100%)">
+      <SlideWrapper index={1} total={total} bg="linear-gradient(135deg, #122018 0%, #1a3024 100%)">
         <div
           style={{
             position: "absolute",
@@ -146,14 +257,7 @@ export default function Carousel1Page() {
           </span>
         </div>
 
-        <div
-          style={{
-            position: "absolute",
-            top: 200,
-            left: 80,
-            right: 80,
-          }}
-        >
+        <div style={{ position: "absolute", top: 200, left: 80, right: 80 }}>
           <div
             style={{
               fontSize: 300,
@@ -206,12 +310,11 @@ export default function Carousel1Page() {
         </div>
 
         <BrandMark light />
-      </Slide>
+      </SlideWrapper>
 
-      {/* SLIDES 2-7 — UNA FRASE POR SLIDE */}
-      {phrases.map((p) => (
-        <Slide key={p.num}>
-          {/* Patrón sutil de fondo */}
+      {/* SLIDES 2-7 */}
+      {phrases.map((p, i) => (
+        <SlideWrapper key={p.num} index={i + 2} total={total}>
           <div
             style={{
               position: "absolute",
@@ -221,7 +324,6 @@ export default function Carousel1Page() {
             }}
           />
 
-          {/* Header */}
           <div
             style={{
               position: "absolute",
@@ -233,13 +335,7 @@ export default function Carousel1Page() {
               alignItems: "center",
             }}
           >
-            <div
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: 16,
-              }}
-            >
+            <div style={{ display: "inline-flex", alignItems: "center", gap: 16 }}>
               <div
                 style={{
                   background: "#ff6b6b",
@@ -267,7 +363,6 @@ export default function Carousel1Page() {
             </div>
           </div>
 
-          {/* La frase mala */}
           <div
             style={{
               position: "absolute",
@@ -304,7 +399,6 @@ export default function Carousel1Page() {
             </div>
           </div>
 
-          {/* Por qué mata */}
           <div
             style={{
               position: "absolute",
@@ -321,7 +415,6 @@ export default function Carousel1Page() {
             {p.why}
           </div>
 
-          {/* Reemplazo */}
           <div
             style={{
               position: "absolute",
@@ -359,11 +452,11 @@ export default function Carousel1Page() {
           </div>
 
           <BrandMark />
-        </Slide>
+        </SlideWrapper>
       ))}
 
       {/* SLIDE 8 — CTA FINAL */}
-      <Slide bg="linear-gradient(135deg, #00c72c 0%, #009b22 100%)">
+      <SlideWrapper index={8} total={total} bg="linear-gradient(135deg, #00c72c 0%, #009b22 100%)">
         <div
           style={{
             position: "absolute",
@@ -389,14 +482,7 @@ export default function Carousel1Page() {
           </span>
         </div>
 
-        <div
-          style={{
-            position: "absolute",
-            top: 240,
-            left: 80,
-            right: 80,
-          }}
-        >
+        <div style={{ position: "absolute", top: 240, left: 80, right: 80 }}>
           <h2
             style={{
               fontSize: 92,
@@ -411,14 +497,7 @@ export default function Carousel1Page() {
           </h2>
         </div>
 
-        <div
-          style={{
-            position: "absolute",
-            top: 600,
-            left: 80,
-            right: 80,
-          }}
-        >
+        <div style={{ position: "absolute", top: 600, left: 80, right: 80 }}>
           <p
             style={{
               fontSize: 36,
@@ -428,8 +507,8 @@ export default function Carousel1Page() {
               margin: 0,
             }}
           >
-            Pega tu chat en VentasChat y te decimos exactamente
-            qué cambiar. Análisis en 15 segundos.
+            Pega tu chat en VentasChat y te decimos exactamente qué cambiar. Análisis
+            en 15 segundos.
           </p>
         </div>
 
@@ -473,7 +552,7 @@ export default function Carousel1Page() {
         </div>
 
         <BrandMark light />
-      </Slide>
+      </SlideWrapper>
     </div>
   );
 }
