@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     template: "%s | VentasChat",
   },
   description:
-    "Analiza tus chats de WhatsApp, Instagram DM, Telegram y Messenger con IA. Te dice qué responder cuando un cliente dice 'está caro', te da puntaje de cierre 0-100% y vocabulario sugerido. 10 análisis gratis al registrarte.",
+    "IA que analiza tus chats de WhatsApp e Instagram DM. Puntaje de cierre 0-100%, qué responder a 'está caro' y vocabulario sugerido. 10 análisis gratis.",
   keywords: [
     "como vender por whatsapp",
     "como vender por instagram",
