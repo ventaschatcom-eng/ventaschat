@@ -1534,13 +1534,35 @@ html.dark .mini-insight span {
 
 .payment-card {
   display: grid;
-  align-content: start;
-  gap: 0.75rem;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto auto auto;
+  column-gap: 1rem;
+  row-gap: 0.25rem;
+  align-items: start;
 }
 
-.payment-card h3,
+.payment-card .payment-icon {
+  grid-column: 1;
+  grid-row: 1 / 3;
+  align-self: start;
+}
+
+.payment-card h3 {
+  grid-column: 2;
+  grid-row: 1;
+  margin: 0 0 0.1rem;
+}
+
 .payment-card p {
+  grid-column: 2;
+  grid-row: 2;
   margin: 0;
+}
+
+.payment-card .payment-methods {
+  grid-column: 1 / -1;
+  grid-row: 3;
+  margin-top: 0.5rem;
 }
 
 .payment-icon {
