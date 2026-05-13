@@ -26,7 +26,7 @@ export default function PrivacyPage() {
           <p>
             VentasChat es un servicio operado para ofrecer análisis de conversaciones
             comerciales de mensajería con inteligencia artificial. Si necesitas contactarnos,
-            puedes escribir a <a href="mailto:ventaschat.com@gmail.com">ventaschat.com@gmail.com</a>.
+            puedes escribir a <a href="mailto:hola@ventaschat.com">hola@ventaschat.com</a>.
           </p>
 
           <h2>2. Datos que recolectamos</h2>
@@ -114,7 +114,7 @@ export default function PrivacyPage() {
           <h2>10. Contacto</h2>
           <p>
             Para cualquier consulta sobre esta política o tus datos, escríbenos a{" "}
-            <a href="mailto:ventaschat.com@gmail.com">ventaschat.com@gmail.com</a>.
+            <a href="mailto:hola@ventaschat.com">hola@ventaschat.com</a>.
           </p>
         </article>
       </main>

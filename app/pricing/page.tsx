@@ -56,7 +56,7 @@ const faqs = [
   },
   {
     q: "¿Hay descuentos para equipos?",
-    a: "Por ahora no, pero estamos trabajando en planes de equipo con descuento por volumen. Si tienes 5+ vendedores, escríbenos a ventaschat.com@gmail.com.",
+    a: "Por ahora no, pero estamos trabajando en planes de equipo con descuento por volumen. Si tienes 5+ vendedores, escríbenos a hola@ventaschat.com.",
   },
   {
     q: "¿En qué se diferencia VentasChat de Manychat, Wati o WAI?",
@@ -275,7 +275,7 @@ export default function PricingPage() {
           </Link>
           <div className="pricing-final-meta">
             <MessageCircle size={14} /> ¿Dudas? Escribe a{" "}
-            <a href="mailto:ventaschat.com@gmail.com">ventaschat.com@gmail.com</a>
+            <a href="mailto:hola@ventaschat.com">hola@ventaschat.com</a>
           </div>
         </section>
       </main>

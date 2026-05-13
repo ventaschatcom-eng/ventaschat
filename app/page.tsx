@@ -914,7 +914,7 @@ export default function HomePage() {
             </p>
             <div className="contact-meta">
               <strong>Email:</strong>{" "}
-              <a href="mailto:ventaschat.com@gmail.com">ventaschat.com@gmail.com</a>
+              <a href="mailto:hola@ventaschat.com">hola@ventaschat.com</a>
             </div>
           </div>
           <a
@@ -939,7 +939,7 @@ export default function HomePage() {
             <Link href="/pricing">Precios</Link>
             <Link href="/privacy">Privacidad</Link>
             <Link href="/terms">Términos</Link>
-            <a href="mailto:ventaschat.com@gmail.com">Contacto</a>
+            <a href="mailto:hola@ventaschat.com">Contacto</a>
           </div>
         </div>
       </footer>

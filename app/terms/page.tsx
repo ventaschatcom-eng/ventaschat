@@ -125,7 +125,7 @@ export default function TermsPage() {
           <h2>11. Contacto</h2>
           <p>
             Para cualquier consulta sobre estos términos, escribe a{" "}
-            <a href="mailto:ventaschat.com@gmail.com">ventaschat.com@gmail.com</a>.
+            <a href="mailto:hola@ventaschat.com">hola@ventaschat.com</a>.
           </p>
         </article>
       </main>
