@@ -43,6 +43,7 @@ export const authConfig = {
           email: user.email,
           plan: user.plan,
           credits: user.credits,
+          isEmailVerified: user.emailVerified,
         };
       },
     }),
@@ -52,6 +53,7 @@ export const authConfig = {
       if (user) {
         token.plan = user.plan;
         token.credits = user.credits;
+        token.isEmailVerified = user.isEmailVerified;
       }
 
       if (token.sub && trigger !== "signIn") {
@@ -60,6 +62,7 @@ export const authConfig = {
         if (dbUser) {
           token.plan = dbUser.plan;
           token.credits = dbUser.credits;
+          token.isEmailVerified = dbUser.emailVerified;
         }
       }
 
@@ -70,6 +73,7 @@ export const authConfig = {
         session.user.id = token.sub ?? "";
         session.user.plan = (token.plan as string) ?? "free";
         session.user.credits = (token.credits as number) ?? 0;
+        session.user.isEmailVerified = (token.isEmailVerified as boolean) ?? false;
       }
 
       return session;

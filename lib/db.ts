@@ -12,6 +12,8 @@ export type DbUser = {
   credits: number;
   createdAt: string;
   subscriptionActiveUntil: string | null;
+  emailVerified: boolean;
+  signupIp: string | null;
 };
 
 export type AnalysisOutcome = "won" | "lost" | "pending";
@@ -41,6 +43,8 @@ function mapUser(row: Record<string, unknown>): DbUser {
     credits: Number(row.credits),
     createdAt: String(row.created_at),
     subscriptionActiveUntil: row.subscription_active_until ? String(row.subscription_active_until) : null,
+    emailVerified: Boolean(row.email_verified),
+    signupIp: row.signup_ip ? String(row.signup_ip) : null,
   };
 }
 
@@ -131,16 +135,62 @@ export async function getOutcomeStatsForUser(userId: string) {
   return stats;
 }
 
-export async function createUser(input: { email: string; passwordHash: string }) {
+export async function countUsersByIp(ip: string): Promise<number> {
+  const rows = await sql`SELECT COUNT(*) AS count FROM users WHERE signup_ip = ${ip}`;
+  return Number((rows[0] as Record<string, unknown>).count);
+}
+
+export async function createUser(input: { email: string; passwordHash: string; signupIp?: string }) {
   const id = crypto.randomUUID();
   const createdAt = new Date().toISOString();
+  const signupIp = input.signupIp ?? null;
 
   await sql`
-    INSERT INTO users (id, email, password_hash, plan, credits, created_at)
-    VALUES (${id}, ${input.email}, ${input.passwordHash}, 'free', 10, ${createdAt})
+    INSERT INTO users (id, email, password_hash, plan, credits, created_at, email_verified, signup_ip)
+    VALUES (${id}, ${input.email}, ${input.passwordHash}, 'free', 0, ${createdAt}, false, ${signupIp})
   `;
 
   return getUserById(id);
+}
+
+export async function createVerificationToken(userId: string): Promise<string> {
+  const token = crypto.randomUUID();
+  const expiresAt = new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString();
+  const createdAt = new Date().toISOString();
+  const id = crypto.randomUUID();
+
+  await sql`DELETE FROM email_verification_tokens WHERE user_id = ${userId}`;
+  await sql`
+    INSERT INTO email_verification_tokens (id, user_id, token, expires_at, created_at)
+    VALUES (${id}, ${userId}, ${token}, ${expiresAt}, ${createdAt})
+  `;
+
+  return token;
+}
+
+export async function consumeVerificationToken(token: string): Promise<string | null> {
+  const rows = await sql`
+    SELECT * FROM email_verification_tokens WHERE token = ${token} LIMIT 1
+  `;
+  if (!rows[0]) return null;
+
+  const row = rows[0] as Record<string, unknown>;
+  const expiresAt = new Date(String(row.expires_at)).getTime();
+
+  await sql`DELETE FROM email_verification_tokens WHERE token = ${token}`;
+
+  if (Date.now() > expiresAt) return null;
+
+  return String(row.user_id);
+}
+
+export async function markEmailVerified(userId: string): Promise<void> {
+  await sql`
+    UPDATE users
+    SET email_verified = true,
+        credits = CASE WHEN email_verified = false THEN credits + 10 ELSE credits END
+    WHERE id = ${userId}
+  `;
 }
 
 export async function getUserByEmail(email: string) {

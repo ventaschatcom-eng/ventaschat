@@ -6,12 +6,14 @@ declare module "next-auth" {
       id: string;
       plan: string;
       credits: number;
+      isEmailVerified: boolean;
     };
   }
 
   interface User {
     plan: string;
     credits: number;
+    isEmailVerified: boolean;
   }
 }
 
@@ -19,5 +21,6 @@ declare module "next-auth/jwt" {
   interface JWT {
     plan?: string;
     credits?: number;
+    isEmailVerified?: boolean;
   }
 }
