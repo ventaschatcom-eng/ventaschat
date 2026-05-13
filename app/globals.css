@@ -1294,6 +1294,21 @@ textarea {
   overflow: hidden;
   box-shadow: 0 8px 40px rgba(0,0,0,0.18), 0 2px 8px rgba(0,0,0,0.08);
   border: 1px solid var(--border);
+  position: relative;
+}
+
+.dashboard-email-mask {
+  position: absolute;
+  /* bar height ~32px + email row starts ~2px below */
+  top: 34px;
+  left: 21%;
+  width: 37%;
+  height: 44px;
+  backdrop-filter: blur(10px);
+  background: rgba(14, 22, 16, 0.60);
+  border-radius: 5px;
+  pointer-events: none;
+  z-index: 2;
 }
 .dashboard-preview-bar {
   background: #1e1e1e;
@@ -2148,6 +2163,15 @@ html.dark .analysis-live-delta-down {
 html.dark .hero-kicker,
 html.dark .insight-badge {
   color: #a7ffba;
+}
+
+html.dark .hero-shell {
+  border-color: rgba(0, 199, 44, 0.14);
+  backdrop-filter: none;
+  background:
+    radial-gradient(ellipse 80% 55% at 65% -5%, rgba(0, 199, 44, 0.20) 0%, transparent 55%),
+    radial-gradient(ellipse 55% 40% at 8% 92%, rgba(0, 80, 200, 0.09) 0%, transparent 55%),
+    linear-gradient(160deg, #06101a 0%, #081520 45%, #070e14 100%);
 }
 
 .eyebrow,

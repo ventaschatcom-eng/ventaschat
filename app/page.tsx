@@ -640,6 +640,7 @@ export default function HomePage() {
               <div className="dashboard-preview-bar">
                 <span /><span /><span />
               </div>
+              <div className="dashboard-email-mask" aria-hidden="true" />
               <img
                 src="/brand/dashboard-preview.png.png"
                 alt="Dashboard de VentasChat mostrando análisis completo de una conversación de ventas"
