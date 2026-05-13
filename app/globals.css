@@ -3584,6 +3584,44 @@ html.dark .wa-compose-field {
 .payment-pill strong { font-size: 1.1rem; }
 .payment-pill span { font-size: 0.88rem; color: var(--muted); }
 
+/* pricing preview cards on homepage */
+.pricing-card-amount {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--primary-dark);
+  font-family: var(--font-display);
+  margin: 0.5rem 0 0.75rem;
+  line-height: 1.2;
+}
+.pricing-card-currency {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--muted);
+}
+.pricing-card-cta {
+  width: 100%;
+  text-align: center;
+  margin-top: auto;
+}
+.pricing-card.card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* mid-page CTA strip */
+.mid-cta-strip {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 2.5rem;
+}
+.mid-cta-hint {
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
 .pricing-final-cta {
   text-align: center;
   padding: 3rem 2rem;

@@ -1,20 +1,22 @@
 import Link from "next/link";
 import {
   BadgeCheck,
-  Building2,
+  Check,
   CreditCard,
-  Landmark,
   Mail,
   MessageCircle,
   MessagesSquare,
   Send,
   Smartphone,
   WalletCards,
+  X,
 } from "lucide-react";
 
 import { MarketingHeader } from "@/components/marketing-header";
+import { PricingCTA } from "@/components/pricing-cta";
 import { StructuredData } from "@/components/structured-data";
 import { GradientText } from "@/components/ui/gradient-text";
+import { CREDIT_PACKS, PRO_SUBSCRIPTION } from "@/lib/plans";
 
 const proofItems = [
   "10 análisis gratis al registrarte",
@@ -183,89 +185,6 @@ const salesExamples = [
   },
 ];
 
-const successExamples = [
-  {
-    title: "Cliente listo para pagar",
-    stage: "Cierre inmediato",
-    contact: "Laura Gomez",
-    status: "en linea",
-    avatar: "L",
-    messages: [
-      {
-        side: "in",
-        text: "Perfecto, me sirve. Si me mandas el link hoy mismo, hago el pago y arrancamos.",
-        time: "11:42",
-      },
-      {
-        side: "out",
-        text: "Te lo envio ahora mismo con dos opciones de pago para que elijas la mas comoda.",
-        time: "11:43",
-      },
-      {
-        side: "out",
-        text: "Te dejo Wompi y transferencia para que avances hoy mismo.",
-        time: "11:43",
-      },
-    ],
-    closeLabel: "Pago listo",
-    close:
-      "VentasChat refuerza velocidad, claridad y siguiente paso para no enfriar una decision ya tomada.",
-  },
-  {
-    title: "Seguimiento bien llevado",
-    stage: "Confianza ganada",
-    contact: "Santiago Rojas",
-    status: "activo hoy",
-    avatar: "S",
-    messages: [
-      {
-        side: "in",
-        text: "Gracias por explicarme todo. Me dio mucha confianza como lo manejaste.",
-        time: "4:18",
-      },
-      {
-        side: "out",
-        text: "Con gusto. Si quieres, te dejo el resumen final y agendamos el inicio para no perder ritmo.",
-        time: "4:19",
-      },
-      {
-        side: "in",
-        text: "Dale, mandamelo. Asi cierro eso hoy.",
-        time: "4:20",
-      },
-    ],
-    closeLabel: "Seguimiento ganado",
-    close:
-      "La recomendacion mantiene el tono consultivo y convierte buena energia en un compromiso concreto.",
-  },
-  {
-    title: "Comparacion resuelta",
-    stage: "Decision clara",
-    contact: "Valentina Ruiz",
-    status: "escribiendo...",
-    avatar: "V",
-    messages: [
-      {
-        side: "in",
-        text: "Ya compare con las otras opciones y con ustedes lo veo mucho mas claro.",
-        time: "6:07",
-      },
-      {
-        side: "out",
-        text: "Buenisimo. Entonces avanzamos con el plan que mejor se ajusta a tu volumen y te acompano en el arranque.",
-        time: "6:08",
-      },
-      {
-        side: "in",
-        text: "Hagamoslo con el mensual. Quiero empezar esta semana.",
-        time: "6:09",
-      },
-    ],
-    closeLabel: "Decision tomada",
-    close:
-      "VentasChat ayuda a cerrar sin sonar agresivo: confirma la decision y propone el proximo paso.",
-  },
-];
 
 const paymentGroups = [
   {
@@ -367,8 +286,7 @@ export default function HomePage() {
               para mandar. Sin pegar nada en ChatGPT cada vez.
             </p>
             <p className="hero-tagline-secondary">
-              <strong>Es como Gong, pero para chats escritos y en español.</strong> No
-              respondemos por ti. Te ayudamos a responder mejor.
+              <strong>No respondemos por ti. Te hacemos mejor vendedor, un chat a la vez.</strong>
             </p>
             <div className="hero-actions">
               <Link href="/signup" className="button button-primary">
@@ -658,6 +576,35 @@ export default function HomePage() {
 
         <section className="section">
           <div className="section-heading section-heading-wide">
+            <div className="eyebrow">Lo que dicen vendedores reales</div>
+            <h2>
+              Personas que ya{" "}
+              <GradientText className="section-title-accent">cierran mejor</GradientText>{" "}
+              con VentasChat.
+            </h2>
+          </div>
+          <div className="testimonial-grid">
+            {testimonials.map((t) => (
+              <article key={t.name} className="testimonial-card card">
+                <div className="testimonial-head">
+                  <div className="testimonial-avatar">{t.avatar}</div>
+                  <div>
+                    <strong>{t.name}</strong>
+                    <span>{t.role}</span>
+                  </div>
+                </div>
+                <p>&ldquo;{t.text}&rdquo;</p>
+              </article>
+            ))}
+          </div>
+          <div className="mid-cta-strip">
+            <Link href="/signup" className="button button-primary">Empieza con 10 análisis gratis</Link>
+            <span className="mid-cta-hint">Sin tarjeta · Resultado en 15 segundos</span>
+          </div>
+        </section>
+
+        <section className="section">
+          <div className="section-heading section-heading-wide">
             <div className="eyebrow">Cómo funciona</div>
             <h2>Un flujo simple con una salida clara</h2>
           </div>
@@ -728,58 +675,6 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section className="section success-section">
-          <div className="section-heading section-heading-wide">
-            <div className="eyebrow">Mas ejemplos</div>
-            <h2>
-              Conversaciones que ya se sienten como{" "}
-              <GradientText className="section-title-accent">venta encaminada</GradientText>.
-            </h2>
-            <p>
-              Cuando la conversacion esta bien llevada, el cliente avanza con mas claridad,
-              confianza y disposicion para comprar.
-            </p>
-          </div>
-          <div className="success-grid">
-            {successExamples.map((example) => (
-              <article key={example.title} className="success-card card">
-                <div className="success-card-top">
-                  <div>
-                    <strong>{example.title}</strong>
-                    <span>{example.stage}</span>
-                  </div>
-                  <BadgeCheck size={18} />
-                </div>
-                <div className="success-chat-shell">
-                  <div className="success-chat-header">
-                    <div className="success-chat-avatar">{example.avatar}</div>
-                    <div className="success-chat-contact">
-                      <strong>{example.contact}</strong>
-                      <span>{example.status}</span>
-                    </div>
-                  </div>
-                  <div className="success-chat-body">
-                    <div className="success-chat-day">Hoy</div>
-                    {example.messages.map((message, index) => (
-                      <div
-                        key={`${example.title}-${index}`}
-                        className={`success-bubble success-bubble-${message.side}`}
-                      >
-                        <p>{message.text}</p>
-                        <span>{message.time}</span>
-                      </div>
-                    ))}
-                    <div className="success-payment-pill">{example.closeLabel}</div>
-                  </div>
-                </div>
-                <div className="success-note">
-                  <strong>Por que funciona</strong>
-                  <span>{example.close}</span>
-                </div>
-              </article>
-            ))}
-          </div>
-        </section>
 
         <section className="section">
           <div className="section-heading section-heading-wide">
@@ -794,18 +689,87 @@ export default function HomePage() {
               plan mensual si tu volumen ya lo justifica.
             </p>
           </div>
-          <div className="pricing-grid">
-            <article className="pricing-card card">
-              <h3>Gratis</h3>
-              <p>3 análisis incluidos para probar el flujo y validar el resultado.</p>
+          <div className="pricing-tiers">
+            {/* GRATIS */}
+            <article className="pricing-tier card">
+              <div className="pricing-tier-head">
+                <h2>Gratis</h2>
+                <div className="pricing-tier-price">
+                  <span className="pricing-amount">$0</span>
+                  <span className="pricing-period">para siempre</span>
+                </div>
+                <p className="pricing-tier-tagline">Para probar antes de comprar.</p>
+              </div>
+              <ul className="pricing-feature-list">
+                <li><Check size={16} /> 10 análisis al registrarte</li>
+                <li><Check size={16} /> Todas las features del producto</li>
+                <li><Check size={16} /> OCR de capturas incluido</li>
+                <li><Check size={16} /> Sin tarjeta requerida</li>
+                <li className="pricing-feature-muted"><X size={16} /> No incluye créditos recurrentes</li>
+              </ul>
+              <Link href="/signup" className="button button-secondary" style={{ width: "100%", textAlign: "center" }}>
+                Empezar gratis
+              </Link>
             </article>
-            <article className="pricing-card card highlighted">
-              <h3>Paquetes de créditos</h3>
-              <p>20, 50 o 120 análisis para vendedores que prefieren flexibilidad y pago por uso.</p>
+
+            {/* PRO ILIMITADO */}
+            <article className="pricing-tier card pricing-tier-featured">
+              <div className="pricing-tier-tag">⭐ Más popular</div>
+              <div className="pricing-tier-head">
+                <h2>{PRO_SUBSCRIPTION.label}</h2>
+                <div className="pricing-tier-price">
+                  <span className="pricing-amount">
+                    ${PRO_SUBSCRIPTION.amountCOP.toLocaleString("es-CO")}
+                  </span>
+                  <span className="pricing-period">COP / mes</span>
+                </div>
+                <p className="pricing-tier-tagline">
+                  Para vendedores con uso recurrente. Mejor valor por análisis.
+                </p>
+              </div>
+              <ul className="pricing-feature-list">
+                {PRO_SUBSCRIPTION.perks.map((perk) => (
+                  <li key={perk}><Check size={16} /> {perk}</li>
+                ))}
+              </ul>
+              <PricingCTA type="pro" className="button button-primary">
+                Activar Pro ahora
+              </PricingCTA>
+              <p className="pricing-fineprint">
+                Renovación manual por ahora · Cancela cuando quieras
+              </p>
             </article>
-            <article className="pricing-card card">
-              <h3>Suscripción</h3>
-              <p>Para equipos que revisan conversaciones todas las semanas y necesitan volumen constante.</p>
+
+            {/* PACKS */}
+            <article className="pricing-tier card">
+              <div className="pricing-tier-head">
+                <h2>Pago por uso</h2>
+                <div className="pricing-tier-price">
+                  <span className="pricing-amount">
+                    ${CREDIT_PACKS[0].amountCOP.toLocaleString("es-CO")}
+                  </span>
+                  <span className="pricing-period">desde · pago único</span>
+                </div>
+                <p className="pricing-tier-tagline">
+                  Sin compromisos. Compras los créditos que necesitas.
+                </p>
+              </div>
+              <ul className="pricing-feature-list">
+                {CREDIT_PACKS.map((pack) => (
+                  <li key={pack.id}>
+                    <Check size={16} />
+                    <strong>{pack.credits} análisis</strong> — ${pack.amountCOP.toLocaleString("es-CO")} COP
+                    <span className="pricing-feature-extra">
+                      (${pack.perAnalysis.toLocaleString("es-CO")} c/u)
+                    </span>
+                  </li>
+                ))}
+                <li><Check size={16} /> Créditos no expiran</li>
+                <li><Check size={16} /> Todas las features</li>
+              </ul>
+              <PricingCTA type="pack" className="button button-secondary">
+                Comprar paquete
+              </PricingCTA>
             </article>
           </div>
         </section>
@@ -815,8 +779,7 @@ export default function HomePage() {
             <div className="eyebrow">Opciones de pago</div>
             <h2>Pagos pensados para Colombia y LATAM</h2>
             <p>
-              Sí conviene mostrarlo en la home: reduce dudas antes del registro y
-              deja claro que el producto no depende solo de Stripe o PayPal.
+              Paga con los métodos que ya usas. Sin depender de Stripe o PayPal.
             </p>
           </div>
           <div className="payment-grid">
@@ -839,14 +802,6 @@ export default function HomePage() {
                 </div>
               </article>
             ))}
-          </div>
-          <div className="payment-note card">
-            <Landmark size={18} />
-            <span>
-              Para el MVP podemos presentarlo como opciones planeadas o disponibles
-              según la integración que activemos primero.
-            </span>
-            <Building2 size={18} />
           </div>
         </section>
 
@@ -892,30 +847,9 @@ export default function HomePage() {
               </article>
             ))}
           </div>
-        </section>
-
-        <section className="section">
-          <div className="section-heading section-heading-wide">
-            <div className="eyebrow">Lo que dicen vendedores reales</div>
-            <h2>
-              Personas que ya{" "}
-              <GradientText className="section-title-accent">cierran mejor</GradientText>{" "}
-              con VentasChat.
-            </h2>
-          </div>
-          <div className="testimonial-grid">
-            {testimonials.map((t) => (
-              <article key={t.name} className="testimonial-card card">
-                <div className="testimonial-head">
-                  <div className="testimonial-avatar">{t.avatar}</div>
-                  <div>
-                    <strong>{t.name}</strong>
-                    <span>{t.role}</span>
-                  </div>
-                </div>
-                <p>&ldquo;{t.text}&rdquo;</p>
-              </article>
-            ))}
+          <div className="mid-cta-strip">
+            <Link href="/signup" className="button button-primary">Empieza con 10 análisis gratis</Link>
+            <span className="mid-cta-hint">Sin tarjeta · Resultado en 15 segundos</span>
           </div>
         </section>
 
