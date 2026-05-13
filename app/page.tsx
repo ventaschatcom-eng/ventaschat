@@ -621,6 +621,39 @@ export default function HomePage() {
           </div>
         </section>
 
+        <section className="section dashboard-preview-section">
+          <div className="section-heading section-heading-wide">
+            <div className="eyebrow">Output real</div>
+            <h2>
+              Esto es lo que ves después de{" "}
+              <GradientText className="section-title-accent">analizar tu chat</GradientText>.
+            </h2>
+            <p>
+              No es un resumen genérico. Es un diagnóstico completo: intención, puntaje,
+              objeciones, respuestas listas y vocabulario exacto a usar y evitar.
+            </p>
+          </div>
+          <div className="dashboard-preview-frame">
+            <div className="dashboard-preview-labels">
+              <span className="dashboard-preview-pill">📊 Puntaje de cierre</span>
+              <span className="dashboard-preview-pill">💬 Respuestas listas</span>
+              <span className="dashboard-preview-pill">🔤 Vocabulario</span>
+              <span className="dashboard-preview-pill">📈 Métricas</span>
+            </div>
+            <div className="dashboard-preview-window">
+              <div className="dashboard-preview-bar">
+                <span /><span /><span />
+              </div>
+              <img
+                src="/brand/dashboard-preview.png.png"
+                alt="Dashboard de VentasChat mostrando análisis completo de una conversación de ventas"
+                className="dashboard-preview-img"
+                loading="lazy"
+              />
+            </div>
+          </div>
+        </section>
+
         <section className="section conversion-section">
           <div className="section-heading section-heading-wide">
             <div className="eyebrow">Ejemplos de cierre</div>
