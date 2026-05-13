@@ -74,7 +74,10 @@ export async function sendWelcomeEmail(to: string) {
     <strong>💡 Tip:</strong> funciona con WhatsApp, Instagram DM, Telegram y Messenger. Puedes pegar el chat o subir capturas — las leemos con OCR y convertimos en texto automáticamente.
   </div>
 
-  <p style="margin-top: 32px; color: #617265; font-size: 13px; text-align: center;">
+  <p style="margin-top: 24px; padding: 12px 16px; background: #f0f7f1; border-radius: 8px; font-size: 13px; color: #617265; text-align: center;">
+    ¿Este correo llegó a spam? Márcalo como "No es spam" para recibirnos directo en tu bandeja.
+  </p>
+  <p style="margin-top: 16px; color: #617265; font-size: 13px; text-align: center;">
     Si tienes preguntas, simplemente responde a este correo.<br>
     <a href="https://ventaschat.com" style="color: #00c72c;">ventaschat.com</a> ·
     <a href="https://ventaschat.com/privacy" style="color: #617265;">Privacidad</a> ·
@@ -86,7 +89,7 @@ export async function sendWelcomeEmail(to: string) {
 
   return sendEmail({
     to,
-    subject: "Tu cuenta VentasChat está lista (10 análisis gratis te esperan)",
+    subject: "Tu cuenta de VentasChat está lista",
     html,
   });
 }
