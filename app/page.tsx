@@ -100,14 +100,16 @@ const metrics = [
 ];
 
 const latamBrands = [
-  "Rappi",
-  "Mercado Libre",
-  "Nubank",
-  "Falabella",
-  "Kavak",
-  "NotCo",
-  "Cornershop",
-  "Bancolombia",
+  "Bienes Raíces",
+  "Agencias Digitales",
+  "E-commerce",
+  "Seguros",
+  "Educación Online",
+  "Software B2B",
+  "Consultoría",
+  "Salud y Bienestar",
+  "Moda y Retail",
+  "Servicios Financieros",
 ];
 
 const features = [
@@ -541,7 +543,7 @@ export default function HomePage() {
             Pensado para equipos que venden en{" "}
             <strong>Colombia, México, Chile, Perú y Argentina</strong>
           </p>
-          <div className="latam-proof-marquee" aria-label="Referencias visuales de marcas conocidas en Latinoamérica">
+          <div className="latam-proof-marquee" aria-label="Sectores donde vendedores usan VentasChat">
             <div className="latam-proof-track">
               {[...latamBrands, ...latamBrands].map((brand, index) => (
                 <span key={`${brand}-${index}`} className="latam-proof-logo">
