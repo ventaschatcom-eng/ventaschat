@@ -224,6 +224,27 @@ const paymentGroups = [
   },
 ];
 
+const altContexts = [
+  {
+    emoji: "💼",
+    tag: "Trabajo / profesional",
+    title: "Conversaciones de trabajo que se traban",
+    description:
+      "Feedback difícil con un colega, alineación que no avanza, negociación interna que se complica. El mismo motor analiza el tono, detecta fricciones y te da respuestas que destraban sin quemar la relación.",
+    signals: ["Nivel de receptividad del interlocutor", "Fricciones o bloqueos detectados", "Respuesta diplomática vs. respuesta ejecutiva", "Siguiente paso claro para retomar el hilo"],
+    types: ["Colaboración de trabajo", "Feedback o tensión", "Alineación de proyecto", "Seguimiento profesional"],
+  },
+  {
+    emoji: "💬",
+    tag: "Personal",
+    title: "Una conversación personal que se puso rara",
+    description:
+      "Cuando no sabes si estás leyendo bien la situación. VentasChat detecta el nivel de apertura, los malentendidos latentes y sugiere respuestas claras y respetuosas. Sin manipulación, sin drama.",
+    signals: ["Nivel de apertura de la otra persona", "Tensiones o malentendidos latentes", "Respuesta cálida vs. respuesta directa", "Cómo bajar la tensión sin rendirte"],
+    types: ["Aclarar malentendidos", "Límites y tono", "Seguimiento personal", "Conversación difícil"],
+  },
+];
+
 const faqs = [
   {
     q: "¿Por qué pagar por esto si tengo ChatGPT gratis?",
@@ -710,6 +731,50 @@ export default function HomePage() {
           </div>
         </section>
 
+
+        <section className="section alt-context-section">
+          <div className="section-heading section-heading-wide">
+            <div className="eyebrow">Más allá de ventas</div>
+            <h2>
+              El mismo análisis para{" "}
+              <GradientText className="section-title-accent">cualquier conversación</GradientText>{" "}
+              difícil.
+            </h2>
+            <p>
+              VentasChat no es solo para cerrar clientes. También lo usan personas que
+              necesitan entender qué está pasando en un chat y cómo responder bien.
+            </p>
+          </div>
+          <div className="alt-context-grid">
+            {altContexts.map((ctx) => (
+              <article key={ctx.tag} className="alt-context-card card">
+                <div className="alt-context-tag">
+                  <span>{ctx.emoji}</span>
+                  <span>{ctx.tag}</span>
+                </div>
+                <h3>{ctx.title}</h3>
+                <p className="alt-context-desc">{ctx.description}</p>
+                <ul className="alt-context-signals">
+                  {ctx.signals.map((s) => (
+                    <li key={s}>
+                      <Check size={14} />
+                      <span>{s}</span>
+                    </li>
+                  ))}
+                </ul>
+                <div className="alt-context-types">
+                  {ctx.types.map((t) => (
+                    <span key={t} className="alt-context-type-pill">{t}</span>
+                  ))}
+                </div>
+              </article>
+            ))}
+          </div>
+          <div className="alt-context-note">
+            <span>Elige el contexto dentro del análisis — el motor se adapta automáticamente.</span>
+            <Link href="/signup" className="button button-secondary">Probarlo gratis</Link>
+          </div>
+        </section>
 
         <section className="section">
           <div className="section-heading section-heading-wide">

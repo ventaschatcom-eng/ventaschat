@@ -4599,3 +4599,103 @@ body:has(.studio-shell) .wa-fab-card { display: none !important; }
   transition: border-color 0.15s;
 }
 .studio-copy-btn:hover { border-color: #00c72c; }
+
+/* ── Alt contexts section ─────────────────────────── */
+.alt-context-section {
+  position: relative;
+}
+.alt-context-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+.alt-context-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1.75rem;
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+.alt-context-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: var(--primary-soft);
+  color: var(--primary-dark);
+  border-radius: 999px;
+  padding: 0.3rem 0.85rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  width: fit-content;
+}
+html.dark .alt-context-tag {
+  background: rgba(0, 199, 44, 0.13);
+  color: #7dff98;
+}
+.alt-context-card h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin: 0;
+  line-height: 1.35;
+}
+.alt-context-desc {
+  font-size: 0.9rem;
+  color: var(--muted);
+  line-height: 1.6;
+  margin: 0;
+}
+.alt-context-signals {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+.alt-context-signals li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.45rem;
+  font-size: 0.88rem;
+  color: var(--text);
+}
+.alt-context-signals li svg {
+  flex-shrink: 0;
+  color: var(--primary);
+  margin-top: 2px;
+}
+.alt-context-types {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: auto;
+}
+.alt-context-type-pill {
+  font-size: 0.75rem;
+  color: var(--muted);
+  background: var(--bg-2);
+  border: 1px solid var(--card-border);
+  border-radius: 999px;
+  padding: 0.2rem 0.65rem;
+}
+html.dark .alt-context-type-pill {
+  background: rgba(255, 255, 255, 0.04);
+}
+.alt-context-note {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 1.5rem;
+  background: var(--bg-2);
+  border-radius: 14px;
+  border: 1px solid var(--card-border);
+  flex-wrap: wrap;
+}
+.alt-context-note span {
+  font-size: 0.88rem;
+  color: var(--muted);
+}
