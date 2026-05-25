@@ -277,9 +277,12 @@ export default function HomePage() {
               .
             </h1>
             <p>
-              VentasChat lee tu conversación de <strong>WhatsApp, Instagram DM, Telegram</strong> o
-              cualquier chat de ventas, te da un{" "}
-              <strong>puntaje de cierre 0-100%</strong>, las{" "}
+              <strong>Pegas el chat de tu cliente y, en 15 segundos, VentasChat te dice
+              qué tan cerca estás de cerrar y qué responder.</strong>
+            </p>
+            <p>
+              Funciona con <strong>WhatsApp, Instagram DM, Telegram</strong> o cualquier chat
+              de ventas. Recibes un <strong>puntaje de cierre 0-100%</strong>, las{" "}
               <strong>palabras exactas a usar y evitar</strong>, y 3 respuestas listas
               para mandar. Sin pegar nada en ChatGPT cada vez.
             </p>
@@ -468,6 +471,43 @@ export default function HomePage() {
 
         <section className="section">
           <div className="section-heading section-heading-wide">
+            <div className="eyebrow">Cómo funciona</div>
+            <h2>
+              Tres pasos: pegas el chat, eliges el contexto y{" "}
+              <GradientText className="section-title-accent">recibes el análisis</GradientText>.
+            </h2>
+            <p>
+              Sin instalar nada y sin conectar tus cuentas. Copias la conversación
+              tal cual, y VentasChat hace el resto.
+            </p>
+          </div>
+          <div className="workflow-grid">
+            {workflow.map((item) => (
+              <article key={item.step} className="workflow-card card">
+                <span className="workflow-step">{item.step}</span>
+                <h3>{item.title}</h3>
+                <p>{item.body}</p>
+              </article>
+            ))}
+          </div>
+          <div className="dashboard-preview-frame" style={{ marginTop: "2.5rem" }}>
+            <div className="dashboard-preview-window">
+              <div className="dashboard-preview-bar">
+                <span /><span /><span />
+              </div>
+              {/* Para mostrar el gesto real, reemplaza este src por tu GIF: /brand/demo.gif */}
+              <img
+                src="/brand/dashboard-preview.png.png"
+                alt="Demostración de VentasChat analizando una conversación de ventas paso a paso"
+                className="dashboard-preview-img"
+                loading="lazy"
+              />
+            </div>
+          </div>
+        </section>
+
+        <section className="section">
+          <div className="section-heading section-heading-wide">
             <div className="eyebrow">Posicionamiento claro</div>
             <h2>
               VentasChat es{" "}
@@ -598,22 +638,6 @@ export default function HomePage() {
           <div className="mid-cta-strip">
             <Link href="/signup" className="button button-primary">Empieza con 10 análisis gratis</Link>
             <span className="mid-cta-hint">Sin tarjeta · Resultado en 15 segundos</span>
-          </div>
-        </section>
-
-        <section className="section">
-          <div className="section-heading section-heading-wide">
-            <div className="eyebrow">Cómo funciona</div>
-            <h2>Un flujo simple con una salida clara</h2>
-          </div>
-          <div className="workflow-grid">
-            {workflow.map((item) => (
-              <article key={item.step} className="workflow-card card">
-                <span className="workflow-step">{item.step}</span>
-                <h3>{item.title}</h3>
-                <p>{item.body}</p>
-              </article>
-            ))}
           </div>
         </section>
 
