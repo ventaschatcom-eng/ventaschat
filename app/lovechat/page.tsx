@@ -390,6 +390,42 @@ export default function LoveChatPage() {
             </div>
           </section>
 
+          <section className="section dont-ask-section">
+            <div className="section-heading section-heading-wide">
+              <div className="eyebrow">El detalle que lo cambia todo</div>
+              <h2>
+                Deja de hacer{" "}
+                <GradientText className="section-title-accent">preguntas que la aburren</GradientText>.
+              </h2>
+              <p>
+                Las preguntas de siempre matan la conversación. LoveChat te sugiere
+                algo que la deje pensando en ti.
+              </p>
+            </div>
+            <div className="dont-ask-grid">
+              <article className="dont-ask-card dont-ask-bad">
+                <div className="dont-ask-tag">🚩 Preguntas que NO debes hacerle</div>
+                <ul>
+                  <li>&ldquo;¿A qué te dedicas?&rdquo;</li>
+                  <li>&ldquo;¿Cómo estás?&rdquo;</li>
+                  <li>&ldquo;¿De dónde eres?&rdquo;</li>
+                </ul>
+              </article>
+              <article className="dont-ask-card dont-ask-good">
+                <div className="dont-ask-tag">💬 Pregúntale mejor esto</div>
+                <ul>
+                  <li>&ldquo;Descríbete en 3 palabras… pero que una sea mentira 😏&rdquo;</li>
+                  <li>&ldquo;¿Qué fue lo último que te hizo reír como tonta?&rdquo;</li>
+                  <li>&ldquo;¿Café tranquilo o algo con más adrenalina?&rdquo;</li>
+                </ul>
+              </article>
+            </div>
+            <div className="dont-ask-cta">
+              <span>Sube tu chat y descubre qué responder en cada momento.</span>
+              <Link href="/signup" className="button button-primary">Pruébalo gratis</Link>
+            </div>
+          </section>
+
           <section className="metric-band card">
             {metrics.map((item) => (
               <article key={item.label} className="metric-item">
