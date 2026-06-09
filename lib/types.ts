@@ -20,10 +20,12 @@ export const conversationTypeOptions = {
     "Feedback o tension",
   ],
   Personal: [
-    "Conversacion personal",
-    "Seguimiento personal",
-    "Aclarar malentendidos",
-    "Limites y tono",
+    "Alguien que me gusta",
+    "Primera cita / conociendo",
+    "Dejo de responder (visto)",
+    "Reconquistar / retomar",
+    "Tension o discusion de pareja",
+    "Aclarar un malentendido",
   ],
 } as const satisfies Record<ConversationContext, readonly string[]>;
 
