@@ -1955,6 +1955,92 @@ html.dark .mini-insight span {
   background: rgba(31, 157, 97, 0.08);
 }
 
+/* Bloque gancho "Preguntas que no debes hacerle" (home) */
+.dont-ask-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+}
+
+.dont-ask-card {
+  padding: 1.5rem;
+  border-radius: 20px;
+}
+
+.dont-ask-bad {
+  border: 1px solid rgba(181, 68, 61, 0.25);
+  background: rgba(181, 68, 61, 0.05);
+}
+
+.dont-ask-good {
+  border: 1px solid rgba(230, 68, 122, 0.3);
+  background: linear-gradient(180deg, rgba(230, 68, 122, 0.08), transparent 75%);
+}
+
+.dont-ask-tag {
+  font-weight: 700;
+  margin-bottom: 1rem;
+  font-size: 1.02rem;
+}
+
+.dont-ask-bad .dont-ask-tag {
+  color: #b5443d;
+}
+
+.dont-ask-good .dont-ask-tag {
+  color: #e6447a;
+}
+
+html.dark .dont-ask-good .dont-ask-tag {
+  color: #ff6fa5;
+}
+
+.dont-ask-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 0.6rem;
+}
+
+.dont-ask-card li {
+  padding: 0.8rem 1rem;
+  border-radius: 12px;
+  background: var(--surface);
+  border: 1px solid var(--card-border);
+  font-size: 0.98rem;
+}
+
+.dont-ask-bad li {
+  color: var(--muted);
+  text-decoration: line-through;
+  text-decoration-color: rgba(181, 68, 61, 0.55);
+}
+
+.dont-ask-good li {
+  color: var(--text);
+}
+
+.dont-ask-cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 1.5rem;
+  text-align: center;
+}
+
+.dont-ask-cta span {
+  color: var(--muted);
+}
+
+@media (max-width: 720px) {
+  .dont-ask-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* CTA a LoveChat dentro de la tarjeta Personal del home */
 .alt-context-love-cta {
   display: inline-flex;
