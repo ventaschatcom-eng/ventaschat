@@ -14,9 +14,17 @@ import {
   desiredTones,
   getConversationTypesForContext,
 } from "@/lib/types";
-import { parseConversationText } from "@/lib/utils";
+import { cn, parseConversationText } from "@/lib/utils";
 
 const maxUploadSize = 1024 * 1024;
+
+// Etiqueta visible por contexto. El valor interno se mantiene (ej. "Personal")
+// para no romper análisis ya guardados ni el mapeo de etiquetas en getLabelsForContext.
+const contextLabels: Record<ConversationContext, string> = {
+  "Ventas / clientes": "Ventas / clientes",
+  "Trabajo / profesional": "Trabajo / profesional",
+  Personal: "💗 LoveChat (personal)",
+};
 
 type Template = { label: string; emoji: string; text: string };
 
@@ -131,6 +139,7 @@ export function AnalyzeForm() {
   }, []);
 
   const templates = templatesByContext[conversationContext];
+  const isLoveContext = conversationContext === "Personal";
 
   const availableTypes = useMemo(
     () => getConversationTypesForContext(conversationContext),
@@ -302,7 +311,7 @@ export function AnalyzeForm() {
           handleSubmit();
         }}
       >
-        <div className="analyze-templates">
+        <div className={cn("analyze-templates", isLoveContext && "analyze-templates-love")}>
           <span className="analyze-templates-label">
             <Sparkles size={14} /> Probar con un ejemplo
           </span>
@@ -328,6 +337,7 @@ export function AnalyzeForm() {
           <label className="field">
             <span>Contexto</span>
             <select
+              className={cn(isLoveContext && "field-select-love")}
               value={conversationContext}
               onChange={(event) => {
                 const nextContext = event.target.value as ConversationContext;
@@ -338,7 +348,7 @@ export function AnalyzeForm() {
             >
               {conversationContexts.map((context) => (
                 <option key={context} value={context}>
-                  {context}
+                  {contextLabels[context]}
                 </option>
               ))}
             </select>

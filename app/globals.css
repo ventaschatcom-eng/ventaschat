@@ -1955,6 +1955,25 @@ html.dark .mini-insight span {
   background: rgba(31, 157, 97, 0.08);
 }
 
+/* Analizador en modo LoveChat (acento rosa) */
+.field-select-love {
+  border-color: rgba(230, 68, 122, 0.5) !important;
+  box-shadow: 0 0 0 3px rgba(230, 68, 122, 0.12);
+}
+
+.analyze-templates-love {
+  background: linear-gradient(180deg, rgba(230, 68, 122, 0.08), transparent 80%);
+  border-color: rgba(230, 68, 122, 0.25);
+}
+
+.analyze-templates-love .analyze-templates-label {
+  color: #e6447a;
+}
+
+html.dark .analyze-templates-love .analyze-templates-label {
+  color: #ff6fa5;
+}
+
 /* Logos apilados (VentasChat + LoveChat) en el sidebar */
 .sidebar-brands {
   display: flex;
