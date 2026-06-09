@@ -31,7 +31,10 @@ export function DashboardSidebar() {
 
   return (
     <aside className="dashboard-sidebar">
-      <Logo compact />
+      <div className="sidebar-brands">
+        <Logo compact />
+        <Logo compact variant="love" />
+      </div>
       <nav>
         {links.map((link) => (
           <Link
