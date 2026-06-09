@@ -238,11 +238,11 @@ const altContexts = [
   {
     emoji: "💬",
     tag: "Personal",
-    title: "Una conversación personal que se puso rara",
+    title: "Le escribes a alguien que te importa",
     description:
-      "Cuando no sabes si estás leyendo bien la situación. VentasChat detecta el nivel de apertura, los malentendidos latentes y sugiere respuestas claras y respetuosas. Sin manipulación, sin drama.",
-    signals: ["Nivel de apertura de la otra persona", "Tensiones o malentendidos latentes", "Respuesta cálida vs. respuesta directa", "Cómo bajar la tensión sin rendirte"],
-    types: ["Aclarar malentendidos", "Límites y tono", "Seguimiento personal", "Conversación difícil"],
+      "Alguien que te gusta, un chat que se enfrió o una charla que se puso tensa. LoveChat lee la conversación, te dice qué tan interesada está la otra persona y cómo responder. Sin manipulación.",
+    signals: ["Qué tan interesada está la otra persona", "Si es buen momento para avanzar o esperar", "Qué responder para no aburrir", "Cómo bajar la tensión sin rendirte"],
+    types: ["Alguien que me gusta", "Dejó de responder", "Reconquistar", "Tensión de pareja"],
   },
 ];
 
