@@ -4318,6 +4318,25 @@ html.dark .mini-wa {
   outline: none;
 }
 
+/* Link LoveChat en el header de marketing (rosa) */
+.nav-lovechat {
+  color: #e6447a;
+  font-weight: 700;
+  transition: color 0.15s, opacity 0.15s;
+}
+
+.nav-lovechat:hover {
+  color: #c62a63;
+}
+
+html.dark .nav-lovechat {
+  color: #ff6fa5;
+}
+
+html.dark .nav-lovechat:hover {
+  color: #ff7eb3;
+}
+
 /* ── LoveChat: tema rosa/romántico scoped (/lovechat) ── */
 .lovechat-theme {
   --primary: #e6447a;

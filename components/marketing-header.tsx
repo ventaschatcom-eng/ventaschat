@@ -12,6 +12,7 @@ export function MarketingHeader() {
         <Link href="/blog">Blog</Link>
         <Link href="/pricing">Precios</Link>
         <Link href="/login">Iniciar sesion</Link>
+        <Link href="/lovechat" className="nav-lovechat">LoveChat</Link>
         <Link href="/signup" className="button button-primary">
           Empieza gratis
         </Link>
