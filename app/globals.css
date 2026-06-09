@@ -4350,6 +4350,74 @@ html.dark .lovechat-theme {
 .lovechat-theme .hero-shell {
   border-color: rgba(230, 68, 122, 0.12);
 }
+
+/* Banner de bienvenida para tráfico de TikTok */
+.lovechat-welcome {
+  background: linear-gradient(90deg, #ff7eb3 0%, #e6447a 100%);
+  color: #fff;
+}
+
+.lovechat-welcome-inner {
+  width: min(1080px, calc(100% - 2rem));
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.7rem 0;
+}
+
+.lovechat-welcome-text {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.95rem;
+  line-height: 1.35;
+  flex: 1;
+  min-width: 0;
+}
+
+.lovechat-welcome-emoji {
+  font-size: 1.3rem;
+  flex-shrink: 0;
+}
+
+.lovechat-welcome-cta.button-primary {
+  background: #fff;
+  color: #c62a63;
+  flex-shrink: 0;
+  padding: 0.5rem 1.1rem;
+  box-shadow: none;
+}
+
+.lovechat-welcome-cta.button-primary:hover {
+  background: #fff0f6;
+  transform: translateY(-1px);
+}
+
+.lovechat-welcome-close {
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.85);
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 0.3rem 0.4rem;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.lovechat-welcome-close:hover {
+  color: #fff;
+}
+
+@media (max-width: 640px) {
+  .lovechat-welcome-text {
+    font-size: 0.85rem;
+  }
+  .lovechat-welcome-cta.button-primary {
+    padding: 0.45rem 0.85rem;
+    font-size: 0.85rem;
+  }
+}
 .editable-label-edit input:focus {
   box-shadow: 0 0 0 3px rgba(0, 199, 44, 0.18);
 }

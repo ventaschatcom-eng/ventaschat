@@ -3,6 +3,7 @@ import Link from "next/link";
 import { BadgeCheck, Check, Heart, MessageCircle, Send, Sparkles } from "lucide-react";
 
 import { ForceLightTheme } from "@/components/force-light-theme";
+import { LoveChatTikTokCTA } from "@/components/lovechat-tiktok-cta";
 import { MarketingHeader } from "@/components/marketing-header";
 import { GradientText } from "@/components/ui/gradient-text";
 
@@ -168,6 +169,9 @@ export default function LoveChatPage() {
   return (
     <>
       <ForceLightTheme />
+      <div className="lovechat-theme">
+        <LoveChatTikTokCTA />
+      </div>
       <MarketingHeader />
       <div className="lovechat-theme">
         <main className="page-shell">
