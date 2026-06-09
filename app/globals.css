@@ -1955,6 +1955,27 @@ html.dark .mini-insight span {
   background: rgba(31, 157, 97, 0.08);
 }
 
+/* CTA a LoveChat dentro de la tarjeta Personal del home */
+.alt-context-love-cta {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  gap: 0.4rem;
+  margin-top: 1rem;
+  padding: 0.6rem 1rem;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.92rem;
+  color: #fff;
+  background: linear-gradient(180deg, #f25c92 0%, #e6447a 100%);
+  transition: transform 0.15s, filter 0.15s;
+}
+
+.alt-context-love-cta:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.05);
+}
+
 /* Analizador en modo LoveChat (acento rosa) */
 .field-select-love {
   border-color: rgba(230, 68, 122, 0.5) !important;

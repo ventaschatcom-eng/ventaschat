@@ -767,6 +767,11 @@ export default function HomePage() {
                     <span key={t} className="alt-context-type-pill">{t}</span>
                   ))}
                 </div>
+                {ctx.tag === "Personal" ? (
+                  <Link href="/lovechat" className="alt-context-love-cta">
+                    Esto es LoveChat 💗 — conócelo →
+                  </Link>
+                ) : null}
               </article>
             ))}
           </div>
