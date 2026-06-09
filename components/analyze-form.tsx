@@ -26,6 +26,27 @@ const contextLabels: Record<ConversationContext, string> = {
   Personal: "💗 LoveChat (personal)",
 };
 
+// Emoji solo para la etiqueta visible; el valor interno (key) se mantiene limpio.
+const typeLabels: Record<string, string> = {
+  // Ventas / clientes
+  "Lead / cliente": "🧲 Lead / cliente",
+  "Negociacion de venta": "💰 Negociacion de venta",
+  "Seguimiento comercial": "📩 Seguimiento comercial",
+  "Manejo de objeciones": "🛡️ Manejo de objeciones",
+  // Trabajo / profesional
+  "Colaboracion de trabajo": "🤝 Colaboracion de trabajo",
+  "Seguimiento profesional": "📌 Seguimiento profesional",
+  "Alineacion de proyecto": "🧩 Alineacion de proyecto",
+  "Feedback o tension": "🗣️ Feedback o tension",
+  // Personal / LoveChat
+  "Alguien que me gusta": "💘 Alguien que me gusta",
+  "Primera cita / conociendo": "🌹 Primera cita / conociendo",
+  "Dejo de responder (visto)": "👻 Dejo de responder (visto)",
+  "Reconquistar / retomar": "❤️‍🩹 Reconquistar / retomar",
+  "Tension o discusion de pareja": "💔 Tension o discusion de pareja",
+  "Aclarar un malentendido": "🕊️ Aclarar un malentendido",
+};
+
 type Template = { label: string; emoji: string; text: string };
 
 const templatesByContext: Record<ConversationContext, Template[]> = {
@@ -362,7 +383,7 @@ export function AnalyzeForm() {
             >
               {availableTypes.map((type) => (
                 <option key={type} value={type}>
-                  {type}
+                  {typeLabels[type] ?? type}
                 </option>
               ))}
             </select>
