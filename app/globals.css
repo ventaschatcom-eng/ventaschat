@@ -4318,6 +4318,20 @@ html.dark .mini-wa {
   outline: none;
 }
 
+/* Tarjeta LoveChat en el dashboard (acento rosa) */
+.dashboard-lovechat-card {
+  border: 1px solid rgba(230, 68, 122, 0.28);
+  background: linear-gradient(180deg, rgba(230, 68, 122, 0.07), transparent 70%);
+}
+
+.dashboard-lovechat-cta.button-primary {
+  background: linear-gradient(180deg, #f25c92 0%, #e6447a 100%);
+}
+
+.dashboard-lovechat-cta.button-primary:hover {
+  background: linear-gradient(180deg, #ff6fa5 0%, #e6447a 100%);
+}
+
 /* Link LoveChat en el header de marketing (rosa) */
 .nav-lovechat {
   color: #e6447a;

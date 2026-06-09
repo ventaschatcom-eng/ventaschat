@@ -89,6 +89,23 @@ export default async function DashboardPage() {
         </Link>
       </section>
 
+      <section className="card feature-card dashboard-lovechat-card">
+        <div className="section-heading">
+          <h2>💬 ¿Vienes de LoveChat?</h2>
+          <p>
+            El mismo motor también lee conversaciones personales: alguien que te gusta,
+            un chat que se enfrió o una charla que se puso tensa. Te dice el nivel de
+            interés, qué está pasando y cómo responder.
+          </p>
+        </div>
+        <Link
+          href="/dashboard/analyze?context=Personal"
+          className="button button-primary dashboard-lovechat-cta"
+        >
+          Analizar conversación personal
+        </Link>
+      </section>
+
       <section>
         <div className="section-heading compact">
           <h2>Analisis recientes</h2>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useRef, useState, type DragEvent } from "react";
+import { useEffect, useMemo, useRef, useState, type DragEvent } from "react";
 import { useRouter } from "next/navigation";
 import { Upload, Sparkles, FileText, Camera, Loader2 } from "lucide-react";
 
@@ -18,38 +18,91 @@ import { parseConversationText } from "@/lib/utils";
 
 const maxUploadSize = 1024 * 1024;
 
-const templates: Array<{ label: string; emoji: string; text: string }> = [
-  {
-    label: "Objeción de precio",
-    emoji: "💰",
-    text:
-      "Cliente: Hola, vi su producto pero esta un poco caro para lo que estoy buscando.\n" +
-      "Tu: Hola! Gracias por escribir. ¿Con cuál opción lo estas comparando?\n" +
-      "Cliente: Vi otros parecidos a la mitad de precio.\n" +
-      "Tu: Entiendo. ¿Te interesa que te explique la diferencia o prefieres una opción más liviana?\n" +
-      "Cliente: Cuéntame la diferencia, pero la verdad es que no quiero gastar tanto.",
-  },
-  {
-    label: "Lead frío",
-    emoji: "❄️",
-    text:
-      "Tu: Hola Carlos! Vi que descargaste la guía. ¿Te sirvió?\n" +
-      "Cliente: Hola, sí gracias.\n" +
-      "Tu: Genial. ¿Estás buscando resolver algo puntual o solo investigando?\n" +
-      "Cliente: Por ahora investigando.\n" +
-      "Tu: Perfecto, sin presión. ¿Qué te llamó la atención de la guía?",
-  },
-  {
-    label: "Post-venta",
-    emoji: "🎯",
-    text:
-      "Cliente: Hola, ya recibí el producto pero tengo una duda con la configuración.\n" +
-      "Tu: Hola! Cuéntame qué duda tienes y te ayudo.\n" +
-      "Cliente: No me deja conectar con mi cuenta, sale error.\n" +
-      "Tu: ¿Me puedes mandar una captura del error? Así te oriento más rápido.\n" +
-      "Cliente: Listo, ya te la mando.",
-  },
-];
+type Template = { label: string; emoji: string; text: string };
+
+const templatesByContext: Record<ConversationContext, Template[]> = {
+  "Ventas / clientes": [
+    {
+      label: "Objeción de precio",
+      emoji: "💰",
+      text:
+        "Cliente: Hola, vi su producto pero esta un poco caro para lo que estoy buscando.\n" +
+        "Tu: Hola! Gracias por escribir. ¿Con cuál opción lo estas comparando?\n" +
+        "Cliente: Vi otros parecidos a la mitad de precio.\n" +
+        "Tu: Entiendo. ¿Te interesa que te explique la diferencia o prefieres una opción más liviana?\n" +
+        "Cliente: Cuéntame la diferencia, pero la verdad es que no quiero gastar tanto.",
+    },
+    {
+      label: "Lead frío",
+      emoji: "❄️",
+      text:
+        "Tu: Hola Carlos! Vi que descargaste la guía. ¿Te sirvió?\n" +
+        "Cliente: Hola, sí gracias.\n" +
+        "Tu: Genial. ¿Estás buscando resolver algo puntual o solo investigando?\n" +
+        "Cliente: Por ahora investigando.\n" +
+        "Tu: Perfecto, sin presión. ¿Qué te llamó la atención de la guía?",
+    },
+    {
+      label: "Post-venta",
+      emoji: "🎯",
+      text:
+        "Cliente: Hola, ya recibí el producto pero tengo una duda con la configuración.\n" +
+        "Tu: Hola! Cuéntame qué duda tienes y te ayudo.\n" +
+        "Cliente: No me deja conectar con mi cuenta, sale error.\n" +
+        "Tu: ¿Me puedes mandar una captura del error? Así te oriento más rápido.\n" +
+        "Cliente: Listo, ya te la mando.",
+    },
+  ],
+  "Trabajo / profesional": [
+    {
+      label: "Feedback difícil",
+      emoji: "🗣️",
+      text:
+        "Tu: Hola Ana, ¿tienes un momento para hablar del informe?\n" +
+        "Ana: Sí, dime.\n" +
+        "Tu: Noté que se entregó tarde otra vez y afectó al equipo. Quiero entender qué está pasando.\n" +
+        "Ana: La verdad me sobrecargaron con otras cosas y nadie me avisó las prioridades.",
+    },
+    {
+      label: "Proyecto trabado",
+      emoji: "🚧",
+      text:
+        "Tu: Equipo, llevamos dos semanas sin avanzar en la integración. ¿Qué nos está frenando?\n" +
+        "Colega: Estamos esperando definiciones de producto.\n" +
+        "Tu: Entiendo. ¿Qué necesitan exactamente para desbloquearse esta semana?\n" +
+        "Colega: Una decisión sobre el alcance, sin eso no podemos estimar.",
+    },
+  ],
+  Personal: [
+    {
+      label: "¿Le gusto?",
+      emoji: "💘",
+      text:
+        "Tu: Oye, me quedé pensando en lo del otro día 😊\n" +
+        "Sofía: jajaja sí, la verdad la pasé súper contigo 🙈\n" +
+        "Sofía: habría que repetir en algún momento\n" +
+        "Tu: total, me encantaría",
+    },
+    {
+      label: "Dejó de responder",
+      emoji: "👻",
+      text:
+        "Tu: Hola! ¿Cómo vas? 😄\n" +
+        "Mateo: perdón, he tenido una semana de locos 😅\n" +
+        "Tu: tranqui jaja, ¿todo bien?\n" +
+        "Mateo: sí sí, solo full trabajo",
+    },
+    {
+      label: "Tensión en pareja",
+      emoji: "🌧️",
+      text:
+        "Valentina: siento que últimamente no me escuchas cuando te hablo\n" +
+        "Tu: ¿por qué dices eso?\n" +
+        "Valentina: porque te cuento cosas y estás en el celular\n" +
+        "Tu: no es mi intención, perdón",
+    },
+  ],
+};
 
 export function AnalyzeForm() {
   const router = useRouter();
@@ -66,6 +119,18 @@ export function AnalyzeForm() {
   const [desiredTone, setDesiredTone] = useState<DesiredTone | "">("");
   const [ocrPending, setOcrPending] = useState(false);
   const imageInputRef = useRef<HTMLInputElement>(null);
+
+  // Preseleccionar contexto desde la URL (?context=Personal), ej. usuarios de LoveChat
+  useEffect(() => {
+    const raw = new URLSearchParams(window.location.search).get("context");
+    if (raw && (conversationContexts as readonly string[]).includes(raw)) {
+      const ctx = raw as ConversationContext;
+      setConversationContext(ctx);
+      setConversationType(getConversationTypesForContext(ctx)[0] as ConversationType);
+    }
+  }, []);
+
+  const templates = templatesByContext[conversationContext];
 
   const availableTypes = useMemo(
     () => getConversationTypesForContext(conversationContext),
