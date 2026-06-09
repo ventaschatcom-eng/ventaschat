@@ -95,7 +95,9 @@ const themeScript = `
     // limpiar keys legacy (donde podía haber 'dark' guardado de sesiones viejas)
     localStorage.removeItem("ventaflow-theme");
     const saved = localStorage.getItem("ventaschat-theme-v2");
-    const theme = saved === "dark" ? "dark" : "light";
+    // /lovechat siempre carga en claro (el tema rosa luce mejor en light)
+    const forceLight = location.pathname.startsWith("/lovechat");
+    const theme = (!forceLight && saved === "dark") ? "dark" : "light";
     document.documentElement.classList.toggle("dark", theme === "dark");
     document.documentElement.dataset.theme = theme;
   } catch {}

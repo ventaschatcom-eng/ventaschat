@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { BadgeCheck, Check, Heart, MessageCircle, Send, Sparkles } from "lucide-react";
 
+import { ForceLightTheme } from "@/components/force-light-theme";
 import { MarketingHeader } from "@/components/marketing-header";
 import { GradientText } from "@/components/ui/gradient-text";
 
@@ -166,6 +167,7 @@ const examples = [
 export default function LoveChatPage() {
   return (
     <>
+      <ForceLightTheme />
       <MarketingHeader />
       <div className="lovechat-theme">
         <main className="page-shell">
