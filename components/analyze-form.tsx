@@ -21,8 +21,8 @@ const maxUploadSize = 1024 * 1024;
 // Etiqueta visible por contexto. El valor interno se mantiene (ej. "Personal")
 // para no romper análisis ya guardados ni el mapeo de etiquetas en getLabelsForContext.
 const contextLabels: Record<ConversationContext, string> = {
-  "Ventas / clientes": "Ventas / clientes",
-  "Trabajo / profesional": "Trabajo / profesional",
+  "Ventas / clientes": "🤝 Ventas / clientes",
+  "Trabajo / profesional": "💼 Trabajo / profesional",
   Personal: "💗 LoveChat (personal)",
 };
 
