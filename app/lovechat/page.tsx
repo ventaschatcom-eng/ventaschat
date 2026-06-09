@@ -172,7 +172,7 @@ export default function LoveChatPage() {
       <div className="lovechat-theme">
         <LoveChatTikTokCTA />
       </div>
-      <MarketingHeader />
+      <MarketingHeader variant="love" />
       <div className="lovechat-theme">
         <main className="page-shell">
           <section className="hero hero-shell">

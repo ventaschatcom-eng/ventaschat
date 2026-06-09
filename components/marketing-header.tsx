@@ -3,10 +3,14 @@ import Link from "next/link";
 import { Logo } from "@/components/logo";
 import { ThemeToggle } from "@/components/theme-toggle";
 
-export function MarketingHeader() {
+type MarketingHeaderProps = {
+  variant?: "default" | "love";
+};
+
+export function MarketingHeader({ variant = "default" }: MarketingHeaderProps) {
   return (
     <header className="marketing-header">
-      <Logo />
+      <Logo variant={variant} />
       <nav>
         <ThemeToggle />
         <Link href="/blog">Blog</Link>
