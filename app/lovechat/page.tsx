@@ -8,18 +8,26 @@ import { MarketingHeader } from "@/components/marketing-header";
 import { GradientText } from "@/components/ui/gradient-text";
 
 export const metadata: Metadata = {
-  title: "LoveChat — Sabe qué responder cuando le escribes a alguien que te importa",
+  title: {
+    absolute: "LoveChat — Cómo atraerla y qué responderle por chat",
+  },
   description:
-    "Pega tu conversación de WhatsApp, Instagram o apps de citas y, en 15 segundos, LoveChat te dice qué tan abierta está la otra persona y cómo responder. Sin manipulación. 10 análisis gratis.",
+    "¿No sabes qué responderle a quien te gusta? LoveChat lee tu chat y te dice cómo romper el hielo, atraerla y qué preguntas aburridas evitar. Funciona con WhatsApp, Instagram y apps de citas. 10 análisis gratis.",
   keywords: [
-    "que responder en una cita",
-    "como responder a alguien que te gusta",
-    "le gusto o no",
-    "como saber si le intereso",
-    "dejo de responder que hago",
+    "como atraer una mujer",
+    "como atraer una mujer por chat",
+    "como enamorar a una mujer por chat",
+    "como romper el hielo con una mujer",
+    "como hacer que ella piense en ti",
+    "tecnicas de seduccion por chat",
+    "que responder a alguien que te gusta",
+    "que escribirle a una chica",
+    "preguntas para no aburrir a una mujer",
+    "que no decirle a una mujer",
+    "que hacer si me deja en visto",
     "como invitar a salir por chat",
-    "como reconciliarse por mensaje",
-    "consejos de citas",
+    "como saber si le gusto",
+    "frases para conquistar por chat",
     "que escribir en tinder",
     "como responder en bumble",
   ],
@@ -31,9 +39,15 @@ export const metadata: Metadata = {
     locale: "es_CO",
     url: "https://ventaschat.com/lovechat",
     siteName: "VentasChat",
-    title: "LoveChat — Qué responder cuando le escribes a alguien que te importa",
+    title: "LoveChat — Cómo atraerla y qué responderle por chat",
     description:
-      "Lee la conversación, te dice el nivel de interés real y cómo responder bien. Sin trucos ni manipulación. 10 análisis gratis.",
+      "Lee tu chat y te dice cómo romper el hielo, atraerla y qué preguntas aburridas evitar. Sin trucos ni manipulación. 10 análisis gratis.",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "LoveChat — Cómo atraerla y qué responderle por chat",
+    description:
+      "Sube tu chat y descubre qué responder para atraerla, romper el hielo y no sonar aburrido. 10 análisis gratis.",
   },
 };
 
@@ -165,9 +179,46 @@ const examples = [
   },
 ];
 
+const seoFaq = [
+  {
+    q: "¿Cómo atraer a una mujer por chat?",
+    a: "Deja de mandar 'hola' y 'qué haces'. Atraes con curiosidad: preguntas con un giro, callbacks a algo que ella dijo y un toque de juego. LoveChat lee tu conversación y te sugiere justo ese tipo de respuesta según el momento.",
+  },
+  {
+    q: "¿Cómo romper el hielo sin sonar aburrido?",
+    a: "El error más común es abrir con preguntas planas ('a qué te dedicas', 'de dónde eres'). Funciona mejor un comentario específico sobre algo de ella o una pregunta divertida de responder. LoveChat te da varias opciones listas para tu chat.",
+  },
+  {
+    q: "¿Qué preguntas evitar al escribirle a alguien que te gusta?",
+    a: "Las preguntas-encuesta aburren: 'cómo estás', 'qué haces', 'a qué te dedicas'. No generan emoción ni conversación. Cámbialas por preguntas que la hagan pensar y sonreír — LoveChat te muestra cuáles.",
+  },
+  {
+    q: "¿Qué hago si me dejó en visto?",
+    a: "No mandes 'holaaa?' otra vez. LoveChat detecta si la puerta sigue abierta y te sugiere un mensaje liviano, con humor y sin reproches, para retomar sin verte desesperado.",
+  },
+  {
+    q: "¿LoveChat usa manipulación o trucos?",
+    a: "No. No enseña frases para engañar ni 'técnicas' para manipular. Te ayuda a entender la conversación y a expresar mejor lo que ya sientes, con respeto. La decisión y las palabras finales son tuyas.",
+  },
+];
+
 export default function LoveChatPage() {
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: seoFaq.map((item) => ({
+      "@type": "Question",
+      name: item.q,
+      acceptedAnswer: { "@type": "Answer", text: item.a },
+    })),
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
       <ForceLightTheme />
       <div className="lovechat-theme">
         <LoveChatTikTokCTA />
@@ -479,6 +530,24 @@ export default function LoveChatPage() {
               engañar a nadie ni frases de &ldquo;levante&rdquo;. Te ayuda a entender la
               conversación y a expresar lo que sientes con claridad y respeto. La decisión
               y las palabras finales siempre son tuyas.
+            </div>
+          </section>
+
+          <section className="section">
+            <div className="section-heading section-heading-wide">
+              <div className="eyebrow">Preguntas frecuentes</div>
+              <h2>
+                Lo que todos se preguntan al{" "}
+                <GradientText className="section-title-accent">escribirle a alguien</GradientText>.
+              </h2>
+            </div>
+            <div className="feature-grid feature-grid-strong">
+              {seoFaq.map((item) => (
+                <article key={item.q} className="feature-card card">
+                  <h3>{item.q}</h3>
+                  <p>{item.a}</p>
+                </article>
+              ))}
             </div>
           </section>
 
