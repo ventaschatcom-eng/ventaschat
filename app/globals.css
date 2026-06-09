@@ -4317,6 +4317,39 @@ html.dark .mini-wa {
   font-weight: 600;
   outline: none;
 }
+
+/* ── LoveChat: tema rosa/romántico scoped (/lovechat) ── */
+.lovechat-theme {
+  --primary: #e6447a;
+  --primary-dark: #c62a63;
+  --primary-soft: #fdeef4;
+  --secondary: #a855f7;
+  --secondary-dark: #7c3aed;
+  --secondary-soft: rgba(168, 85, 247, 0.11);
+  --secondary-border: rgba(168, 85, 247, 0.18);
+  --hero-stage-bg: linear-gradient(180deg, rgba(253, 238, 244, 0.98), rgba(250, 232, 243, 0.84));
+  --hero-stage-accent: rgba(236, 134, 178, 0.2);
+}
+
+html.dark .lovechat-theme {
+  --primary: #ff6fa5;
+  --primary-dark: #ff6fa5;
+  --primary-soft: rgba(230, 68, 122, 0.16);
+  --secondary: #c084fc;
+  --secondary-dark: #c084fc;
+  --secondary-soft: rgba(192, 132, 252, 0.12);
+  --secondary-border: rgba(192, 132, 252, 0.2);
+  --hero-stage-bg: linear-gradient(180deg, rgba(28, 14, 22, 0.98), rgba(24, 12, 20, 0.88));
+  --hero-stage-accent: rgba(230, 68, 122, 0.12);
+}
+
+.lovechat-theme .button-primary {
+  background: linear-gradient(180deg, #f25c92 0%, var(--primary) 100%);
+}
+
+.lovechat-theme .hero-shell {
+  border-color: rgba(230, 68, 122, 0.12);
+}
 .editable-label-edit input:focus {
   box-shadow: 0 0 0 3px rgba(0, 199, 44, 0.18);
 }
