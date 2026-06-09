@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { BadgeCheck, Check, Heart, MessageCircle, Send, Sparkles } from "lucide-react";
 
+import { Accordion } from "@/components/accordion";
 import { ForceLightTheme } from "@/components/force-light-theme";
 import { LoveChatTikTokCTA } from "@/components/lovechat-tiktok-cta";
 import { MarketingHeader } from "@/components/marketing-header";
@@ -541,14 +542,7 @@ export default function LoveChatPage() {
                 <GradientText className="section-title-accent">escribirle a alguien</GradientText>.
               </h2>
             </div>
-            <div className="feature-grid feature-grid-strong">
-              {seoFaq.map((item) => (
-                <article key={item.q} className="feature-card card">
-                  <h3>{item.q}</h3>
-                  <p>{item.a}</p>
-                </article>
-              ))}
-            </div>
+            <Accordion items={seoFaq} className="faq-accordion-love" />
           </section>
 
           <section className="section">

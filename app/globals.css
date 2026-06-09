@@ -1955,6 +1955,57 @@ html.dark .mini-insight span {
   background: rgba(31, 157, 97, 0.08);
 }
 
+/* Acordeón elegante para el FAQ de LoveChat */
+.faq-accordion-love {
+  gap: 0.85rem;
+}
+
+.faq-accordion-love .faq-item {
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  background: var(--surface);
+  padding: 0 1.35rem;
+  transition: border-color 0.2s ease, background 0.25s ease, box-shadow 0.25s ease;
+}
+
+.faq-accordion-love .faq-item--open {
+  border-color: rgba(230, 68, 122, 0.4);
+  background: linear-gradient(180deg, rgba(230, 68, 122, 0.06), var(--surface) 65%);
+  box-shadow: 0 14px 34px rgba(230, 68, 122, 0.12);
+}
+
+.faq-accordion-love .faq-question {
+  font-size: 1.05rem;
+}
+
+.faq-accordion-love .faq-trigger:hover .faq-question {
+  color: #e6447a;
+}
+
+html.dark .faq-accordion-love .faq-trigger:hover .faq-question {
+  color: #ff6fa5;
+}
+
+.faq-accordion-love .faq-icon {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(230, 68, 122, 0.1);
+  color: #e6447a;
+}
+
+.faq-accordion-love .faq-item--open .faq-icon {
+  background: #e6447a;
+  color: #ffffff;
+}
+
+html.dark .faq-accordion-love .faq-icon {
+  color: #ff6fa5;
+}
+
 /* Bloque gancho "Preguntas que no debes hacerle" (home) */
 .dont-ask-grid {
   display: grid;
