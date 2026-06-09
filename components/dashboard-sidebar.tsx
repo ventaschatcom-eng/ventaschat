@@ -18,6 +18,12 @@ const links = [
   { href: "/dashboard/settings", label: "Configuración" },
 ];
 
+const loveLinks = [
+  { href: "/dashboard/analyze?context=Personal", label: "💬 Analizar chat personal" },
+  { href: "/dashboard/history", label: "📜 Mis análisis" },
+  { href: "/lovechat", label: "💡 Guía LoveChat" },
+];
+
 export function DashboardSidebar() {
   const pathname = usePathname();
   const { data: session } = useSession();
@@ -50,6 +56,15 @@ export function DashboardSidebar() {
             Admin
           </Link>
         )}
+
+        <div className="sidebar-love">
+          <span className="sidebar-love-title">LoveChat</span>
+          {loveLinks.map((link) => (
+            <Link key={link.label} href={link.href} className="sidebar-link sidebar-link-love">
+              {link.label}
+            </Link>
+          ))}
+        </div>
       </nav>
     </aside>
   );

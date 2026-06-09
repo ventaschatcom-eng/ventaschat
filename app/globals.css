@@ -1955,6 +1955,46 @@ html.dark .mini-insight span {
   background: rgba(31, 157, 97, 0.08);
 }
 
+/* Bloque LoveChat en el sidebar (tema rosa) */
+.sidebar-love {
+  display: grid;
+  gap: 0.5rem;
+  margin-top: 1.1rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(230, 68, 122, 0.2);
+}
+
+.sidebar-love-title {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #e6447a;
+  padding: 0 1rem;
+}
+
+html.dark .sidebar-love-title {
+  color: #ff6fa5;
+}
+
+.sidebar-link-love {
+  color: #c0497a;
+}
+
+html.dark .sidebar-link-love {
+  color: #ff9cc2;
+}
+
+.sidebar-link-love:hover {
+  color: #c62a63;
+  background: rgba(230, 68, 122, 0.1);
+}
+
+html.dark .sidebar-link-love:hover {
+  color: #ff6fa5;
+  background: rgba(230, 68, 122, 0.16);
+}
+
 .dashboard-content {
   padding: 1.5rem;
 }
