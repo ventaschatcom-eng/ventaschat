@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
+import { ForceLightTheme } from "@/components/force-light-theme";
 import { MarketingHeader } from "@/components/marketing-header";
-import { getAllPosts, getPostBySlug, getPostSlugs } from "@/lib/blog";
+import { getAllPosts, getLovePosts, getPostBySlug, getPostSlugs } from "@/lib/blog";
 import { formatDate } from "@/lib/utils";
 
 export function generateStaticParams() {
@@ -67,20 +68,23 @@ export default async function BlogPostPage(props: {
     },
   };
 
-  const otherPosts = getAllPosts()
+  const isLove = post.brand === "love";
+
+  const otherPosts = (isLove ? getLovePosts() : getAllPosts())
     .filter((p) => p.slug !== post.slug)
     .slice(0, 3);
 
   return (
-    <>
+    <div className={isLove ? "lovechat-theme" : undefined}>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
       />
-      <MarketingHeader />
+      {isLove ? <ForceLightTheme /> : null}
+      <MarketingHeader variant={isLove ? "love" : "default"} />
       <main className="page-shell section blog-article">
         <div className="blog-article-head">
-          <Link href="/blog" className="blog-back">
+          <Link href={isLove ? "/lovechat/blog" : "/blog"} className="blog-back">
             ← Volver al blog
           </Link>
           <span className="blog-card-category">{post.category}</span>
@@ -97,16 +101,29 @@ export default async function BlogPostPage(props: {
           dangerouslySetInnerHTML={{ __html: post.content }}
         />
 
-        <aside className="blog-cta card">
-          <h3>Prueba VentasChat con tu próximo cliente</h3>
-          <p>
-            Pega tu chat de WhatsApp y recibe puntaje de cierre, vocabulario sugerido,
-            métricas y 3 respuestas listas en menos de 30 segundos.
-          </p>
-          <Link href="/signup" className="button button-primary">
-            Empezar con 10 análisis gratis
-          </Link>
-        </aside>
+        {isLove ? (
+          <aside className="blog-cta card">
+            <h3>💗 ¿No sabes qué responderle?</h3>
+            <p>
+              Pega tu conversación en LoveChat y descubre qué tan interesada está la
+              otra persona, si es momento de avanzar y qué responder — en 15 segundos.
+            </p>
+            <Link href="/signup" className="button button-primary">
+              Analizar mi chat gratis
+            </Link>
+          </aside>
+        ) : (
+          <aside className="blog-cta card">
+            <h3>Prueba VentasChat con tu próximo cliente</h3>
+            <p>
+              Pega tu chat de WhatsApp y recibe puntaje de cierre, vocabulario sugerido,
+              métricas y 3 respuestas listas en menos de 30 segundos.
+            </p>
+            <Link href="/signup" className="button button-primary">
+              Empezar con 10 análisis gratis
+            </Link>
+          </aside>
+        )}
 
         {otherPosts.length ? (
           <section>
@@ -127,6 +144,6 @@ export default async function BlogPostPage(props: {
           </section>
         ) : null}
       </main>
-    </>
+    </div>
   );
 }

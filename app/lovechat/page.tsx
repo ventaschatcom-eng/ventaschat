@@ -608,6 +608,7 @@ export default function LoveChatPage() {
           <span>© {new Date().getFullYear()} VentasChat — IA para comunicar mejor por chat.</span>
           <div className="footer-links">
             <Link href="/">VentasChat</Link>
+            <Link href="/lovechat/blog">Blog</Link>
             <Link href="/pricing">Precios</Link>
             <Link href="/privacy">Privacidad</Link>
             <Link href="/terms">Términos</Link>

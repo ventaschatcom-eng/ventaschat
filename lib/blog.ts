@@ -8,6 +8,8 @@ export type BlogPost = {
   category: string;
   excerpt: string;
   content: string; // HTML
+  /** "love" = artículo de LoveChat (se lista en /lovechat/blog, CTA rosa). Sin valor = ventas. */
+  brand?: "love";
 };
 
 const POSTS: BlogPost[] = [
@@ -1341,12 +1343,401 @@ const POSTS: BlogPost[] = [
 <p>VentasChat te da 10 análisis gratis al registrarte. Pega el mismo chat en ChatGPT y en VentasChat y compara las dos respuestas. Si después de eso prefieres ChatGPT, está perfecto. Pero al menos lo decides con datos.</p>
 `,
   },
+
+  // ───────────────────────── LoveChat (amor y citas) ─────────────────────────
+  {
+    slug: "como-conquistar-a-una-mujer-por-chat",
+    title: "Cómo conquistar a una mujer por chat (sin frases de manual)",
+    description:
+      "Guía práctica para conquistar a una mujer por WhatsApp o Instagram: qué escribir, qué preguntas evitar y ejemplos reales de mensajes que sí generan interés.",
+    publishedAt: "2026-06-10",
+    readMinutes: 8,
+    keywords: [
+      "como conquistar a una mujer por chat",
+      "como conquistar a una mujer por whatsapp",
+      "que escribirle a una mujer para conquistarla",
+      "mensajes para conquistar a una mujer",
+      "como enamorar a una mujer por mensajes",
+      "como atraer a una mujer por chat",
+    ],
+    category: "Amor y citas",
+    brand: "love",
+    excerpt:
+      "Las frases copiadas de internet se notan a kilómetros. Lo que conquista por chat es otra cosa: atención real, preguntas con juego y saber cuándo escribir. Aquí la guía completa.",
+    content: `
+<p>Vamos a ser honestos: si buscaste esto es porque hay alguien que te gusta y no quieres arruinarlo por chat. Buena noticia: <strong>conquistar por chat no depende de frases mágicas</strong>. Depende de tres cosas que sí puedes controlar: qué escribes, cuándo escribes y cómo reaccionas a lo que ella dice.</p>
+
+<h2>Lo primero: olvida las frases de manual</h2>
+
+<p>"Hola preciosa, ¿cómo amaneciste?" lo recibe de cinco tipos distintos cada semana. Las frases copiadas tienen un problema de fondo: <strong>no dicen nada de ella ni de ti</strong>. Son intercambiables, y lo intercambiable aburre.</p>
+
+<p>Lo que sí funciona es lo específico. Un mensaje que solo tiene sentido entre ustedes dos vale más que cien piropos genéricos.</p>
+
+<h2>Las 3 reglas que sí conquistan</h2>
+
+<h3>1. Demuestra que prestas atención</h3>
+
+<p>Si ella mencionó que tenía un examen, una entrevista o que estaba enferma, el mensaje más poderoso que puedes mandar al día siguiente es: <em>"¿Cómo te fue en el examen? Quedé pendiente"</em>. Eso comunica algo que ninguna frase de seducción logra: que la escuchas de verdad.</p>
+
+<h3>2. Haz preguntas con juego, no entrevistas</h3>
+
+<p>"¿A qué te dedicas?", "¿de dónde eres?", "¿cómo estás?" — eso es un formulario, no una conversación. Compara:</p>
+
+<ul>
+  <li>❌ "¿Qué música te gusta?"</li>
+  <li>✅ "Te voy a adivinar la canción que más repites... pero primero dime: ¿playa o montaña?"</li>
+</ul>
+
+<p>La segunda invita a jugar. Y cuando una conversación se siente como un juego, ella <strong>quiere</strong> seguir respondiendo.</p>
+
+<h3>3. No estés disponible las 24 horas</h3>
+
+<p>Responder en 3 segundos cada mensaje, a cualquier hora, comunica ansiedad. No se trata de aplicar "horas de hielo" calculadas (eso también se nota), sino de tener una vida y responder cuando realmente puedes. La calma atrae; la ansiedad espanta.</p>
+
+<h2>Ejemplos reales: mensajes que generan interés</h2>
+
+<ul>
+  <li><em>"Descríbete en 3 palabras... pero que una sea mentira 😏"</em> — abre conversación con intriga.</li>
+  <li><em>"Vi a alguien con una chaqueta igual a la tuya y me acordé de ti. El universo insiste jaja"</em> — específico, liviano, la deja pensando.</li>
+  <li><em>"Me caes bien... y eso es raro, casi nadie me cae bien tan rápido. ¿Qué me hiciste?"</em> — un cumplido con giro, no adulación plana.</li>
+</ul>
+
+<h2>El error que arruina todo: forzar el ritmo</h2>
+
+<p>Muchos chats mueren porque él quiere avanzar más rápido de lo que la conversación da. Si ella responde con monosílabos, presionar con más mensajes solo empeora. La lectura correcta del momento — ¿está abierta, está ocupada, está siendo cortés? — es el 80% del juego.</p>
+
+<p>Justo para eso existe <a href="/lovechat">LoveChat</a>: pegas la conversación y te dice qué tan interesada está la otra persona, si es buen momento para proponer algo y qué responder según el momento. Sin trucos ni manipulación — solo lectura clara de lo que está pasando.</p>
+
+<h2>Resumen</h2>
+
+<ul>
+  <li>Específico gana a genérico, siempre.</li>
+  <li>Preguntas con juego, no interrogatorios.</li>
+  <li>Recuerda detalles y haz callbacks.</li>
+  <li>Calma. La ansiedad se nota hasta por escrito.</li>
+  <li>Lee el momento antes de avanzar.</li>
+</ul>
+
+<p>Conquistar por chat no es decir lo perfecto. Es hacer que hablar contigo se sienta distinto a hablar con cualquier otro. Y eso se construye mensaje a mensaje.</p>
+`,
+  },
+  {
+    slug: "como-hacer-que-se-enamore-de-ti-por-mensajes",
+    title: "Cómo hacer que se enamore de ti por mensajes: lo que sí funciona",
+    description:
+      "No hay fórmulas mágicas, pero sí patrones que generan conexión real por chat: presencia, vulnerabilidad bien dosificada y conversaciones que dejan huella. Guía completa.",
+    publishedAt: "2026-06-09",
+    readMinutes: 8,
+    keywords: [
+      "como hacer que se enamore de ti",
+      "como enamorar por mensajes",
+      "como enamorar a una mujer por chat",
+      "como hacer que piense en ti",
+      "como generar conexion por chat",
+      "mensajes para enamorar",
+    ],
+    category: "Amor y citas",
+    brand: "love",
+    excerpt:
+      "El enamoramiento por chat no nace de frases bonitas: nace de conversaciones que se sienten distintas a todas las demás. Esto es lo que de verdad genera conexión.",
+    content: `
+<p>Primero, la verdad incómoda: <strong>no puedes "hacer" que alguien se enamore de ti</strong>. Si alguien te promete una fórmula para eso, te está vendiendo humo. Lo que sí puedes hacer es crear las condiciones donde la conexión real puede crecer — y el chat, bien usado, es una herramienta poderosa para eso.</p>
+
+<h2>Por qué algunas conversaciones enganchan y otras mueren</h2>
+
+<p>Piensa en la última persona con la que te encantaba chatear. ¿Qué tenía esa conversación? Casi seguro: te hacía reír, te sorprendía, y sentías que podías ser tú. Eso es lo que hay que construir. No es magia, son patrones:</p>
+
+<h3>1. Sé memorable, no constante</h3>
+
+<p>Un error común: creer que enamorar = escribir todo el día. El bombardeo de "buenos días", "¿ya almorzaste?", "¿qué haces?" no genera amor, genera rutina. Mejor un mensaje al día que la haga sonreír, que veinte que la hagan bostezar.</p>
+
+<h3>2. Crea bromas internas</h3>
+
+<p>Las parejas que funcionan tienen un idioma propio. Eso empieza en el chat: un apodo que nació de una anécdota, un emoji que significa algo entre ustedes, un "tema recurrente" que vuelve cada tanto. Las bromas internas convierten una conversación en <em>su</em> conversación.</p>
+
+<h3>3. Vulnerabilidad bien dosificada</h3>
+
+<p>La conexión profunda requiere apertura real. No se trata de contar tus traumas en la semana uno, sino de atreverte a decir cosas reales: qué te ilusiona, qué te da miedo, qué quieres construir. Un <em>"hoy me acordé de algo que me dijiste y me alegró el día"</em> tiene más poder que cualquier piropo.</p>
+
+<h3>4. Hazla sentir vista, no evaluada</h3>
+
+<p>Hay una diferencia enorme entre <em>"qué linda saliste en esa foto"</em> y <em>"me encanta que tengas algo que te apasione tanto"</em>. El primero evalúa la superficie; el segundo ve a la persona. Los cumplidos sobre quién es ella — su humor, su forma de pensar, su pasión por algo — llegan mucho más hondo.</p>
+
+<h2>El timing importa más de lo que crees</h2>
+
+<p>Enamorarse es también una cuestión de ritmo. Avanzar muy rápido asusta; muy lento, la conversación se enfría y aparece otro. Las señales de que puedes subir la intensidad:</p>
+
+<ul>
+  <li>Responde con mensajes largos y preguntas de vuelta.</li>
+  <li>Te cuenta cosas de su día sin que preguntes.</li>
+  <li>Usa emojis cada vez más cálidos.</li>
+  <li>Menciona planes a futuro contigo, aunque sea en broma.</li>
+</ul>
+
+<p>Si no sabes leer en qué punto está tu conversación, <a href="/lovechat">LoveChat</a> te lo dice: subes el chat y te muestra el nivel de apertura de la otra persona, si es momento de avanzar o de darle aire, y cómo responder con el tono justo.</p>
+
+<h2>Lo que mata el enamoramiento por chat</h2>
+
+<ul>
+  <li><strong>La necesidad:</strong> reclamar por qué no responde, doble y triple texto ansioso.</li>
+  <li><strong>La rutina:</strong> los mismos "hola, ¿cómo estás?" cada día a la misma hora.</li>
+  <li><strong>El interrogatorio:</strong> preguntas sin dar nada de ti a cambio.</li>
+  <li><strong>Vivir solo en el chat:</strong> si nunca propones verse, te conviertes en un pasatiempo digital.</li>
+</ul>
+
+<h2>El objetivo final: que el chat se quede corto</h2>
+
+<p>El chat es el puente, no el destino. La señal de que vas bien es cuando los dos sienten que escribirse ya no alcanza — y la cita llega sola. Construye conversaciones que se sientan únicas, lee bien el ritmo, y deja que lo demás haga su trabajo.</p>
+`,
+  },
+  {
+    slug: "como-romper-el-hielo-con-una-mujer-por-chat",
+    title: "Cómo romper el hielo con una mujer (ejemplos que no aburren)",
+    description:
+      "Primeros mensajes que sí reciben respuesta: ejemplos reales para WhatsApp, Instagram y apps de citas, y los errores que matan la conversación antes de empezar.",
+    publishedAt: "2026-06-08",
+    readMinutes: 7,
+    keywords: [
+      "como romper el hielo con una mujer",
+      "como romper el hielo por chat",
+      "primer mensaje a una mujer",
+      "que escribirle a una mujer por primera vez",
+      "como iniciar conversacion con una chica",
+      "frases para romper el hielo",
+    ],
+    category: "Amor y citas",
+    brand: "love",
+    excerpt:
+      "El primer mensaje decide si hay conversación o silencio. Y la mayoría falla por lo mismo: abre con 'hola, ¿cómo estás?'. Aquí los abridores que sí funcionan, con ejemplos.",
+    content: `
+<p>El primer mensaje es una audición de tres segundos. Ella lo lee y decide, casi sin pensarlo, si vale la pena responder. Por eso duele tanto el visto en el "hola, ¿cómo estás?" — no es que ella sea fría, es que <strong>ese mensaje no le dio ninguna razón para contestar</strong>.</p>
+
+<h2>Por qué "hola, ¿cómo estás?" no funciona</h2>
+
+<p>Tres razones simples:</p>
+
+<ul>
+  <li><strong>No exige nada interesante de vuelta.</strong> La única respuesta posible es "bien, ¿y tú?". Conversación muerta en dos turnos.</li>
+  <li><strong>Es idéntico al de todos.</strong> Si recibe diez mensajes iguales, el tuyo no existe.</li>
+  <li><strong>Le pasa el trabajo a ella.</strong> Le estás pidiendo que ella haga la conversación interesante. Ese es tu trabajo, no el de ella.</li>
+</ul>
+
+<h2>La fórmula de un buen rompehielos</h2>
+
+<p>Los abridores que funcionan comparten estructura: <strong>algo específico + un toque de juego + fácil de responder</strong>. No necesitas ser comediante. Necesitas darle algo con qué jugar.</p>
+
+<h3>Ejemplos para Instagram (cuando ella subió una historia)</h3>
+
+<ul>
+  <li><em>"Ok, necesito saber dónde es ese lugar. Es para una investigación muy seria 🕵️"</em></li>
+  <li><em>"Ese plato se ve increíble, pero te apuesto que no le ganaba a mi receta estrella. (Es la única que tengo, pero cuenta)"</em></li>
+</ul>
+
+<h3>Ejemplos para apps de citas (Tinder, Bumble)</h3>
+
+<ul>
+  <li><em>"Tu segunda foto tiene una historia detrás, estoy seguro. ¿La cuentas o la adivino?"</em></li>
+  <li><em>"Pregunta de máxima importancia antes de seguir: ¿el cilantro sí o no? Hay respuestas incorrectas"</em></li>
+  <li><em>"Descríbete en 3 palabras... pero que una sea mentira 😏"</em></li>
+</ul>
+
+<h3>Ejemplos para WhatsApp (ya se conocen de algo)</h3>
+
+<ul>
+  <li><em>"Me acordé de ti hoy por [cosa específica]. ¿Cómo va todo?"</em></li>
+  <li><em>"Tengo una teoría sobre ti desde el día que te conocí. ¿Te la digo? 👀"</em></li>
+</ul>
+
+<h2>Las reglas de oro del primer mensaje</h2>
+
+<ul>
+  <li><strong>Una idea por mensaje.</strong> No mandes tres párrafos de presentación.</li>
+  <li><strong>Termina en algo respondible.</strong> Una pregunta fácil y con gracia.</li>
+  <li><strong>Cero cumplidos físicos de entrada.</strong> "Qué linda" de un desconocido no abre puertas, las cierra.</li>
+  <li><strong>Ortografía decente.</strong> No necesitas ser académico, pero "ola k ase" elimina candidatos en segundos.</li>
+</ul>
+
+<h2>¿Y si no responde?</h2>
+
+<p>Un buen abridor mejora tus probabilidades, no las garantiza. Si no respondió, <strong>no insistas el mismo día</strong>. Y si quieres reintentar días después, que sea con algo nuevo y liviano, nunca con un reclamo.</p>
+
+<p>Si la conversación arrancó pero no sabes cómo mantenerla viva o cuándo proponer algo más, ahí entra <a href="/lovechat">LoveChat</a>: pegas el chat y te dice qué tan abierta está, qué responder y cuándo es el momento de invitarla a salir. Es como tener un amigo con buen ojo leyendo por encima del hombro — pero sin el sesgo.</p>
+
+<h2>En resumen</h2>
+
+<p>Romper el hielo no es suerte ni labia innata. Es darle a la otra persona algo específico, liviano y fácil de responder. Hazlo bien y el "visto" se convierte en "escribiendo...".</p>
+`,
+  },
+  {
+    slug: "te-dejo-en-visto-que-hacer",
+    title: "¿Te dejó en visto? Qué hacer (y qué no) para recuperar la conversación",
+    description:
+      "Qué significa realmente el visto, cuánto esperar antes de volver a escribir y ejemplos de mensajes para retomar la conversación sin verte desesperado.",
+    publishedAt: "2026-06-07",
+    readMinutes: 7,
+    keywords: [
+      "me dejo en visto que hago",
+      "te dejo en visto",
+      "que hacer si te dejan en visto",
+      "me dejo en visto la chica que me gusta",
+      "como retomar una conversacion despues del visto",
+      "por que me deja en visto",
+    ],
+    category: "Amor y citas",
+    brand: "love",
+    excerpt:
+      "El visto no siempre significa lo que crees. Antes de mandar el tercer 'holaaa??', lee esto: cómo interpretarlo, cuánto esperar y qué mensaje sí recupera la conversación.",
+    content: `
+<p>Mandaste el mensaje. Apareció el doble check azul. Y... nada. Una hora. Cinco horas. Un día. El visto es de las experiencias más universales (y más malinterpretadas) del chat moderno. Antes de hacer algo de lo que te arrepientas, respira y lee esto.</p>
+
+<h2>Qué significa el visto en realidad</h2>
+
+<p>El error número uno es asumir que visto = rechazo. En la práctica, el visto tiene muchas causas posibles:</p>
+
+<ul>
+  <li><strong>Lo vio en mal momento</strong> y lo dejó para "después" (y después se le olvidó — nos pasa a todos).</li>
+  <li><strong>Tu mensaje no tenía pregunta</strong> ni nada claro que responder.</li>
+  <li><strong>Está evaluando qué responder</strong> porque le importa la respuesta.</li>
+  <li><strong>Está ocupada de verdad</strong> — la gente tiene exámenes, trabajos, crisis familiares.</li>
+  <li>Y sí, a veces: <strong>no está interesada</strong> y no sabe cómo decirlo.</li>
+</ul>
+
+<p>El punto: <strong>un visto aislado no es información suficiente</strong>. El patrón completo de la conversación sí lo es.</p>
+
+<h2>Lo que NO debes hacer (aunque las ganas sean fuertes)</h2>
+
+<ul>
+  <li>❌ <strong>"Holaaa?? sigues ahí?"</strong> — presión pura. Si iba a responder, ahora le diste una razón para no hacerlo.</li>
+  <li>❌ <strong>"Veo que me dejaste en visto"</strong> — reclamar a alguien que apenas conoces es la bandera roja más grande que existe.</li>
+  <li>❌ <strong>Triple, cuádruple mensaje</strong> — cada mensaje extra sin respuesta baja tu valor en la conversación.</li>
+  <li>❌ <strong>Indirectas en historias</strong> — se nota, y da vergüenza ajena.</li>
+</ul>
+
+<h2>Cuánto esperar</h2>
+
+<p>Regla simple: <strong>mínimo 2-3 días</strong> antes de retomar. No es un juego de poder — es darle espacio real y darte dignidad. Si respondió tarde con una excusa ("perdón, semana de locos"), créele a la primera y responde liviano, sin reproches.</p>
+
+<h2>El mensaje que sí recupera conversaciones</h2>
+
+<p>Cuando retomes, la clave es: <strong>nuevo tema, cero referencia al silencio, tono liviano</strong>. Ejemplos:</p>
+
+<ul>
+  <li><em>"Te apareciste en mi mente o el algoritmo me ayudó 👀 ¿cómo va todo?"</em></li>
+  <li><em>"Acabo de ver/escuchar [algo específico] y me acordé de ti. ¿Cómo vas?"</em></li>
+  <li><em>"Tranqui, sé que andas full. Cuando bajes el ritmo me cuentas y nos tomamos algo 👌"</em> (si ella se excusó por estar ocupada)</li>
+</ul>
+
+<p>Lo que estos mensajes comunican: tienes vida, no estás molesto, y la puerta sigue abierta sin presión. Eso es exactamente lo que hace fácil responderte.</p>
+
+<h2>Cómo saber si la puerta sigue abierta</h2>
+
+<p>Aquí es donde la mayoría se equivoca por leer con el corazón y no con la cabeza. Las señales están en el historial: cómo respondía antes, quién iniciaba, qué tan largos eran sus mensajes, si te hacía preguntas de vuelta.</p>
+
+<p><a href="/lovechat">LoveChat</a> hace exactamente esa lectura por ti: subes la conversación y te dice si hay interés real, si conviene retomar o soltar, y con qué mensaje hacerlo. A veces la respuesta es "sí, escríbele así" — y a veces es "esta conversación ya dio lo que tenía que dar". Las dos respuestas valen oro.</p>
+
+<h2>La verdad final</h2>
+
+<p>Un visto duele, pero no te define. La persona correcta no necesita que la persigas: necesita que aparezcas con calma, con gracia y en el momento justo. Y si no responde ni así — siguiente. Tu energía vale más invertida en quien sí quiere conversar contigo.</p>
+`,
+  },
+  {
+    slug: "como-iniciar-una-conversacion-que-no-se-apague",
+    title: "Cómo iniciar una conversación que no se apague",
+    description:
+      "Técnicas concretas para que tus conversaciones por chat no mueran a los tres mensajes: hilos abiertos, preguntas con juego y el arte de dar para recibir.",
+    publishedAt: "2026-06-06",
+    readMinutes: 7,
+    keywords: [
+      "como iniciar una conversacion",
+      "como mantener una conversacion por chat",
+      "que la conversacion no se acabe",
+      "temas de conversacion con una chica",
+      "como tener conversaciones interesantes por whatsapp",
+      "conversacion aburrida que hago",
+    ],
+    category: "Amor y citas",
+    brand: "love",
+    excerpt:
+      "Arrancar la conversación es fácil. Lo difícil es que no muera al tercer mensaje. La diferencia está en cómo construyes cada respuesta: aquí está la técnica completa.",
+    content: `
+<p>Todos hemos vivido esto: la conversación arranca bien, hay química aparente... y a los diez minutos está agonizando entre "jaja sí" y "qué bien". La buena noticia: <strong>las conversaciones no mueren por mala suerte, mueren por mala construcción</strong>. Y construir se aprende.</p>
+
+<h2>La regla #1: cada mensaje deja un hilo abierto</h2>
+
+<p>Una conversación se apaga cuando un mensaje no deja nada que responder. Compara:</p>
+
+<ul>
+  <li>❌ Ella: "¿Qué hiciste hoy?" → Tú: "Trabajé todo el día" <em>(punto muerto)</em></li>
+  <li>✅ Ella: "¿Qué hiciste hoy?" → Tú: "Trabajé todo el día, pero me pasó algo rarísimo en el almuerzo. ¿Tú qué tal?" <em>(dos hilos abiertos: el misterio + su día)</em></li>
+</ul>
+
+<p>El "algo rarísimo" es un <strong>gancho</strong>: ella va a preguntar qué pasó. Cada mensaje tuyo debería dejar al menos una puerta abierta así.</p>
+
+<h2>La técnica del dar para recibir</h2>
+
+<p>Las conversaciones mueren cuando se vuelven interrogatorio: pregunta, respuesta, pregunta, respuesta. Para evitarlo, usa la estructura <strong>responde + agrega + pregunta</strong>:</p>
+
+<p><em>"¿Te gusta viajar?" → "Me encanta, el año pasado me perdí literalmente en Medellín y terminó siendo el mejor día del viaje. ¿Tú eres más de planear todo o de improvisar?"</em></p>
+
+<p>Respondiste, contaste algo tuyo (que invita a preguntar más), y devolviste con una pregunta que no es de formulario.</p>
+
+<h2>Preguntas que reviven cualquier chat</h2>
+
+<p>Guárdate estas para cuando sientas que la energía baja:</p>
+
+<ul>
+  <li><em>"Pregunta random: ¿qué fue lo último que te hizo reír de verdad?"</em></li>
+  <li><em>"¿Playa o montaña? Y ojo, esto define mi opinión sobre ti 😏"</em></li>
+  <li><em>"¿Cuál es tu unpopular opinion más fuerte? Prometo no juzgar (mentira, sí juzgo)"</em></li>
+  <li><em>"Si mañana no tuvieras que trabajar/estudiar, ¿qué harías con el día?"</em></li>
+</ul>
+
+<p>¿Qué tienen en común? Son fáciles de responder, tienen un toque de juego y abren temas donde ella puede hablar de sí misma con gusto.</p>
+
+<h2>Señales de que debes cambiar de tema (o pausar)</h2>
+
+<ul>
+  <li>Respuestas cada vez más cortas → el tema se agotó, pivota a otro.</li>
+  <li>"jaja" sin más → o no entendió el chiste, o necesita un gancho nuevo.</li>
+  <li>Tarda horas y responde sin pregunta → dale aire. Insistir no revive chats, los entierra.</li>
+</ul>
+
+<h2>El error de exprimir la conversación</h2>
+
+<p>Contraintuitivo pero cierto: <strong>las mejores conversaciones terminan en su punto alto</strong>, no cuando ya no queda nada que decir. Cerrar con un <em>"me encantó hablar contigo, te escribo mañana que tengo que contarte lo del final"</em> deja ganas de más. Exprimir hasta el último "jaja sí" deja sensación de vacío.</p>
+
+<h2>Cuando no sabes qué responder</h2>
+
+<p>Hay momentos donde el mensaje de la otra persona te deja sin ideas: una respuesta ambigua, un cambio de tono, algo que no sabes interpretar. Para eso está <a href="/lovechat">LoveChat</a>: pegas la conversación y te sugiere tres formas de responder — cálida, directa o juguetona — según lo que está pasando de verdad en el chat. Tú eliges la que suene a ti.</p>
+
+<h2>Resumen</h2>
+
+<ul>
+  <li>Cada mensaje deja un hilo abierto (gancho).</li>
+  <li>Responde + agrega algo tuyo + pregunta con juego.</li>
+  <li>Detecta cuándo pivotar y cuándo dar aire.</li>
+  <li>Termina en alto, no en agonía.</li>
+</ul>
+
+<p>Una conversación que no se apaga no es cuestión de tener mil temas: es cuestión de construir bien cada turno. Practícalo y se vuelve automático.</p>
+`,
+  },
 ];
 
-export function getAllPosts() {
-  return [...POSTS].sort((a, b) =>
+function sortByDate(posts: BlogPost[]) {
+  return [...posts].sort((a, b) =>
     a.publishedAt < b.publishedAt ? 1 : a.publishedAt > b.publishedAt ? -1 : 0,
   );
+}
+
+/** Artículos de ventas (blog principal /blog). */
+export function getAllPosts() {
+  return sortByDate(POSTS.filter((p) => p.brand !== "love"));
+}
+
+/** Artículos de LoveChat (/lovechat/blog). */
+export function getLovePosts() {
+  return sortByDate(POSTS.filter((p) => p.brand === "love"));
 }
 
 export function getPostBySlug(slug: string) {
