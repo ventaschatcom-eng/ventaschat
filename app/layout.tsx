@@ -20,11 +20,11 @@ const spaceGrotesk = Space_Grotesk({
 export const metadata: Metadata = {
   metadataBase: new URL("https://ventaschat.com"),
   title: {
-    default: "VentasChat — IA para cerrar más ventas en WhatsApp",
+    default: "IA para Cerrar Ventas por Chat — VentasChat",
     template: "%s | VentasChat",
   },
   description:
-    "IA que analiza tus chats de WhatsApp e Instagram DM. Puntaje de cierre 0-100%, qué responder a 'está caro' y vocabulario sugerido. 10 análisis gratis.",
+    "¿Tu cliente dice 'está caro' o deja de responder? Pega el chat y VentasChat te da puntaje de cierre, qué responder y vocabulario exacto. 10 análisis gratis.",
   keywords: [
     "como vender por whatsapp",
     "como vender por instagram",
