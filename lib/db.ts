@@ -360,6 +360,16 @@ export async function listAnalysisIterationsForUser(analysisId: string, userId: 
   return rows.map((row) => mapIteration(row as Record<string, unknown>));
 }
 
+export async function setUserCredits(userId: string, credits: number) {
+  await sql`UPDATE users SET credits = ${credits} WHERE id = ${userId}`;
+  return getUserById(userId);
+}
+
+export async function deactivateProSubscription(userId: string) {
+  await sql`UPDATE users SET subscription_active_until = NULL, plan = 'free' WHERE id = ${userId}`;
+  return getUserById(userId);
+}
+
 export async function getAdminStats() {
   const today = new Date();
   today.setHours(0, 0, 0, 0);

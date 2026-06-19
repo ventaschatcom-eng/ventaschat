@@ -3,6 +3,7 @@ import { redirect } from "next/navigation";
 import { auth } from "@/lib/auth";
 import { getAdminStats } from "@/lib/db";
 import { formatDate } from "@/lib/utils";
+import { AdminUserEditor } from "@/components/admin-user-editor";
 
 const ADMIN_EMAIL = "ventaschat.com@gmail.com";
 
@@ -85,6 +86,8 @@ export default async function AdminPage() {
           </table>
         </div>
       </section>
+
+      <AdminUserEditor />
     </div>
   );
 }
